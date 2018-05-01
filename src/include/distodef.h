@@ -17,7 +17,7 @@ Author: 1988 Jaijeet S Roychowdhury
 
 /* structure for passing a large number of values */
 typedef struct {
-	
+
 double cxx;
 double cyy;
 double czz;
@@ -179,12 +179,12 @@ extern double DFn2F1(double, double, double, double, double,
 		double, double, double, double, double, double, double);
 extern double DFi2F1(double, double, double, double, double,
 		double, double, double, double, double, double, double);
-extern double DFi3F1(double, double, double, double, 
+extern double DFi3F1(double, double, double, double,
 		double, double, double, double, double, double, double,
 		double, double, double, double, double, double, double,
 		double, double, double, double, double, double, double,
 		double, double, double);
-extern double DFn3F1(double, double, double, double, 
+extern double DFn3F1(double, double, double, double,
 		double, double, double, double, double, double, double,
 		double, double, double, double, double, double, double,
 		double, double, double, double, double, double, double,
@@ -192,7 +192,7 @@ extern double DFn3F1(double, double, double, double,
 extern double DFnF12(double, double, double, double,
 		double, double, double, double, double, double, double,
 		double, double, double, double, double, double, double);
-extern double DFiF12(double, double, double, double, 
+extern double DFiF12(double, double, double, double,
 		double, double, double, double, double, double, double,
 		double, double, double, double, double, double, double);
 extern double DFn2F12(DpassStr*);

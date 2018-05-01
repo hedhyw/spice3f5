@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesacl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesask.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesdel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesdest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesdisto.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesdset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesgetic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesload.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesmask.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesmdel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesmpar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesnoise.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mesparam.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mespzld.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\messetup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mestemp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\mes\mestrunc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\spice3f5\src\lib\dev\mes\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4A3AC357-0A90-37BB-A4F9-6607205B30CE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

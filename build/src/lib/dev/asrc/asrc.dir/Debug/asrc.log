@@ -1,0 +1,17 @@
+﻿  asrc.c
+  asrcacld.c
+  asrcask.c
+  asrcconv.c
+  asrcdel.c
+  asrcdest.c
+  asrcfbr.c
+  asrcload.c
+E:\spice3f5\src\lib\dev\asrc\asrcload.c(39): warning C4101: tol: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\asrc\asrcload.c(38): warning C4101: diff: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\asrc\asrcload.c(37): warning C4101: prev: неиспользованная локальная переменная
+  asrcmdel.c
+  asrcpar.c
+  asrcpzld.c
+  asrcset.c
+  Создание кода...
+  asrc.vcxproj -> E:\spice3f5\build\src\lib\dev\asrc\Debug\asrc.lib

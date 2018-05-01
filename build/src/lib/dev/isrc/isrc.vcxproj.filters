@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrcacct.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrcacld.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrcask.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrcdel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrcdest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrcload.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrcmdel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrcpar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\isrc\isrctemp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\spice3f5\src\lib\dev\isrc\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4A3AC357-0A90-37BB-A4F9-6607205B30CE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

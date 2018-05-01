@@ -7,14 +7,14 @@ Author: Jeffrey M. Hsu
 #ifdef HAS_X11
 #include "cpstd.h"
 #include "hlpdefs.h"
-#include <AsciiText.h>
-#include <StringDefs.h>
-#include <Paned.h>
-#include <Label.h>
-#include <Viewport.h>
-#include <Command.h>
-#include <Box.h>
-#include <Shell.h>
+#include <X11/Xaw/AsciiText.h>
+#include <X11/StringDefs.h>
+#include <X11/Xaw/Paned.h>
+#include <X11/Xaw/Label.h>
+#include <X11/Xaw/Viewport.h>
+#include <X11/Xaw/Command.h>
+#include <X11/Xaw/Box.h>
+#include <X11/Shell.h>
 #include "suffix.h"
 
 static bool started = false;

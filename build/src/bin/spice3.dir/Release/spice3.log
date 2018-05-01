@@ -1,0 +1,22 @@
+﻿  main.c
+E:\spice3f5\src\bin\main.c(222): warning C4013: ivars: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\bin\main.c(245): warning C4013: init_time: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\bin\main.c(247): warning C4013: SIMinit: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\bin\main.c(344): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(242): note:  см. объявление "freopen"
+E:\spice3f5\src\bin\main.c(489): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(207): note:  см. объявление "fopen"
+E:\spice3f5\src\bin\main.c(497): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(207): note:  см. объявление "fopen"
+E:\spice3f5\src\bin\main.c(503): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(207): note:  см. объявление "fopen"
+E:\spice3f5\src\bin\main.c(520): warning C4996: 'unlink': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _unlink. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(380): note:  см. объявление "unlink"
+E:\spice3f5\src\bin\main.c(194): warning C4101: p: неиспользованная локальная переменная
+E:\spice3f5\src\bin\main.c(195): warning C4101: term_1stch: неиспользованная локальная переменная
+  tunepc.c
+  cconf.c
+  Создание кода...
+e:\spice3f5\src\bin\main.c(719): warning C4716: CopyGraph: должна возвращать значение
+e:\spice3f5\src\bin\main.c(726): warning C4716: gr_init: должна возвращать значение
+  spice3.vcxproj -> E:\spice3f5\build\src\bin\Release\spice3.exe

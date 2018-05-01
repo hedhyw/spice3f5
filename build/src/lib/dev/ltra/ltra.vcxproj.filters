@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltra.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltraacct.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltraacld.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltraask.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltradel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltradest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltraload.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltramdel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltramisc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltrampar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltrapar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltraset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltratemp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltratrun.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\spice3f5\src\lib\dev\ltra\ltramask.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\spice3f5\src\lib\dev\ltra\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4A3AC357-0A90-37BB-A4F9-6607205B30CE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

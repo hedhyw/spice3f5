@@ -1,0 +1,54 @@
+﻿  bjt.c
+  bjtacld.c
+  bjtask.c
+E:\spice3f5\src\lib\dev\bjt\bjtask.c(209): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\dev\bjt\bjtask.c(224): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\dev\bjt\bjtask.c(239): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+  bjtconv.c
+  bjtdel.c
+  bjtdest.c
+  bjtdisto.c
+E:\spice3f5\src\lib\dev\bjt\bjtdisto.c(50): warning C4013: BJTdSetup: нет определения; предполагается "extern" с возвратом типа "int"
+  bjtdset.c
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(139): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(301): warning C4013: InvDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(324): warning C4013: TimesDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(333): warning C4013: SqrtDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(340): warning C4013: MultDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(357): warning C4013: DivDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(398): warning C4013: TanDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(402): warning C4013: PlusDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(515): warning C4013: ExpDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\bjt\bjtdset.c(233): warning C4102: next1: неиспользованная метка
+  bjtgetic.c
+  bjtload.c
+E:\spice3f5\src\lib\dev\bjt\bjtload.c(707): warning C4102: load: неиспользованная метка
+E:\spice3f5\src\lib\dev\bjt\bjtload.c(114): warning C4101: tol: неиспользованная локальная переменная
+  bjtmask.c
+  bjtmdel.c
+  bjtmpar.c
+  bjtnoise.c
+E:\spice3f5\src\lib\dev\bjt\bjtnoise.c(75): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\bjt\bjtnoise.c(92): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\bjt\bjtnoise.c(104): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\bjt\bjtnoise.c(46): warning C4101: error: неиспользованная локальная переменная
+  bjtparam.c
+  bjtpzld.c
+  bjtsacl.c
+  bjtsetup.c
+  bjtsload.c
+  bjtsprt.c
+  Создание кода...
+  Компиляция...
+  bjtsset.c
+  bjtsupd.c
+  bjttemp.c
+  bjttrunc.c
+  Создание кода...
+  bjt.vcxproj -> E:\spice3f5\build\src\lib\dev\bjt\Debug\bjt.lib

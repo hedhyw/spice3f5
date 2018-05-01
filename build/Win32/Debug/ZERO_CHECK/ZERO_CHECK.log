@@ -1,0 +1,62 @@
+﻿  Checking Build System
+  CMake does not need to re-run because E:/spice3f5/build/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/ckt/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/cp/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/disto/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/asrc/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/bjt/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/bsim1/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/bsim2/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/cap/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/cccs/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/ccvs/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/csw/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/dio/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/ind/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/isrc/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/jfet/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/ltra/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/mes/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/mos1/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/mos2/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/mos3/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/mos6/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/res/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/sw/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/tra/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/urc/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/vccs/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/vcvs/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/dev/vsrc/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/fte/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/hlp/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/inp/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/misc/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/ni/CMakeFiles/generate.stamp is up-to-date.
+  CMake does not need to re-run because E:/spice3f5/build/src/lib/sparse/CMakeFiles/generate.stamp is up-to-date.
+  CMake is re-running because E:/spice3f5/build/src/bin/CMakeFiles/generate.stamp is out-of-date.
+    the file 'E:/spice3f5/src/bin/CMakeLists.txt'
+    is newer than 'E:/spice3f5/build/src/bin/CMakeFiles/generate.stamp.depend'
+    result='-1'
+  CMake Warning (dev) at src/bin/CMakeLists.txt:13 (install):
+    Syntax error in cmake code at
+  
+      E:/spice3f5/src/bin/CMakeLists.txt:13
+  
+    when parsing string
+  
+      E:\Program Files (x86)\spice3f5
+  
+    Invalid escape sequence \P
+  
+    Policy CMP0010 is not set: Bad variable reference syntax is an error.  Run
+    "cmake --help-policy CMP0010" for policy details.  Use the cmake_policy
+    command to set the policy and suppress this warning.
+  This warning is for project developers.  Use -Wno-dev to suppress it.
+  
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: E:/spice3f5/build

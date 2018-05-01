@@ -26,6 +26,8 @@ Author: 1988 Jeffrey M. Hsu
 #include "suffix.h"
 
 extern struct dbcomm *dbs;  /* for iplot */
+static void gr_resize_internal();
+static void drawlegend();
 
 /* note: let's try to get rid of these */
 /* global variables */
@@ -90,7 +92,7 @@ gr_init(xlims, ylims, xname, plotname, hcopy, nplots, xdelta, ydelta, gridtype,
       return(false);
     }
 
-    /* 
+    /*
        The global currentgraph will always be the current graph.
     */
     SetGraphContext(graph->graphid);
@@ -427,7 +429,7 @@ GRAPH *graph;
 
 }
 
-static
+static void
 drawlegend(graph, plotno, dv)
 GRAPH *graph;
 int plotno;
@@ -546,7 +548,7 @@ GRAPH *graph;
 
 }
 
-static gr_resize_internal(graph)
+static void gr_resize_internal(graph)
 GRAPH *graph;
 {
 
@@ -556,7 +558,7 @@ GRAPH *graph;
     if (!graph->grid.ysized)
 	    graph->viewport.height = graph->absolute.height -
 		    2 * graph->viewportyoff;
-    
+
     gr_fixgrid(graph, graph->grid.xdelta, graph->grid.ydelta,
             graph->grid.xdatatype, graph->grid.ydatatype);
 
@@ -688,8 +690,8 @@ iplot(pl, id)
                   yl = v->v_name;
             }
         if (ft_grdb)
-            fprintf(cp_err, 
-              "iplot: after 5, xlims = %G, %G, ylims = %G, %G\n\r", 
+            fprintf(cp_err,
+              "iplot: after 5, xlims = %G, %G, ylims = %G, %G\n\r",
               xlims[0],
               xlims[1],
               ylims[0],
@@ -701,7 +703,7 @@ iplot(pl, id)
                 break;
             }
 /*
-        (void) gr_init((double *) NULL, (double *) NULL, xs->v_name, 
+        (void) gr_init((double *) NULL, (double *) NULL, xs->v_name,
             pl->pl_title, (char *) NULL, j, xdelta, ydelta,
             GRID_LIN, plottype, xs->v_name, yl, xs->v_type, yt,
             commandline, plotname);
@@ -762,7 +764,7 @@ iplot(pl, id)
                 fprintf(cp_err, "resize: xhi %G -> %G\n\r",
                   currentgraph->data.xmax,
                   currentgraph->data.xmax +
-                    (currentgraph->data.xmax - 
+                    (currentgraph->data.xmax -
                     currentgraph->data.xmin) * XFACTOR);
             currentgraph->data.xmax +=
                     (currentgraph->data.xmax -
@@ -786,7 +788,7 @@ iplot(pl, id)
                   fprintf(cp_err, "resize: ylo %G -> %G\n\r",
                     currentgraph->data.ymin,
                     currentgraph->data.ymin -
-                    (currentgraph->data.ymax - 
+                    (currentgraph->data.ymax -
                     currentgraph->data.ymin) * YFACTOR);
                 currentgraph->data.ymin -=
                   (currentgraph->data.ymax -
@@ -821,7 +823,7 @@ iplot(pl, id)
              */
             for (v = pl->pl_dvecs; v; v = v->v_next)
                 if (v->v_flags & VF_PLOT) {
-                    gr_point(v, 
+                    gr_point(v,
                     (isreal(xs) ? xs->v_realdata[len - 1] :
                     realpart(&xs->v_compdata[len - 1])),
                     (isreal(v) ? v->v_realdata[len - 1] :

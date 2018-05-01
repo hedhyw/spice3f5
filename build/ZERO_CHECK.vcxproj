@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0F9BEB19-0AC4-305E-8E74-FE3486A289C2}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ZERO_CHECK</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\spice3f5\build\CMakeFiles\7889292943e1449b12473a3cdc81285b\generate.stamp.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/spice3f5/build/Spice3f5.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/spice3f5/build/CMakeFiles/7889292943e1449b12473a3cdc81285b/generate.stamp.rule;E:\Program Files\share\cmake-3.10\Modules\CMakeCInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeRCInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;E:\spice3f5\CMakeLists.txt;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeCCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeCXXCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeRCCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeSystem.cmake;E:\spice3f5\lib\CMakeLists.txt;E:\spice3f5\src\CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;E:\spice3f5\src\lib\CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;E:\spice3f5\src\lib\cp\CMakeLists.txt;E:\spice3f5\src\lib\dev\CMakeLists.txt;E:\spice3f5\src\lib\dev\asrc\CMakeLists.txt;E:\spice3f5\src\lib\dev\bjt\CMakeLists.txt;E:\spice3f5\src\lib\dev\bsim1\CMakeLists.txt;E:\spice3f5\src\lib\dev\bsim2\CMakeLists.txt;E:\spice3f5\src\lib\dev\cap\CMakeLists.txt;E:\spice3f5\src\lib\dev\cccs\CMakeLists.txt;E:\spice3f5\src\lib\dev\ccvs\CMakeLists.txt;E:\spice3f5\src\lib\dev\csw\CMakeLists.txt;E:\spice3f5\src\lib\dev\dio\CMakeLists.txt;E:\spice3f5\src\lib\dev\disto\CMakeLists.txt;E:\spice3f5\src\lib\dev\ind\CMakeLists.txt;E:\spice3f5\src\lib\dev\isrc\CMakeLists.txt;E:\spice3f5\src\lib\dev\jfet\CMakeLists.txt;E:\spice3f5\src\lib\dev\ltra\CMakeLists.txt;E:\spice3f5\src\lib\dev\mes\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos1\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos2\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos3\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos6\CMakeLists.txt;E:\spice3f5\src\lib\dev\res\CMakeLists.txt;E:\spice3f5\src\lib\dev\sw\CMakeLists.txt;E:\spice3f5\src\lib\dev\tra\CMakeLists.txt;E:\spice3f5\src\lib\dev\urc\CMakeLists.txt;E:\spice3f5\src\lib\dev\vccs\CMakeLists.txt;E:\spice3f5\src\lib\dev\vcvs\CMakeLists.txt;E:\spice3f5\src\lib\dev\vsrc\CMakeLists.txt;E:\spice3f5\src\lib\fte\CMakeLists.txt;E:\spice3f5\src\lib\hlp\CMakeLists.txt;E:\spice3f5\src\lib\inp\CMakeLists.txt;E:\spice3f5\src\lib\misc\CMakeLists.txt;E:\spice3f5\src\lib\ni\CMakeLists.txt;E:\spice3f5\src\lib\sparse\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\spice3f5\build\CMakeFiles\generate.stamp;E:\spice3f5\build\src\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\ckt\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\cp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\disto\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\asrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bjt\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bsim1\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bsim2\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\cap\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\cccs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ccvs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\csw\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\dio\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ind\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\isrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\jfet\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ltra\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mes\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos1\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos2\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos3\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos6\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\res\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\sw\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\tra\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\urc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vccs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vcvs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vsrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\fte\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\hlp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\inp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\misc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\ni\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\sparse\CMakeFiles\generate.stamp;E:\spice3f5\build\src\bin\CMakeFiles\generate.stamp;E:\spice3f5\build\lib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/spice3f5/build/Spice3f5.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/spice3f5/build/CMakeFiles/7889292943e1449b12473a3cdc81285b/generate.stamp.rule;E:\Program Files\share\cmake-3.10\Modules\CMakeCInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeRCInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;E:\spice3f5\CMakeLists.txt;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeCCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeCXXCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeRCCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeSystem.cmake;E:\spice3f5\lib\CMakeLists.txt;E:\spice3f5\src\CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;E:\spice3f5\src\lib\CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;E:\spice3f5\src\lib\cp\CMakeLists.txt;E:\spice3f5\src\lib\dev\CMakeLists.txt;E:\spice3f5\src\lib\dev\asrc\CMakeLists.txt;E:\spice3f5\src\lib\dev\bjt\CMakeLists.txt;E:\spice3f5\src\lib\dev\bsim1\CMakeLists.txt;E:\spice3f5\src\lib\dev\bsim2\CMakeLists.txt;E:\spice3f5\src\lib\dev\cap\CMakeLists.txt;E:\spice3f5\src\lib\dev\cccs\CMakeLists.txt;E:\spice3f5\src\lib\dev\ccvs\CMakeLists.txt;E:\spice3f5\src\lib\dev\csw\CMakeLists.txt;E:\spice3f5\src\lib\dev\dio\CMakeLists.txt;E:\spice3f5\src\lib\dev\disto\CMakeLists.txt;E:\spice3f5\src\lib\dev\ind\CMakeLists.txt;E:\spice3f5\src\lib\dev\isrc\CMakeLists.txt;E:\spice3f5\src\lib\dev\jfet\CMakeLists.txt;E:\spice3f5\src\lib\dev\ltra\CMakeLists.txt;E:\spice3f5\src\lib\dev\mes\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos1\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos2\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos3\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos6\CMakeLists.txt;E:\spice3f5\src\lib\dev\res\CMakeLists.txt;E:\spice3f5\src\lib\dev\sw\CMakeLists.txt;E:\spice3f5\src\lib\dev\tra\CMakeLists.txt;E:\spice3f5\src\lib\dev\urc\CMakeLists.txt;E:\spice3f5\src\lib\dev\vccs\CMakeLists.txt;E:\spice3f5\src\lib\dev\vcvs\CMakeLists.txt;E:\spice3f5\src\lib\dev\vsrc\CMakeLists.txt;E:\spice3f5\src\lib\fte\CMakeLists.txt;E:\spice3f5\src\lib\hlp\CMakeLists.txt;E:\spice3f5\src\lib\inp\CMakeLists.txt;E:\spice3f5\src\lib\misc\CMakeLists.txt;E:\spice3f5\src\lib\ni\CMakeLists.txt;E:\spice3f5\src\lib\sparse\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\spice3f5\build\CMakeFiles\generate.stamp;E:\spice3f5\build\src\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\ckt\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\cp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\disto\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\asrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bjt\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bsim1\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bsim2\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\cap\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\cccs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ccvs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\csw\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\dio\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ind\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\isrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\jfet\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ltra\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mes\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos1\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos2\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos3\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos6\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\res\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\sw\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\tra\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\urc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vccs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vcvs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vsrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\fte\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\hlp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\inp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\misc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\ni\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\sparse\CMakeFiles\generate.stamp;E:\spice3f5\build\src\bin\CMakeFiles\generate.stamp;E:\spice3f5\build\lib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/spice3f5/build/Spice3f5.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/spice3f5/build/CMakeFiles/7889292943e1449b12473a3cdc81285b/generate.stamp.rule;E:\Program Files\share\cmake-3.10\Modules\CMakeCInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeRCInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;E:\spice3f5\CMakeLists.txt;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeCCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeCXXCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeRCCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeSystem.cmake;E:\spice3f5\lib\CMakeLists.txt;E:\spice3f5\src\CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;E:\spice3f5\src\lib\CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;E:\spice3f5\src\lib\cp\CMakeLists.txt;E:\spice3f5\src\lib\dev\CMakeLists.txt;E:\spice3f5\src\lib\dev\asrc\CMakeLists.txt;E:\spice3f5\src\lib\dev\bjt\CMakeLists.txt;E:\spice3f5\src\lib\dev\bsim1\CMakeLists.txt;E:\spice3f5\src\lib\dev\bsim2\CMakeLists.txt;E:\spice3f5\src\lib\dev\cap\CMakeLists.txt;E:\spice3f5\src\lib\dev\cccs\CMakeLists.txt;E:\spice3f5\src\lib\dev\ccvs\CMakeLists.txt;E:\spice3f5\src\lib\dev\csw\CMakeLists.txt;E:\spice3f5\src\lib\dev\dio\CMakeLists.txt;E:\spice3f5\src\lib\dev\disto\CMakeLists.txt;E:\spice3f5\src\lib\dev\ind\CMakeLists.txt;E:\spice3f5\src\lib\dev\isrc\CMakeLists.txt;E:\spice3f5\src\lib\dev\jfet\CMakeLists.txt;E:\spice3f5\src\lib\dev\ltra\CMakeLists.txt;E:\spice3f5\src\lib\dev\mes\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos1\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos2\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos3\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos6\CMakeLists.txt;E:\spice3f5\src\lib\dev\res\CMakeLists.txt;E:\spice3f5\src\lib\dev\sw\CMakeLists.txt;E:\spice3f5\src\lib\dev\tra\CMakeLists.txt;E:\spice3f5\src\lib\dev\urc\CMakeLists.txt;E:\spice3f5\src\lib\dev\vccs\CMakeLists.txt;E:\spice3f5\src\lib\dev\vcvs\CMakeLists.txt;E:\spice3f5\src\lib\dev\vsrc\CMakeLists.txt;E:\spice3f5\src\lib\fte\CMakeLists.txt;E:\spice3f5\src\lib\hlp\CMakeLists.txt;E:\spice3f5\src\lib\inp\CMakeLists.txt;E:\spice3f5\src\lib\misc\CMakeLists.txt;E:\spice3f5\src\lib\ni\CMakeLists.txt;E:\spice3f5\src\lib\sparse\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\spice3f5\build\CMakeFiles\generate.stamp;E:\spice3f5\build\src\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\ckt\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\cp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\disto\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\asrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bjt\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bsim1\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bsim2\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\cap\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\cccs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ccvs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\csw\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\dio\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ind\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\isrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\jfet\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ltra\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mes\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos1\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos2\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos3\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos6\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\res\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\sw\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\tra\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\urc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vccs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vcvs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vsrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\fte\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\hlp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\inp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\misc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\ni\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\sparse\CMakeFiles\generate.stamp;E:\spice3f5\build\src\bin\CMakeFiles\generate.stamp;E:\spice3f5\build\lib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Checking Build System</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/spice3f5/build/Spice3f5.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/spice3f5/build/CMakeFiles/7889292943e1449b12473a3cdc81285b/generate.stamp.rule;E:\Program Files\share\cmake-3.10\Modules\CMakeCInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeRCInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;E:\Program Files\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;E:\Program Files\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;E:\Program Files\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\Windows.cmake;E:\Program Files\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;E:\spice3f5\CMakeLists.txt;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeCCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeCXXCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeRCCompiler.cmake;E:\spice3f5\build\CMakeFiles\3.10.2\CMakeSystem.cmake;E:\spice3f5\lib\CMakeLists.txt;E:\spice3f5\src\CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;E:\spice3f5\src\lib\CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;E:\spice3f5\src\lib\cp\CMakeLists.txt;E:\spice3f5\src\lib\dev\CMakeLists.txt;E:\spice3f5\src\lib\dev\asrc\CMakeLists.txt;E:\spice3f5\src\lib\dev\bjt\CMakeLists.txt;E:\spice3f5\src\lib\dev\bsim1\CMakeLists.txt;E:\spice3f5\src\lib\dev\bsim2\CMakeLists.txt;E:\spice3f5\src\lib\dev\cap\CMakeLists.txt;E:\spice3f5\src\lib\dev\cccs\CMakeLists.txt;E:\spice3f5\src\lib\dev\ccvs\CMakeLists.txt;E:\spice3f5\src\lib\dev\csw\CMakeLists.txt;E:\spice3f5\src\lib\dev\dio\CMakeLists.txt;E:\spice3f5\src\lib\dev\disto\CMakeLists.txt;E:\spice3f5\src\lib\dev\ind\CMakeLists.txt;E:\spice3f5\src\lib\dev\isrc\CMakeLists.txt;E:\spice3f5\src\lib\dev\jfet\CMakeLists.txt;E:\spice3f5\src\lib\dev\ltra\CMakeLists.txt;E:\spice3f5\src\lib\dev\mes\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos1\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos2\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos3\CMakeLists.txt;E:\spice3f5\src\lib\dev\mos6\CMakeLists.txt;E:\spice3f5\src\lib\dev\res\CMakeLists.txt;E:\spice3f5\src\lib\dev\sw\CMakeLists.txt;E:\spice3f5\src\lib\dev\tra\CMakeLists.txt;E:\spice3f5\src\lib\dev\urc\CMakeLists.txt;E:\spice3f5\src\lib\dev\vccs\CMakeLists.txt;E:\spice3f5\src\lib\dev\vcvs\CMakeLists.txt;E:\spice3f5\src\lib\dev\vsrc\CMakeLists.txt;E:\spice3f5\src\lib\fte\CMakeLists.txt;E:\spice3f5\src\lib\hlp\CMakeLists.txt;E:\spice3f5\src\lib\inp\CMakeLists.txt;E:\spice3f5\src\lib\misc\CMakeLists.txt;E:\spice3f5\src\lib\ni\CMakeLists.txt;E:\spice3f5\src\lib\sparse\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\spice3f5\build\CMakeFiles\generate.stamp;E:\spice3f5\build\src\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\ckt\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\cp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\disto\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\asrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bjt\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bsim1\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\bsim2\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\cap\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\cccs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ccvs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\csw\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\dio\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ind\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\isrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\jfet\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\ltra\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mes\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos1\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos2\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos3\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\mos6\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\res\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\sw\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\tra\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\urc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vccs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vcvs\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\dev\vsrc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\fte\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\hlp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\inp\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\misc\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\ni\CMakeFiles\generate.stamp;E:\spice3f5\build\src\lib\sparse\CMakeFiles\generate.stamp;E:\spice3f5\build\src\bin\CMakeFiles\generate.stamp;E:\spice3f5\build\lib\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

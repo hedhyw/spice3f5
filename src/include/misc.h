@@ -67,9 +67,9 @@ extern char *smktemp();
 #    define random	rand
 #    define srandom	srand
 #  endif
-#  ifdef HAS_DOSDIRS
-char *getcwd( );
-#  endif
+//#  ifdef HAS_DOSDIRS
+//extern char *getcwd( void );
+//#  endif
 
 #else
 

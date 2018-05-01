@@ -16,6 +16,16 @@ Copyright 1990 Regents of the University of California.  All rights reserved.
 #  define CONFIGURED
 #endif
 
+#ifdef linux
+#  include "os_linux.h"
+#  define CONFIGURED
+#endif
+
+#ifdef windows
+#  include "os_windows.h"
+#  define CONFIGURED
+#endif
+
 #ifdef ultrix
 #  include "os_ultrx.h"
 #  define CONFIGURED

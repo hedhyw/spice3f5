@@ -1,0 +1,50 @@
+﻿  mes.c
+  mesacl.c
+  mesask.c
+E:\spice3f5\src\lib\dev\mes\mesask.c(98): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\dev\mes\mesask.c(109): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+  mesdel.c
+  mesdest.c
+  mesdisto.c
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(47): warning C4013: MESdSetup: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(36): warning C4101: i1hm2z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(33): warning C4101: r1h2z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(36): warning C4101: r1hm2z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(33): warning C4101: i1h2z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(30): warning C4101: r1h1z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(42): warning C4101: r2h1m2z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(30): warning C4101: i1h1z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(42): warning C4101: i2h1m2z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(39): warning C4101: i2h11z: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\mes\mesdisto.c(39): warning C4101: r2h11z: неиспользованная локальная переменная
+  mesdset.c
+E:\spice3f5\src\lib\dev\mes\mesdset.c(164): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\mes\mesdset.c(184): warning C4013: TimesDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\mes\mesdset.c(192): warning C4013: InvDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\mes\mesdset.c(197): warning C4013: MultDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\mes\mesdset.c(209): warning C4013: CubeDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\mes\mesdset.c(254): warning C4013: PlusDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\mes\mesdset.c(257): warning C4013: SqrtDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\dev\mes\mesdset.c(303): warning C4013: DivDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  mesgetic.c
+  mesload.c
+  mesmask.c
+  mesmdel.c
+  mesmpar.c
+  mesnoise.c
+E:\spice3f5\src\lib\dev\mes\mesnoise.c(72): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\mes\mesnoise.c(88): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\mes\mesnoise.c(99): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\mes\mesnoise.c(45): warning C4101: error: неиспользованная локальная переменная
+  mesparam.c
+  mespzld.c
+  messetup.c
+  mestemp.c
+  mestrunc.c
+  Создание кода...
+  mes.vcxproj -> E:\spice3f5\build\src\lib\dev\mes\Debug\mes.lib

@@ -1,0 +1,149 @@
+﻿  alias.c
+  backq.c
+E:\spice3f5\src\lib\cp\backq.c(39): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\backq.c(54): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\backq.c(56): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+E:\spice3f5\src\lib\cp\backq.c(62): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\backq.c(64): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+  complete.c
+E:\spice3f5\src\lib\cp\complete.c(622): warning C4013: bzero: нет определения; предполагается "extern" с возвратом типа "int"
+  cshpar.c
+E:\spice3f5\src\lib\cp\cshpar.c(187): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(207): note:  см. объявление "fopen"
+E:\spice3f5\src\lib\cp\cshpar.c(250): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(207): note:  см. объявление "fopen"
+E:\spice3f5\src\lib\cp\cshpar.c(252): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(207): note:  см. объявление "fopen"
+E:\spice3f5\src\lib\cp\cshpar.c(341): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdlib.h(1199): note:  см. объявление "getenv"
+E:\spice3f5\src\lib\cp\cshpar.c(335): warning C4101: pid: неиспользованная локальная переменная
+E:\spice3f5\src\lib\cp\cshpar.c(335): warning C4101: r: неиспользованная локальная переменная
+E:\spice3f5\src\lib\cp\cshpar.c(405): warning C4013: dup2: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\cshpar.c(405): warning C4996: 'fileno': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _fileno. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2457): note:  см. объявление "fileno"
+E:\spice3f5\src\lib\cp\cshpar.c(407): warning C4996: 'fileno': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _fileno. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2457): note:  см. объявление "fileno"
+E:\spice3f5\src\lib\cp\cshpar.c(409): warning C4996: 'fileno': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _fileno. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2457): note:  см. объявление "fileno"
+E:\spice3f5\src\lib\cp\cshpar.c(424): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdlib.h(1199): note:  см. объявление "getenv"
+E:\spice3f5\src\lib\cp\cshpar.c(475): warning C4013: chdir: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\cshpar.c(482): warning C4013: getcwd: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\cshpar.c(482): warning C4047: =: "char *" отличается по уровням косвенного обращения от "int"
+E:\spice3f5\src\lib\cp\cshpar.c(448): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdlib.h(1199): note:  см. объявление "getenv"
+E:\spice3f5\src\lib\cp\cshpar.c(469): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\cshpar.c(471): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\cshpar.c(438): warning C4101: pw: неиспользованная локальная переменная
+  front.c
+E:\spice3f5\src\lib\cp\front.c(146): warning C4013: bzero: нет определения; предполагается "extern" с возвратом типа "int"
+  glob.c
+E:\spice3f5\src\lib\cp\glob.c(173): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\glob.c(174): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+E:\spice3f5\src\lib\cp\glob.c(201): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\glob.c(252): warning C4013: bzero: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\glob.c(301): warning C4013: closedir: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\glob.c(345): warning C4113: "int (__cdecl *)()" отличается в списках параметров от "_CoreCrtNonSecureSearchSortCompareFunction"
+E:\spice3f5\src\lib\cp\glob.c(261): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\glob.c(295): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\glob.c(296): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+E:\spice3f5\src\lib\cp\glob.c(297): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+  history.c
+E:\spice3f5\src\lib\cp\history.c(50): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\history.c(66): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\history.c(113): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\history.c(139): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\history.c(171): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+  input.c
+  lexical.c
+E:\spice3f5\src\lib\cp\lexical.c(92): warning C4013: bzero: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\lexical.c(335): warning C4013: read: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\lexical.c(335): warning C4996: 'fileno': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _fileno. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(2457): note:  см. объявление "fileno"
+  modify.c
+E:\spice3f5\src\lib\cp\modify.c(24): warning C4013: bzero: нет определения; предполагается "extern" с возвратом типа "int"
+  numparse.c
+  output.c
+E:\spice3f5\src\lib\cp\output.c(50): warning C4101: s: неиспользованная локальная переменная
+E:\spice3f5\src\lib\cp\output.c(50): warning C4101: tbuf: неиспользованная локальная переменная
+E:\spice3f5\src\lib\cp\output.c(109): warning C4013: bzero: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\output.c(231): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\output.c(301): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdlib.h(1199): note:  см. объявление "getenv"
+E:\spice3f5\src\lib\cp\output.c(308): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdlib.h(1199): note:  см. объявление "getenv"
+  quote.c
+  spawn.c
+  std.c
+  unixcom.c
+  var2.c
+E:\spice3f5\src\lib\cp\var2.c(56): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\var2.c(68): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\var2.c(70): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+E:\spice3f5\src\lib\cp\var2.c(83): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\var2.c(85): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+E:\spice3f5\src\lib\cp\var2.c(124): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\var2.c(133): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\var2.c(175): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\var2.c(204): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdlib.h(1199): note:  см. объявление "getenv"
+E:\spice3f5\src\lib\cp\var2.c(276): warning C4113: "int (__cdecl *)()" отличается в списках параметров от "_CoreCrtNonSecureSearchSortCompareFunction"
+E:\spice3f5\src\lib\cp\var2.c(284): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\var2.c(460): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\var2.c(489): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\var2.c(492): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+  variable.c
+E:\spice3f5\src\lib\cp\variable.c(34): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\variable.c(38): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\variable.c(42): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\cp\variable.c(45): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\cp\variable.c(145): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+E:\spice3f5\src\lib\cp\variable.c(208): warning C4013: bcopy: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\variable.c(361): warning C4013: bzero: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\cp\variable.c(400): warning C4477: "fprintf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "char *"
+E:\spice3f5\src\lib\cp\variable.c(409): warning C4477: "fprintf": в строке форматирования "%d" требуется аргумент типа "int", но вариативный аргумент "1" имеет тип "char *"
+  wlist.c
+E:\spice3f5\src\lib\cp\wlist.c(204): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+E:\spice3f5\src\lib\cp\wlist.c(206): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(89): note:  см. объявление "strcat"
+E:\spice3f5\src\lib\cp\wlist.c(243): warning C4113: "int (__cdecl *)()" отличается в списках параметров от "_CoreCrtNonSecureSearchSortCompareFunction"
+  Создание кода...
+e:\spice3f5\src\lib\cp\output.c(130): warning C4716: fbufputc: должна возвращать значение
+  cp.vcxproj -> E:\spice3f5\build\src\lib\cp\Debug\cp.lib

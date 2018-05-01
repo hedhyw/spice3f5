@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CBDF5E0A-F703-302F-9DA5-372811144E14}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>spice3</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\spice3f5\build\src\bin\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">spice3.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">spice3</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\spice3f5\build\src\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">spice3.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">spice3</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\spice3f5\build\src\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">spice3.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">spice3</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\spice3f5\build\src\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">spice3.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">spice3</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;windows;SIMULATOR;BATCH;SPICE2;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;windows;SIMULATOR;BATCH;SPICE2;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\fte\Debug\fte.lib;..\lib\dev\Debug\dev.lib;..\lib\ckt\Debug\ckt.lib;..\lib\cp\Debug\cp.lib;..\lib\hlp\Debug\hlp.lib;..\lib\inp\Debug\inp.lib;..\lib\misc\Debug\misc.lib;..\lib\ni\Debug\ni.lib;..\lib\sparse\Debug\sparse.lib;..\lib\dev\jfet\Debug\jfet.lib;..\lib\dev\urc\Debug\urc.lib;..\lib\fte\Debug\fte.lib;..\lib\dev\Debug\dev.lib;..\lib\ckt\Debug\ckt.lib;..\lib\dev\jfet\Debug\jfet.lib;..\lib\dev\urc\Debug\urc.lib;..\lib\inp\Debug\inp.lib;..\lib\dev\asrc\Debug\asrc.lib;..\lib\dev\bjt\Debug\bjt.lib;..\lib\dev\bsim1\Debug\bsim1.lib;..\lib\dev\bsim2\Debug\bsim2.lib;..\lib\dev\cap\Debug\cap.lib;..\lib\dev\cccs\Debug\cccs.lib;..\lib\dev\ccvs\Debug\ccvs.lib;..\lib\dev\csw\Debug\csw.lib;..\lib\dev\dio\Debug\dio.lib;..\lib\dev\ind\Debug\ind.lib;..\lib\dev\isrc\Debug\isrc.lib;..\lib\dev\ltra\Debug\ltra.lib;..\lib\dev\mes\Debug\mes.lib;..\lib\dev\mos1\Debug\mos1.lib;..\lib\dev\mos2\Debug\mos2.lib;..\lib\dev\disto\Debug\disto.lib;..\lib\dev\mos3\Debug\mos3.lib;..\lib\dev\mos6\Debug\mos6.lib;..\lib\dev\res\Debug\res.lib;..\lib\dev\sw\Debug\sw.lib;..\lib\dev\tra\Debug\tra.lib;..\lib\dev\vccs\Debug\vccs.lib;..\lib\dev\vcvs\Debug\vcvs.lib;..\lib\dev\vsrc\Debug\vsrc.lib;..\lib\ni\Debug\ni.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/spice3f5/build/src/bin/Debug/spice3.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/spice3f5/build/src/bin/Debug/spice3.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;SIMULATOR;BATCH;SPICE2;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;SIMULATOR;BATCH;SPICE2;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\fte\Release\fte.lib;..\lib\dev\Release\dev.lib;..\lib\ckt\Release\ckt.lib;..\lib\cp\Release\cp.lib;..\lib\hlp\Release\hlp.lib;..\lib\inp\Release\inp.lib;..\lib\misc\Release\misc.lib;..\lib\ni\Release\ni.lib;..\lib\sparse\Release\sparse.lib;..\lib\dev\jfet\Release\jfet.lib;..\lib\dev\urc\Release\urc.lib;..\lib\fte\Release\fte.lib;..\lib\dev\Release\dev.lib;..\lib\ckt\Release\ckt.lib;..\lib\dev\jfet\Release\jfet.lib;..\lib\dev\urc\Release\urc.lib;..\lib\inp\Release\inp.lib;..\lib\dev\asrc\Release\asrc.lib;..\lib\dev\bjt\Release\bjt.lib;..\lib\dev\bsim1\Release\bsim1.lib;..\lib\dev\bsim2\Release\bsim2.lib;..\lib\dev\cap\Release\cap.lib;..\lib\dev\cccs\Release\cccs.lib;..\lib\dev\ccvs\Release\ccvs.lib;..\lib\dev\csw\Release\csw.lib;..\lib\dev\dio\Release\dio.lib;..\lib\dev\ind\Release\ind.lib;..\lib\dev\isrc\Release\isrc.lib;..\lib\dev\ltra\Release\ltra.lib;..\lib\dev\mes\Release\mes.lib;..\lib\dev\mos1\Release\mos1.lib;..\lib\dev\mos2\Release\mos2.lib;..\lib\dev\disto\Release\disto.lib;..\lib\dev\mos3\Release\mos3.lib;..\lib\dev\mos6\Release\mos6.lib;..\lib\dev\res\Release\res.lib;..\lib\dev\sw\Release\sw.lib;..\lib\dev\tra\Release\tra.lib;..\lib\dev\vccs\Release\vccs.lib;..\lib\dev\vcvs\Release\vcvs.lib;..\lib\dev\vsrc\Release\vsrc.lib;..\lib\ni\Release\ni.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/spice3f5/build/src/bin/Release/spice3.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/spice3f5/build/src/bin/Release/spice3.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;SIMULATOR;BATCH;SPICE2;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;SIMULATOR;BATCH;SPICE2;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\fte\MinSizeRel\fte.lib;..\lib\dev\MinSizeRel\dev.lib;..\lib\ckt\MinSizeRel\ckt.lib;..\lib\cp\MinSizeRel\cp.lib;..\lib\hlp\MinSizeRel\hlp.lib;..\lib\inp\MinSizeRel\inp.lib;..\lib\misc\MinSizeRel\misc.lib;..\lib\ni\MinSizeRel\ni.lib;..\lib\sparse\MinSizeRel\sparse.lib;..\lib\dev\jfet\MinSizeRel\jfet.lib;..\lib\dev\urc\MinSizeRel\urc.lib;..\lib\fte\MinSizeRel\fte.lib;..\lib\dev\MinSizeRel\dev.lib;..\lib\ckt\MinSizeRel\ckt.lib;..\lib\dev\jfet\MinSizeRel\jfet.lib;..\lib\dev\urc\MinSizeRel\urc.lib;..\lib\inp\MinSizeRel\inp.lib;..\lib\dev\asrc\MinSizeRel\asrc.lib;..\lib\dev\bjt\MinSizeRel\bjt.lib;..\lib\dev\bsim1\MinSizeRel\bsim1.lib;..\lib\dev\bsim2\MinSizeRel\bsim2.lib;..\lib\dev\cap\MinSizeRel\cap.lib;..\lib\dev\cccs\MinSizeRel\cccs.lib;..\lib\dev\ccvs\MinSizeRel\ccvs.lib;..\lib\dev\csw\MinSizeRel\csw.lib;..\lib\dev\dio\MinSizeRel\dio.lib;..\lib\dev\ind\MinSizeRel\ind.lib;..\lib\dev\isrc\MinSizeRel\isrc.lib;..\lib\dev\ltra\MinSizeRel\ltra.lib;..\lib\dev\mes\MinSizeRel\mes.lib;..\lib\dev\mos1\MinSizeRel\mos1.lib;..\lib\dev\mos2\MinSizeRel\mos2.lib;..\lib\dev\disto\MinSizeRel\disto.lib;..\lib\dev\mos3\MinSizeRel\mos3.lib;..\lib\dev\mos6\MinSizeRel\mos6.lib;..\lib\dev\res\MinSizeRel\res.lib;..\lib\dev\sw\MinSizeRel\sw.lib;..\lib\dev\tra\MinSizeRel\tra.lib;..\lib\dev\vccs\MinSizeRel\vccs.lib;..\lib\dev\vcvs\MinSizeRel\vcvs.lib;..\lib\dev\vsrc\MinSizeRel\vsrc.lib;..\lib\ni\MinSizeRel\ni.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/spice3f5/build/src/bin/MinSizeRel/spice3.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/spice3f5/build/src/bin/MinSizeRel/spice3.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;SIMULATOR;BATCH;SPICE2;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;SIMULATOR;BATCH;SPICE2;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;E:\spice3f5\src\bin\..\include;E:\spice3f5\src\bin\..\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\lib\fte\RelWithDebInfo\fte.lib;..\lib\dev\RelWithDebInfo\dev.lib;..\lib\ckt\RelWithDebInfo\ckt.lib;..\lib\cp\RelWithDebInfo\cp.lib;..\lib\hlp\RelWithDebInfo\hlp.lib;..\lib\inp\RelWithDebInfo\inp.lib;..\lib\misc\RelWithDebInfo\misc.lib;..\lib\ni\RelWithDebInfo\ni.lib;..\lib\sparse\RelWithDebInfo\sparse.lib;..\lib\dev\jfet\RelWithDebInfo\jfet.lib;..\lib\dev\urc\RelWithDebInfo\urc.lib;..\lib\fte\RelWithDebInfo\fte.lib;..\lib\dev\RelWithDebInfo\dev.lib;..\lib\ckt\RelWithDebInfo\ckt.lib;..\lib\dev\jfet\RelWithDebInfo\jfet.lib;..\lib\dev\urc\RelWithDebInfo\urc.lib;..\lib\inp\RelWithDebInfo\inp.lib;..\lib\dev\asrc\RelWithDebInfo\asrc.lib;..\lib\dev\bjt\RelWithDebInfo\bjt.lib;..\lib\dev\bsim1\RelWithDebInfo\bsim1.lib;..\lib\dev\bsim2\RelWithDebInfo\bsim2.lib;..\lib\dev\cap\RelWithDebInfo\cap.lib;..\lib\dev\cccs\RelWithDebInfo\cccs.lib;..\lib\dev\ccvs\RelWithDebInfo\ccvs.lib;..\lib\dev\csw\RelWithDebInfo\csw.lib;..\lib\dev\dio\RelWithDebInfo\dio.lib;..\lib\dev\ind\RelWithDebInfo\ind.lib;..\lib\dev\isrc\RelWithDebInfo\isrc.lib;..\lib\dev\ltra\RelWithDebInfo\ltra.lib;..\lib\dev\mes\RelWithDebInfo\mes.lib;..\lib\dev\mos1\RelWithDebInfo\mos1.lib;..\lib\dev\mos2\RelWithDebInfo\mos2.lib;..\lib\dev\disto\RelWithDebInfo\disto.lib;..\lib\dev\mos3\RelWithDebInfo\mos3.lib;..\lib\dev\mos6\RelWithDebInfo\mos6.lib;..\lib\dev\res\RelWithDebInfo\res.lib;..\lib\dev\sw\RelWithDebInfo\sw.lib;..\lib\dev\tra\RelWithDebInfo\tra.lib;..\lib\dev\vccs\RelWithDebInfo\vccs.lib;..\lib\dev\vcvs\RelWithDebInfo\vcvs.lib;..\lib\dev\vsrc\RelWithDebInfo\vsrc.lib;..\lib\ni\RelWithDebInfo\ni.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/spice3f5/build/src/bin/RelWithDebInfo/spice3.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/spice3f5/build/src/bin/RelWithDebInfo/spice3.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\spice3f5\src\bin\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/spice3f5/src/bin/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-file E:/spice3f5/build/src/bin/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/spice3f5/src/bin/CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\spice3f5\build\src\bin\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/spice3f5/src/bin/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-file E:/spice3f5/build/src/bin/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/spice3f5/src/bin/CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\spice3f5\build\src\bin\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule E:/spice3f5/src/bin/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-file E:/spice3f5/build/src/bin/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/spice3f5/src/bin/CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\spice3f5\build\src\bin\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule E:/spice3f5/src/bin/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-file E:/spice3f5/build/src/bin/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/spice3f5/src/bin/CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;E:\spice3f5\src\bin\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\spice3f5\build\src\bin\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="E:\spice3f5\src\bin\main.c"  />
+    <ClCompile Include="E:\spice3f5\src\bin\tunepc.c"  />
+    <ClCompile Include="E:\spice3f5\src\bin\cconf.c"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\spice3f5\build\ZERO_CHECK.vcxproj">
+      <Project>{0F9BEB19-0AC4-305E-8E74-FE3486A289C2}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\asrc\asrc.vcxproj">
+      <Project>{5C5340B1-31D1-3D0B-B5E5-B8C830DC83C6}</Project>
+      <Name>asrc</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\bjt\bjt.vcxproj">
+      <Project>{CDDA28EB-D955-3E93-BE7C-94FAE13AAAAC}</Project>
+      <Name>bjt</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\bsim1\bsim1.vcxproj">
+      <Project>{C4DA841F-F9C4-3259-BE25-9CE1EC518D0C}</Project>
+      <Name>bsim1</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\bsim2\bsim2.vcxproj">
+      <Project>{8C43F89C-0DF7-31AD-B276-10059544A281}</Project>
+      <Name>bsim2</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\cap\cap.vcxproj">
+      <Project>{FD9A85BB-072D-335C-896E-7294B93D18B7}</Project>
+      <Name>cap</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\cccs\cccs.vcxproj">
+      <Project>{8E3BBDEE-9941-3C3F-865C-2B10E85A66B6}</Project>
+      <Name>cccs</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\ccvs\ccvs.vcxproj">
+      <Project>{A948A730-B12D-35A2-ABB8-994D082FA7EF}</Project>
+      <Name>ccvs</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\ckt\ckt.vcxproj">
+      <Project>{A3527D2B-85C7-33B7-89EB-D5394B61B892}</Project>
+      <Name>ckt</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\cp\cp.vcxproj">
+      <Project>{4C184C4A-4BD0-3DF5-884A-1D8BEE78590F}</Project>
+      <Name>cp</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\csw\csw.vcxproj">
+      <Project>{7E794CC5-9034-396C-A946-0EBCEED51263}</Project>
+      <Name>csw</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\dio\dio.vcxproj">
+      <Project>{FF85DE73-5CB6-3451-852D-C7AB4413F593}</Project>
+      <Name>dio</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\disto\disto.vcxproj">
+      <Project>{0E3B21D3-24E2-305B-801F-D5DCC6F92EFE}</Project>
+      <Name>disto</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\hlp\hlp.vcxproj">
+      <Project>{2C330200-8F5F-34EF-A2DB-99E7CF7917CC}</Project>
+      <Name>hlp</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\ind\ind.vcxproj">
+      <Project>{4A7FB566-D87D-3751-9996-8B255B41BA2E}</Project>
+      <Name>ind</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\inp\inp.vcxproj">
+      <Project>{5C532349-D096-365A-BF8C-F83BF59558F1}</Project>
+      <Name>inp</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\isrc\isrc.vcxproj">
+      <Project>{D11C798F-0D72-3BB2-9682-7BB3C0514061}</Project>
+      <Name>isrc</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\ltra\ltra.vcxproj">
+      <Project>{9CE917CD-DECD-3219-B450-0FDA86562A72}</Project>
+      <Name>ltra</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\mes\mes.vcxproj">
+      <Project>{E80FC196-FACE-3CBD-A43F-A5CBDCCA5949}</Project>
+      <Name>mes</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\misc\misc.vcxproj">
+      <Project>{2B3DB254-442F-3D66-B293-B156564AFEA4}</Project>
+      <Name>misc</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\mos1\mos1.vcxproj">
+      <Project>{21B983EA-AB08-3C6C-9B46-169AA8852E2D}</Project>
+      <Name>mos1</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\mos2\mos2.vcxproj">
+      <Project>{A46341DF-FAC7-3179-811F-EADF91356F5F}</Project>
+      <Name>mos2</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\mos3\mos3.vcxproj">
+      <Project>{90076D2F-40A5-367F-8DC4-6F607CE1E21D}</Project>
+      <Name>mos3</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\mos6\mos6.vcxproj">
+      <Project>{1B3FE43D-9190-3FC5-9898-8E90D5DF5C8F}</Project>
+      <Name>mos6</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\ni\ni.vcxproj">
+      <Project>{4ABBF6DF-06BC-3E83-A982-36F57E841CAC}</Project>
+      <Name>ni</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\res\res.vcxproj">
+      <Project>{D8CA2FFF-4D47-309F-A518-D1B83C8F97BE}</Project>
+      <Name>res</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\sparse\sparse.vcxproj">
+      <Project>{A8C32538-2004-3A35-A3CB-0248C5B892C2}</Project>
+      <Name>sparse</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\sw\sw.vcxproj">
+      <Project>{2CC28CAC-5047-3972-B47E-25C5272FFAB6}</Project>
+      <Name>sw</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\tra\tra.vcxproj">
+      <Project>{7892A589-720D-3032-8256-29EFF6A69228}</Project>
+      <Name>tra</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\vccs\vccs.vcxproj">
+      <Project>{093AD8C2-1E35-3294-8C47-9D9068B230DC}</Project>
+      <Name>vccs</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\vcvs\vcvs.vcxproj">
+      <Project>{4FE471B5-6839-3ECE-AC8A-C49BEE138460}</Project>
+      <Name>vcvs</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\vsrc\vsrc.vcxproj">
+      <Project>{B95CB082-9D36-34FB-A5D0-6157D28FF738}</Project>
+      <Name>vsrc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

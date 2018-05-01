@@ -11,7 +11,7 @@ Author: 1988 Jaijeet S Roychowdhury
  * all subFns are local to this file so they need not be renamed to
  * the awful 7 letter standard; however, for reasons of uniformity,
  * they are being renamed, losing all readability in the process.
- * the renaming convention is as follows: 
+ * the renaming convention is as follows:
  *   example: 3v3F1m2
  * 3v => 3 variable term xyz
  * 2F1m2 => Two F1 minus F2
@@ -199,7 +199,7 @@ double cxx,cyy,czz,cxy,cyz,cxz;
 double r1h1x,i1h1x,r1h1y,i1h1y,r1h1z,i1h1z;
 {
 double temp;
-	
+
 	temp = S2v2F1(cxx,r1h1x,i1h1x,r1h1x,i1h1x) +
 	       S2v2F1(cyy,r1h1y,i1h1y,r1h1y,i1h1y) +
 	       S2v2F1(czz,r1h1z,i1h1z,r1h1z,i1h1z) +
@@ -219,7 +219,7 @@ double cxx,cyy,czz,cxy,cyz,cxz;
 double r1h1x,i1h1x,r1h1y,i1h1y,r1h1z,i1h1z;
 {
 double temp;
-	
+
 	temp = S2i2F1(cxx,r1h1x,i1h1x,r1h1x,i1h1x) +
 	       S2i2F1(cyy,r1h1y,i1h1y,r1h1y,i1h1y) +
 	       S2i2F1(czz,r1h1z,i1h1z,r1h1z,i1h1z) +
@@ -454,7 +454,7 @@ double temp;
 	p->i1h1x,p->r1h1y,p->i1h1y,p->r1h1z,p->i1h1z,
 						p->r1h2x,p->i1h2x,
 	p->r1h2y,p->i1h2y,p->r1h2z,p->i1h2z);
-						
+
 	return(temp/3.); /* divided by 3 to get kernel (otherwise we get 3*kernel) */
 }
 
@@ -563,7 +563,7 @@ double temp;
 	p->i1h1x,p->r1h1y,p->i1h1y,p->r1h1z,p->i1h1z,
 						p->r1h2x,p->i1h2x,
 	p->r1h2y,p->i1h2y,p->r1h2z,p->i1h2z);
-						
+
 	return(temp/3.); /* divided by 3 to get kernel (otherwise we get 3*kernel) */
 }
 
@@ -576,7 +576,7 @@ double cxx;
 double r1h1x,i1h1x;
 {
 double temp;
-	
+
 	temp = S2v2F1(cxx,r1h1x,i1h1x,r1h1x,i1h1x);
 
 	       return(temp);
@@ -639,7 +639,7 @@ double temp;
 						h2f1f2x,ih2f1f2x,h2f1f2x,ih2f1f2x)
 	      +S3v2F12(cxxx,r1h1x,i1h1x,r1h1x,i1h1x,r1h1x,i1h1x,
 						r1h2x,i1h2x,r1h2x,i1h2x,r1h2x,i1h2x);
-						
+
 	return(temp/3.); /* divided by 3 to get kernel (otherwise we get 3*kernel) */
 }
 
@@ -653,7 +653,7 @@ double cxx;
 double r1h1x,i1h1x;
 {
 double temp;
-	
+
 	temp = S2i2F1(cxx,r1h1x,i1h1x,r1h1x,i1h1x);
 
 	       return(temp);
@@ -717,7 +717,7 @@ double temp;
 						h2f1f2x,ih2f1f2x,h2f1f2x,ih2f1f2x)
 	      +S3i2F12(cxxx,r1h1x,i1h1x,r1h1x,i1h1x,r1h1x,i1h1x,
 						r1h2x,i1h2x,r1h2x,i1h2x,r1h2x,i1h2x);
-						
+
 	return(temp/3.); /* divided by 3 to get kernel (otherwise we get 3*kernel) */
 }
 

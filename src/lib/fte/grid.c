@@ -3,7 +3,7 @@ Copyright 1990 Regents of the University of California.  All rights reserved.
 **********/
 
 /*
- 
+
     Routines to draw the various sorts of grids -- linear, log, polar.
 */
 
@@ -26,6 +26,8 @@ static void drawsmithgrid( );
 static void arcset();
 static double cliparc();
 static void adddeglabel(), addradlabel();
+static void drawloggrid();
+static void drawlingrid();
 
 typedef enum { x_axis, y_axis } Axis;
 
@@ -50,9 +52,9 @@ gr_fixgrid(graph, xdelta, ydelta, xtype, ytype)
 
     if ((graph->data.xmin > graph->data.xmax)
             || (graph->data.ymin > graph->data.ymax)) {
-      fprintf(cp_err, 
+      fprintf(cp_err,
         "gr_fixgrid: Internal Error - bad limits: %lg, %lg, %lg, %lg\r\n",
-        graph->data.xmin, graph->data.xmax, 
+        graph->data.xmin, graph->data.xmax,
         graph->data.ymin, graph->data.ymax);
       return;
     }
@@ -120,7 +122,7 @@ GRAPH *graph;
           graph->fontheight);
     }
     if (graph->grid.ylabel) {
-    	  if (graph->grid.gridtype == GRID_POLAR 
+    	  if (graph->grid.gridtype == GRID_POLAR
     	          || graph->grid.gridtype == GRID_SMITH
     	          || graph->grid.gridtype == GRID_SMITHGRID) {
               Text(graph->grid.ylabel,
@@ -143,7 +145,7 @@ GRAPH *graph;
 	case GRID_SMITHGRID:
         	drawsmithgrid(graph);
 		break;
-		
+
 
     	case GRID_XLOG:
         case GRID_LOGLOG:
@@ -473,7 +475,7 @@ lingrid(graph, lo, hi, delta, type, axis)
     return (dd);
 }
 
-static
+static void
 drawlingrid(graph, units, spacing, nsp, dst, lmt, hmt, onedec, mult, mag,
     digits, axis)
     GRAPH *graph;
@@ -661,7 +663,7 @@ loggrid(graph, lo, hi, type, axis)
 
 }
 
-static
+static void
 drawloggrid(graph, units, hmt, lmt, decsp, subs, pp, axis)
     GRAPH *graph;
     char *units;
@@ -687,7 +689,7 @@ drawloggrid(graph, units, hmt, lmt, decsp, subs, pp, axis)
 		      +graph->viewportyoff);
 	    else
 		DrawLine(graph->viewportxoff,
-		    graph->viewportyoff + i, 
+		    graph->viewportyoff + i,
 		    graph->viewport.width
 		      + graph->viewportxoff,
 		    graph->viewportyoff + i);
@@ -790,7 +792,7 @@ GRAPH *graph;
         fprintf(cp_err, "Error: 0 radius in polargrid\n");
         return;
     }
-    if ((graph->data.xmin < 0) && (graph->data.ymin < 0) && 
+    if ((graph->data.xmin < 0) && (graph->data.ymin < 0) &&
             (graph->data.xmax > 0) && (graph->data.ymax > 0))
         minrad = 0;
     if ((graph->data.xmin == - graph->data.xmax)
@@ -845,7 +847,7 @@ GRAPH *graph;
             step = 2;
         else if (!((hmt - lmt) % 3))
             step = 3;
-        else 
+        else
             step = 1;
     } else
         step = 1;
@@ -890,7 +892,7 @@ GRAPH *graph;
     mag = graph->grid.xaxis.circular.mag;
     tenpowmag = pow(10.0, (double) mag);
     maxrad = hmt * tenpowmag;
-    minrad = lmt * tenpowmag; 
+    minrad = lmt * tenpowmag;
 
     if ((minrad == 0) && ((hmt - lmt) > 5)) {
 	if (!((hmt - lmt) % 2))
@@ -966,7 +968,7 @@ GRAPH *graph;
                     graph->grid.yaxis.circular.center,
                     graph->grid.xaxis.circular.radius))
             {
-	        DrawLine(x1, y1, x2, y2); 
+	        DrawLine(x1, y1, x2, y2);
                 /* Add a label here */
 		/*XXXX*/
                 adddeglabel(graph, i * 30, x2, y2, x1, y1,
@@ -979,8 +981,8 @@ GRAPH *graph;
         theta = 2 * asin((double) graph->grid.xaxis.circular.radius
                 / dist);
         theta = theta * 180 / M_PI;   /* Convert to degrees. */
-        
-        /* See if we should put lines at 30, 15, 5, or 1 degree 
+
+        /* See if we should put lines at 30, 15, 5, or 1 degree
          * increments.
          */
         if (theta / 30 > 3)
@@ -1156,9 +1158,9 @@ GRAPH *graph;
         graph->datawindow.xmax += (my - mx) / 2;
     }
 
-    if ((graph->datawindow.xmin == - graph->datawindow.xmax) && 
+    if ((graph->datawindow.xmin == - graph->datawindow.xmax) &&
 	    (graph->datawindow.ymin == -
-	    graph->datawindow.ymax) && (graph->datawindow.xmin == 
+	    graph->datawindow.ymax) && (graph->datawindow.xmin ==
 	    graph->datawindow.ymin))
 	centered = true;
 
@@ -1204,7 +1206,7 @@ GRAPH *graph;
     mag = floor(mylog10(maxrad));
     tenpowmag = pow(10.0, (double) mag);
 
-    pixperunit = graph->viewport.width / (graph->datawindow.xmax - 
+    pixperunit = graph->viewport.width / (graph->datawindow.xmax -
             graph->datawindow.xmin);
 
     xoff = - pixperunit * (graph->datawindow.xmin + graph->datawindow.xmax) / 2;
@@ -1233,7 +1235,7 @@ GRAPH *graph;
     SetLinestyle(0);
 
     /* Now plot all the arc sets.  Go as high as 5 times the radius that
-     * will fit on the screen.  The base magnitude is one more than 
+     * will fit on the screen.  The base magnitude is one more than
      * the least magnitude that will fit...
      */
     if (i > 20)
@@ -1264,14 +1266,14 @@ GRAPH *graph;
 	/* See if the label will fit on the lower xaxis */
 	/* First look at the leftmost circle possible*/
 	if ((int) (pixperunit - 2 * rr[k] + gr_radius + xoff +
-	    fabs((double) yoff)) < plen * gi_fntwidth + 4) { 
+	    fabs((double) yoff)) < plen * gi_fntwidth + 4) {
 	    if (j == 95) {
 		j = 10;
 		mag++;
 	    } else {
 		if (j < 20)
 		  j += 1;
-		else 
+		else
 		  j += 5;
 	    }
 	    continue;
@@ -1284,7 +1286,7 @@ GRAPH *graph;
         } else {
 	    if (j < 20)
 	      j += 1;
-	    else 
+	    else
 	      j += 5;
 	}
 	continue;
@@ -1295,7 +1297,7 @@ GRAPH *graph;
         } else {
 	    if (j < 20)
 	      j += 1;
-	    else 
+	    else
 	      j += 5;
 	}
 	ki[k-1] = ir[k];
@@ -1366,10 +1368,10 @@ GRAPH *graph;
             zheight = - zheight;
         DrawLine(gr_xcenter - zheight, gr_ycenter + yoff,
                 gr_xcenter + zheight, gr_ycenter + yoff);
-	Text("0", gr_xcenter + zheight + gi_fntwidth, gr_ycenter + yoff - 
+	Text("0", gr_xcenter + zheight + gi_fntwidth, gr_ycenter + yoff -
             gi_fntheight / 2);
 	Text("o", gr_xcenter + zheight + gi_fntwidth * 2, gr_ycenter + yoff);
-	Text("180", gr_xcenter - zheight - gi_fntwidth * 5, gr_ycenter 
+	Text("180", gr_xcenter - zheight - gi_fntwidth * 5, gr_ycenter
             + yoff - gi_fntheight / 2);
 	Text("o", gr_xcenter - zheight - gi_fntwidth * 2, gr_ycenter + yoff);
     }
@@ -1457,7 +1459,7 @@ arcset(graph, rad, prevrad, irad, iprevrad, radoff, maxrad, centx, centy,
 	    gr_xcenter, gr_ycenter, gr_xcenter, gr_ycenter);
 	SetColor(19);
     }
-    
+
     /* Now toss the labels on... */
     SetColor(1);
 
@@ -1482,7 +1484,7 @@ arcset(graph, rad, prevrad, irad, iprevrad, radoff, maxrad, centx, centy,
 /* This routine draws an arc and clips it to a circle.  It's hard to figure
  * out how it works without looking at the piece of scratch paaper I have
  * in front of me, so let's hope it doesn't break...
- * Converted to all doubles for CRAYs 
+ * Converted to all doubles for CRAYs
  */
 
 static double
@@ -1614,7 +1616,7 @@ cliparc(cx, cy, rad, start, end, iclipx, iclipy, icliprad, flag)
     if (d == end)
         return(flag?sclip:eclip);
     in = in ? false : true;
-    
+
     /* And from here to the end. */
     if (in) {
         Arc((int)cx, (int)cy, (int)rad, d, end);

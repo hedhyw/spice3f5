@@ -24,8 +24,8 @@ BJTload(inModel,ckt)
 
     GENmodel *inModel;
     register CKTcircuit *ckt;
-        /* actually load the current resistance value into the 
-         * sparse matrix previously provided 
+        /* actually load the current resistance value into the
+         * sparse matrix previously provided
          */
 {
     register BJTmodel *model = (BJTmodel*)inModel;
@@ -241,7 +241,7 @@ BJTload(inModel,ckt)
                     vbx=model->BJTtype*(here->BJTicVBE-here->BJTicVCE);
                     vcs=0;
                 }
-            } else if((ckt->CKTmode & MODEINITJCT) && 
+            } else if((ckt->CKTmode & MODEINITJCT) &&
                     (ckt->CKTmode & MODETRANOP) && (ckt->CKTmode & MODEUIC)){
                 vbe=model->BJTtype*here->BJTicVBE;
                 vce=model->BJTtype*here->BJTicVCE;
@@ -263,27 +263,27 @@ BJTload(inModel,ckt)
 #ifndef PREDICTOR
                 if(ckt->CKTmode & MODEINITPRED) {
                     xfact = ckt->CKTdelta/ckt->CKTdeltaOld[1];
-                    *(ckt->CKTstate0 + here->BJTvbe) = 
+                    *(ckt->CKTstate0 + here->BJTvbe) =
                             *(ckt->CKTstate1 + here->BJTvbe);
                     vbe = (1+xfact)**(ckt->CKTstate1 + here->BJTvbe)-
                             xfact* *(ckt->CKTstate2 + here->BJTvbe);
-                    *(ckt->CKTstate0 + here->BJTvbc) = 
+                    *(ckt->CKTstate0 + here->BJTvbc) =
                             *(ckt->CKTstate1 + here->BJTvbc);
                     vbc = (1+xfact)**(ckt->CKTstate1 + here->BJTvbc)-
                             xfact* *(ckt->CKTstate2 + here->BJTvbc);
-                    *(ckt->CKTstate0 + here->BJTcc) = 
+                    *(ckt->CKTstate0 + here->BJTcc) =
                             *(ckt->CKTstate1 + here->BJTcc);
-                    *(ckt->CKTstate0 + here->BJTcb) = 
+                    *(ckt->CKTstate0 + here->BJTcb) =
                             *(ckt->CKTstate1 + here->BJTcb);
-                    *(ckt->CKTstate0 + here->BJTgpi) = 
+                    *(ckt->CKTstate0 + here->BJTgpi) =
                             *(ckt->CKTstate1 + here->BJTgpi);
-                    *(ckt->CKTstate0 + here->BJTgmu) = 
+                    *(ckt->CKTstate0 + here->BJTgmu) =
                             *(ckt->CKTstate1 + here->BJTgmu);
-                    *(ckt->CKTstate0 + here->BJTgm) = 
+                    *(ckt->CKTstate0 + here->BJTgm) =
                             *(ckt->CKTstate1 + here->BJTgm);
-                    *(ckt->CKTstate0 + here->BJTgo) = 
+                    *(ckt->CKTstate0 + here->BJTgo) =
                             *(ckt->CKTstate1 + here->BJTgo);
-                    *(ckt->CKTstate0 + here->BJTgx) = 
+                    *(ckt->CKTstate0 + here->BJTgx) =
                             *(ckt->CKTstate1 + here->BJTgx);
                 } else {
 #endif /* PREDICTOR */
@@ -307,11 +307,11 @@ BJTload(inModel,ckt)
                 vcs=model->BJTtype*(
                     *(ckt->CKTrhsOld+here->BJTsubstNode)-
                     *(ckt->CKTrhsOld+here->BJTcolPrimeNode));
-                cchat= *(ckt->CKTstate0 + here->BJTcc)+(*(ckt->CKTstate0 + 
+                cchat= *(ckt->CKTstate0 + here->BJTcc)+(*(ckt->CKTstate0 +
                         here->BJTgm)+ *(ckt->CKTstate0 + here->BJTgo))*delvbe-
                         (*(ckt->CKTstate0 + here->BJTgo)+*(ckt->CKTstate0 +
                         here->BJTgmu))*delvbc;
-                cbhat= *(ckt->CKTstate0 + here->BJTcb)+ *(ckt->CKTstate0 + 
+                cbhat= *(ckt->CKTstate0 + here->BJTcb)+ *(ckt->CKTstate0 +
                         here->BJTgpi)*delvbe+ *(ckt->CKTstate0 + here->BJTgmu)*
                         delvbc;
 #ifndef NOBYPASS
@@ -330,11 +330,11 @@ BJTload(inModel,ckt)
                     if( (FABS(delvbc) < ckt->CKTreltol*MAX(FABS(vbc),
                             FABS(*(ckt->CKTstate0 + here->BJTvbc)))+
                             ckt->CKTvoltTol) )
-                    if( (FABS(cchat-*(ckt->CKTstate0 + here->BJTcc)) < 
+                    if( (FABS(cchat-*(ckt->CKTstate0 + here->BJTcc)) <
                             ckt->CKTreltol* MAX(FABS(cchat),
                             FABS(*(ckt->CKTstate0 + here->BJTcc)))+
                             ckt->CKTabstol) )
-                    if( (FABS(cbhat-*(ckt->CKTstate0 + here->BJTcb)) < 
+                    if( (FABS(cbhat-*(ckt->CKTstate0 + here->BJTcb)) <
                             ckt->CKTreltol* MAX(FABS(cbhat),
                             FABS(*(ckt->CKTstate0 + here->BJTcb)))+
                             ckt->CKTabstol) ) {
@@ -546,7 +546,7 @@ next1:      vtn=vt*model->BJTemissionCoeffF;
                 if(vbx < fcpc) {
                     arg=1-vbx/pc;
                     sarg=exp(-xmc*log(arg));
-                    *(ckt->CKTstate0 + here->BJTqbx)= 
+                    *(ckt->CKTstate0 + here->BJTqbx)=
                         pc*czbx* (1-arg*sarg)/(1-xmc);
                     capbx=czbx*sarg;
                 } else {
@@ -708,18 +708,18 @@ load:
             /*
              *  load current excitation vector
              */
-            ceqcs=model->BJTtype * (*(ckt->CKTstate0 + here->BJTcqcs) - 
+            ceqcs=model->BJTtype * (*(ckt->CKTstate0 + here->BJTcqcs) -
                     vcs * gccs);
             ceqbx=model->BJTtype * (*(ckt->CKTstate0 + here->BJTcqbx) -
                     vbx * geqbx);
-            ceqbe=model->BJTtype * (cc + cb - vbe * (gm + go + gpi) + vbc * 
+            ceqbe=model->BJTtype * (cc + cb - vbe * (gm + go + gpi) + vbc *
                     (go - geqcb));
             ceqbc=model->BJTtype * (-cc + vbe * (gm + go) - vbc * (gmu + go));
 
             *(ckt->CKTrhs + here->BJTbaseNode) += (-ceqbx);
-            *(ckt->CKTrhs + here->BJTcolPrimeNode) += 
+            *(ckt->CKTrhs + here->BJTcolPrimeNode) +=
                     (ceqcs+ceqbx+ceqbc);
-            *(ckt->CKTrhs + here->BJTbasePrimeNode) += 
+            *(ckt->CKTrhs + here->BJTbasePrimeNode) +=
                     (-ceqbe-ceqbc);
             *(ckt->CKTrhs + here->BJTemitPrimeNode) += (ceqbe);
             *(ckt->CKTrhs + here->BJTsubstNode) += (-ceqcs);

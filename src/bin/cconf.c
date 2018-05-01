@@ -1,3 +1,4 @@
+/* This file is generated automatically: do not edit directly */
 /*
  * Analyses
  */
@@ -8,6 +9,9 @@
 #define AN_ac
 #define AN_tran
 #define AN_pz
+#define AN_disto
+#define AN_noise
+#define AN_sense
 #endif
 
 /*
@@ -15,24 +19,36 @@
  */
 #define DEV_asrc
 #define DEV_bjt
+#define DEV_bsim1
+#define DEV_bsim2
 #define DEV_cap
 #define DEV_cccs
-#define DEV_ccvs
 #define DEV_csw
 #define DEV_dio
+#define DEV_disto
 #define DEV_ind
 #define DEV_isrc
+#define DEV_jfet
+#define DEV_ltra
+#define DEV_mes
 #define DEV_mos1
+#define DEV_mos2
+#define DEV_mos3
+#define DEV_mos6
 #define DEV_res
+#define DEV_sw
+#define DEV_tra
+#define DEV_urc
 #define DEV_vccs
 #define DEV_vcvs
 #define DEV_vsrc
 
-/* DO NOT MODIFY ANYTHING BELOW THIS LINE */
+#define DEVICES_USED "asrc bjt bsim1 bsim2 cap cccs csw dio disto ind isrc jfet ltra mes mos1 mos2 mos3 mos6 res sw tra urc vccs vcvs vsrc"
+#define ANALYSES_USED "op dc tf ac tran pz disto noise sense"
 
 char	Spice_Version[ ] = "3f5";
 char	Spice_Notice[ ] = "";
-char	Spice_Build_Date[ ] = "";
+char	Spice_Build_Date[ ] = "Sat Feb  3 16:47:14 MSK 2018";
 
 /**********
 Copyright 1990 Regents of the University of California.  All rights reserved.

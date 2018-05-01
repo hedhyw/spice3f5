@@ -1,0 +1,34 @@
+getcommand alias exit quit
+docommand alias exit quit
+getcommand alias acct rusage all
+docommand alias acct rusage all
+getcommand set x11lineararcs
+docommand set x11lineararcs
+
+Circuit: test pz
+
+Circuit: test pz
+Date: Sat Feb  3 17:11:16  2018
+
+
+                                    test pz
+                                    Pole-Zero Analysis  Sat Feb  3 17:11:16  2018
+--------------------------------------------------------------------------------
+Index   pole(1)                         pole(2)                         
+--------------------------------------------------------------------------------
+0	-1.019524e+09,	0.000000e+00	-8.296965e+08,	0.000000e+00	
+
+                                    test pz
+                                    Pole-Zero Analysis  Sat Feb  3 17:11:16  2018
+--------------------------------------------------------------------------------
+Index   pole(3)                         pole(4)                         
+--------------------------------------------------------------------------------
+0	-8.652054e+07,	0.000000e+00	-1.060594e+07,	0.000000e+00	
+
+CPU time since last call: 0.022 seconds.
+
+Total CPU time: 0.022 seconds.
+
+Current dynamic memory usage = 0,
+Dynamic memory limit = 0.
+

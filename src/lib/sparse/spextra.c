@@ -42,7 +42,7 @@
 #else /* __STDC__ */
 #endif /* __STDC__ */
 
-spConstMult(matrix, constant)
+void spConstMult(matrix, constant)
 	MatrixPtr	matrix;
 	double		constant;
 {

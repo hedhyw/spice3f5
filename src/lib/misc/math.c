@@ -11,6 +11,30 @@ Copyright 1991 Regents of the University of California.  All rights reserved.
 #include "misc.h"
 #include "suffix.h"
 
+#ifdef HAS_NO_IEEE_SCALB
+double
+scalb(x, n)
+double	x;
+int	n;
+{
+	double	y, z = 1.0, k = 2.0;
+
+	if (n < 0) {
+		n = -n;
+		k = 0.5;
+	}
+
+	if (x != 0.0)
+		for (y = 1.0; n; n >>= 1) {
+			y *= k;
+			if (n & 1)
+				z *= y;
+		}
+
+	return x * z;
+}
+#endif
+
 #ifdef HAS_NO_IEEE_LOGB
 
 double

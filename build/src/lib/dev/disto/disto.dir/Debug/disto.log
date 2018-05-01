@@ -1,0 +1,25 @@
+﻿  atander.c
+E:\spice3f5\src\lib\dev\disto\atander.c(22): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  cosderiv.c
+E:\spice3f5\src\lib\dev\disto\cosderiv.c(23): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  cubeder.c
+E:\spice3f5\src\lib\dev\disto\cubeder.c(23): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  divderiv.c
+E:\spice3f5\src\lib\dev\disto\divderiv.c(23): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  equalder.c
+  expderiv.c
+E:\spice3f5\src\lib\dev\disto\expderiv.c(23): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  invderiv.c
+E:\spice3f5\src\lib\dev\disto\invderiv.c(23): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  multder.c
+E:\spice3f5\src\lib\dev\disto\multder.c(23): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  plusder.c
+  powderiv.c
+E:\spice3f5\src\lib\dev\disto\powderiv.c(24): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  sqrtder.c
+E:\spice3f5\src\lib\dev\disto\sqrtder.c(23): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  tanderiv.c
+E:\spice3f5\src\lib\dev\disto\tanderiv.c(22): warning C4013: EqualDeriv: нет определения; предполагается "extern" с возвратом типа "int"
+  timesder.c
+  Создание кода...
+  disto.vcxproj -> E:\spice3f5\build\src\lib\dev\disto\Debug\disto.lib

@@ -1,0 +1,29 @@
+﻿  urc.c
+  urcask.c
+  urcdel.c
+  urcdest.c
+  urcmask.c
+  urcmdel.c
+  urcmpar.c
+  urcparam.c
+E:\spice3f5\src\lib\dev\urc\urcparam.c(32): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+  urcsetup.c
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(89): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(137): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(145): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(155): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(171): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(189): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(208): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(230): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\dev\urc\urcsetup.c(249): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+  Создание кода...
+  urc.vcxproj -> E:\spice3f5\build\src\lib\dev\urc\Debug\urc.lib

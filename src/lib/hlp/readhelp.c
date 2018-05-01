@@ -1,6 +1,6 @@
 /**********
 Copyright 1990 Regents of the University of California.  All rights reserved.
-Author: 1986 Wayne A. Christopher, U. C. Berkeley CAD Group 
+Author: 1986 Wayne A. Christopher, U. C. Berkeley CAD Group
 **********/
 
 /*
@@ -41,8 +41,8 @@ Author: 1986 Wayne A. Christopher, U. C. Berkeley CAD Group
 
 static char *getsubject();
 static toplink *getsubtoplink();
-extern void sortlist(), tlfree();
-extern int sortcmp();
+static void sortlist(), tlfree();
+static int sortcmp();
 
 static topic *alltopics = NULL;
 
@@ -150,11 +150,11 @@ endtext:
         tl->description = getsubject(tl->place);
     for (tl = top->subtopics; tl; tl = tl->next)
         tl->description = getsubject(tl->place);
-    
+
     sortlist(&top->seealso);
     /* sortlist(&top->subtopics); It looks nicer if they
 				    are in the original order */
-    
+
     top->readlink = alltopics;
     alltopics = top;
 

@@ -1,0 +1,34 @@
+﻿  niaciter.c
+  nicomcof.c
+E:\spice3f5\src\lib\ni\nicomcof.c(64): warning C4013: bzero: нет определения; предполагается "extern" с возвратом типа "int"
+  niconv.c
+E:\spice3f5\src\lib\ni\niconv.c(65): warning C4013: CKTconvTest: нет определения; предполагается "extern" с возвратом типа "int"
+  nidest.c
+  niditer.c
+  niinit.c
+  niinteg.c
+E:\spice3f5\src\lib\ni\niinteg.c(46): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\ni\niinteg.c(82): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+  niiter.c
+E:\spice3f5\src\lib\ni\niiter.c(119): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\stdio.h(1772): note:  см. объявление "sprintf"
+E:\spice3f5\src\lib\ni\niiter.c(177): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+  niniter.c
+  nipred.c
+  nipzmeth.c
+E:\spice3f5\src\lib\ni\nipzmeth.c(30): warning C4013: NIpzSym2: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\ni\nipzmeth.c(91): warning C4101: error: неиспользованная локальная переменная
+E:\spice3f5\src\lib\ni\nipzmeth.c(86): warning C4101: j1: неиспользованная локальная переменная
+E:\spice3f5\src\lib\ni\nipzmeth.c(87): warning C4101: ds: неиспользованная локальная переменная
+E:\spice3f5\src\lib\ni\nipzmeth.c(86): warning C4101: j0: неиспользованная локальная переменная
+E:\spice3f5\src\lib\ni\nipzmeth.c(280): warning C4013: zaddeq: нет определения; предполагается "extern" с возвратом типа "int"
+E:\spice3f5\src\lib\ni\nipzmeth.c(454): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+  nireinit.c
+E:\spice3f5\src\lib\ni\nireinit.c(30): warning C4101: i: неиспользованная локальная переменная
+  nisenre.c
+  Создание кода...
+  ni.vcxproj -> E:\spice3f5\build\src\lib\ni\Debug\ni.lib

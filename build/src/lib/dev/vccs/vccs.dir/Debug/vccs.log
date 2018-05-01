@@ -1,0 +1,19 @@
+﻿  vccs.c
+  vccsask.c
+E:\spice3f5\src\lib\dev\vccs\vccsask.c(120): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+E:\spice3f5\src\lib\dev\vccs\vccsask.c(136): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(132): note:  см. объявление "strcpy"
+  vccsdel.c
+  vccsdest.c
+  vccsload.c
+  vccsmdel.c
+  vccspar.c
+  vccspzld.c
+  vccssacl.c
+  vccsset.c
+  vccssld.c
+  vccssprt.c
+  vccssset.c
+  Создание кода...
+  vccs.vcxproj -> E:\spice3f5\build\src\lib\dev\vccs\Debug\vccs.lib

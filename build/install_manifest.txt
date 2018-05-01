@@ -1,0 +1,9 @@
+C:/spice3f5/cspice.exe
+C:/spice3f5/bspice.exe
+C:/spice3f5/nutmeg.exe
+/usr/local/lib/spice3f5/mfbcap
+/usr/local/lib/spice3f5/news
+/usr/local/lib/spice3f5/helpdir/spice.idx
+/usr/local/lib/spice3f5/helpdir/spice.txt
+/usr/local/lib/spice3f5/scripts/setplot
+/usr/local/lib/spice3f5/scripts/spinit

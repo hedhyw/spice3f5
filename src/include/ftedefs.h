@@ -15,6 +15,7 @@ Author: 1985 Wayne A. Christopher, U. C. Berkeley CAD Group
 #define IPOINTMIN   20  /* When we start plotting incremental plots. */
 #include "fteparse.h"
 #include "fteinp.h"
+#include "math.h"
 
 /* The curcuits that are currently available to the user. */
 
@@ -51,7 +52,7 @@ struct save_info {
     int		used;
 };
 
-#define mylog10(xx) (((xx) > 0.0) ? log10(xx) : (- log10(HUGE)))
+#define mylog10(xx) (((xx) > 0.0) ? log10(xx) : (- log10(HUGE_VAL)))
 
 #include "fteext.h"
 

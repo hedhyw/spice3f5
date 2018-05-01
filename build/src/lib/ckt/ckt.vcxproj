@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A3527D2B-85C7-33B7-89EB-D5394B61B892}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ckt</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\spice3f5\build\src\lib\ckt\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ckt.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ckt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\spice3f5\build\src\lib\ckt\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ckt.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ckt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\spice3f5\build\src\lib\ckt\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">ckt.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">ckt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\spice3f5\build\src\lib\ckt\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">ckt.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">ckt</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;windows;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;windows;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;windows;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\spice3f5\src\include;E:\spice3f5\src\lib\dev;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\spice3f5\src\lib\ckt\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/spice3f5/src/lib/ckt/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-file E:/spice3f5/build/src/lib/ckt/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/spice3f5/src/lib/ckt/CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\spice3f5\build\src\lib\ckt\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/spice3f5/src/lib/ckt/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-file E:/spice3f5/build/src/lib/ckt/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/spice3f5/src/lib/ckt/CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\spice3f5\build\src\lib\ckt\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule E:/spice3f5/src/lib/ckt/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-file E:/spice3f5/build/src/lib/ckt/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/spice3f5/src/lib/ckt/CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\spice3f5\build\src\lib\ckt\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule E:/spice3f5/src/lib/ckt/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"E:\Program Files\bin\cmake.exe" -HE:/spice3f5 -BE:/spice3f5/build --check-stamp-file E:/spice3f5/build/src/lib/ckt/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/spice3f5/src/lib/ckt/CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;E:\spice3f5\src\lib\ckt\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\spice3f5\build\src\lib\ckt\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\acan.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\acaskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\acsetp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktaccpt.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktacct.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktacdum.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktask.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktaskaq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktasknq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktbindn.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktbkdum.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktclrbk.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktcrte.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktdelt.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktdest.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktdisto.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktdlti.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktdltm.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktdltn.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktdojob.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktdump.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktfbran.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktfdev.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktfnda.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktfndm.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktfnode.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktftask.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktgrnd.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\ckti2nod.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktic.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktinit.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktlnkeq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktload.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktmapn.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktmask.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktmcrt.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktmkcur.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktmknod.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktmkvol.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktmpar.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktnames.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktnewan.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktneweq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktnewn.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktnodn.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktnoise.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktntask.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktnum2n.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktop.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktparam.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktpmnam.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktpname.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktpzld.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktpzset.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktpzstr.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktsetap.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktsetbk.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktsetnp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktsetup.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktsgen.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktsopt.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\ckttemp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktterr.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\ckttroub.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\ckttrunc.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\ckttyplk.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\daskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dcoaskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dcop.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dcosetp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dctaskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dctran.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dctrcurv.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dctsetp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\distoan.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dkerproc.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dloadfns.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\dsetparm.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\naskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\nevalsrc.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\ninteg.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\noisean.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\nsetparm.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\pzan.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\pzaskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\pzsetp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\sensaskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\senssetp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\tfanal.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\tfaskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\tfsetp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\tranaskq.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\traninit.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\transetp.c"  />
+    <ClCompile Include="E:\spice3f5\src\lib\ckt\cktsens.c"  />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\spice3f5\build\src\lib\dev\dev.vcxproj">
+      <Project>{718BCABF-E2D7-3D30-AAFE-4FAD01CCA2FA}</Project>
+      <Name>dev</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

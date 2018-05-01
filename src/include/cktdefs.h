@@ -181,7 +181,7 @@ typedef struct {
     double CKTdefaultMosAD;
     double CKTdefaultMosAS;
     unsigned int CKThadNodeset:1;
-    unsigned int CKTfixLimit:1; /* flag to indicate that the limiting of 
+    unsigned int CKTfixLimit:1; /* flag to indicate that the limiting of
                                  * MOSFETs should be done as in SPICE2 */
     unsigned int CKTnoOpIter:1; /* flag to indicate not to try the operating
                                  * point brute force, but to use gmin stepping
@@ -309,7 +309,7 @@ int TRANaskQuest( CKTcircuit *, GENERIC *, int , IFvalue *);
 int TRANsetParm( CKTcircuit *, GENERIC *, int , IFvalue *);
 int TRANinit(CKTcircuit *, JOB *);
 int NIacIter( CKTcircuit * );
-int NIcomCof( CKTcircuit * ); 
+int NIcomCof( CKTcircuit * );
 int NIconvTest(CKTcircuit * );
 void NIdestroy(CKTcircuit * );
 int NIinit( CKTcircuit  * );
@@ -420,7 +420,7 @@ int TRANaskQuest();
 int TRANsetParm();
 int TRANinit( );
 int NIacIter();
-int NIcomCof(); 
+int NIcomCof();
 int NIconvTest();
 void NIdestroy();
 int NIinit();

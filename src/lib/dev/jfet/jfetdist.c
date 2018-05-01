@@ -18,7 +18,7 @@ JFETdisto(mode,genmodel,ckt)
  register CKTcircuit *ckt;
  int mode;
 
-/* assuming here that ckt->CKTomega has been initialised to 
+/* assuming here that ckt->CKTomega has been initialised to
  * the correct value
  */
 {
@@ -46,7 +46,7 @@ JFETdisto(mode,genmodel,ckt)
 if (mode == D_SETUP)
  return(JFETdSetup(model,ckt));
 
-if ((mode == D_TWOF1) || (mode == D_THRF1) || 
+if ((mode == D_TWOF1) || (mode == D_THRF1) ||
  (mode == D_F1PF2) || (mode == D_F1MF2) ||
  (mode == D_2F1MF2)) {
 
@@ -110,7 +110,7 @@ for( ; model != NULL; model = model->JFETnextModel ) {
 	    *(ckt->CKTirhs + (here->JFETdrainPrimeNode)) -= itemp;
 	    *(ckt->CKTrhs + (here->JFETsourcePrimeNode)) += temp;
 	    *(ckt->CKTirhs + (here->JFETsourcePrimeNode)) += itemp;
-	
+
 	    /* cdrain term over */
 
 		/* loading ggs term */
@@ -282,7 +282,7 @@ for( ; model != NULL; model = model->JFETnextModel ) {
 	    *(ckt->CKTirhs + (here->JFETdrainPrimeNode)) -= itemp;
 	    *(ckt->CKTrhs + (here->JFETsourcePrimeNode)) += temp;
 	    *(ckt->CKTirhs + (here->JFETsourcePrimeNode)) += itemp;
-	
+
 	    /* cdrain term over */
 
 		/* loading ggs term */
@@ -458,7 +458,7 @@ for( ; model != NULL; model = model->JFETnextModel ) {
 	    *(ckt->CKTirhs + (here->JFETdrainPrimeNode)) -= itemp;
 	    *(ckt->CKTrhs + (here->JFETsourcePrimeNode)) += temp;
 	    *(ckt->CKTirhs + (here->JFETsourcePrimeNode)) += itemp;
-	
+
 	    /* cdrain term over */
 
 		/* loading ggs term */
@@ -625,7 +625,7 @@ for( ; model != NULL; model = model->JFETnextModel ) {
 	    *(ckt->CKTirhs + (here->JFETdrainPrimeNode)) -= itemp;
 	    *(ckt->CKTrhs + (here->JFETsourcePrimeNode)) += temp;
 	    *(ckt->CKTirhs + (here->JFETsourcePrimeNode)) += itemp;
-	
+
 	    /* cdrain term over */
 
 		/* loading ggs term */
@@ -818,7 +818,7 @@ pass.ih2f1f2z = 0.0;
 	    *(ckt->CKTirhs + (here->JFETdrainPrimeNode)) -= itemp;
 	    *(ckt->CKTrhs + (here->JFETsourcePrimeNode)) += temp;
 	    *(ckt->CKTirhs + (here->JFETsourcePrimeNode)) += itemp;
-	
+
 	    /* cdrain term over */
 
 		/* loading ggs term */

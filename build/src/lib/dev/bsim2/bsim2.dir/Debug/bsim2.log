@@ -1,0 +1,27 @@
+﻿  b2.c
+  b2acld.c
+  b2ask.c
+  b2cvtest.c
+  b2del.c
+  b2dest.c
+  b2eval.c
+E:\spice3f5\src\lib\dev\bsim2\b2eval.c(391): warning C4102: ChargeComputation: неиспользованная метка
+E:\spice3f5\src\lib\dev\bsim2\b2eval.c(39): warning C4101: Usat: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\bsim2\b2eval.c(34): warning C4101: dBeta0_dVd: неиспользованная локальная переменная
+E:\spice3f5\src\lib\dev\bsim2\b2eval.c(34): warning C4101: dBeta0_dVb: неиспользованная локальная переменная
+  b2getic.c
+  b2ld.c
+E:\spice3f5\src\lib\dev\bsim2\b2ld.c(551): warning C4102: line755: неиспользованная метка
+E:\spice3f5\src\lib\dev\bsim2\b2ld.c(86): warning C4101: tol: неиспользованная локальная переменная
+  b2mask.c
+  b2mdel.c
+  b2moscap.c
+  b2mpar.c
+  b2par.c
+  b2pzld.c
+  b2set.c
+E:\spice3f5\src\lib\dev\bsim2\b2set.c(406): warning C4244: =: преобразование "double" в "unsigned int", возможна потеря данных
+  b2temp.c
+  b2trunc.c
+  Создание кода...
+  bsim2.vcxproj -> E:\spice3f5\build\src\lib\dev\bsim2\Debug\bsim2.lib

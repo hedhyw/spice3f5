@@ -99,7 +99,7 @@ int plot_num = 1;
 
 bool ft_batchmode = false;
 jmp_buf jbuf;
-static char *usage = 
+static char *usage =
 "Usage: %s [-] [-b] [-i] [-s] [-n] [-o outfile] [-r rawfile]\n\
 \t[-t term] [file ...]\n";
 struct options *exitoption;
@@ -170,7 +170,7 @@ static IFfrontEnd nutmeginfo;
 /* ARGSUSED */ void if_cktfree(ckt, tab) char *ckt, *tab; { }
 /* ARGSUSED */ void if_setndnames(line) char *line; { }
 /* ARGSUSED */ char * if_errstring(code) { return ("spice error"); }
-/* ARGSUSED */ void if_setparam(ckt, name, param, val) 
+/* ARGSUSED */ void if_setparam(ckt, name, param, val)
         char *ckt, *name, *param;  struct variable *val; { }
 /* ARGSUSED */
 bool
@@ -194,7 +194,6 @@ main(ac, av)
     char	*p;
     char	*cmd_line_term = 0, term_1stch;
     int		error2;
-
 #ifdef BATCH
     bool	st = false;
 #else
@@ -306,7 +305,7 @@ main(ac, av)
 		    term_1stch = **tv;
                     **tv = Spice_OptChar;
                 } else {
-                    fprintf(cp_err, usage, 
+                    fprintf(cp_err, usage,
                         cp_program);
                     exit(EXIT_BAD);
                 }
