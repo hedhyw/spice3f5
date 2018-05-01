@@ -1,0 +1,11 @@
+# UCB local instructional site definitions
+
+OBJECTIVE	= araspice
+
+SPICE_DIR	= /tmp/araspice
+SPICE_LIB_DIR	= $(SPICE_DIR)/lib/spice3f
+SPICE_EXEC_DIR	= $(SPICE_DIR)/bin
+
+S_SPICE_DIR	= ~cad
+S_SPICE_LIB_DIR	= $(S_SPICE_DIR)/lib/spice3f
+S_SPICE_EXEC_DIR= $(S_SPICE_DIR)/bin

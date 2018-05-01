@@ -1,0 +1,10 @@
+nutmeg.obj nnconf.obj tunepc.obj
+nutmeg.exe/NOI /NOE /E /F /PACKC
+nutmeg.map
+..\lib\fte+
+..\lib\cp+
+..\lib\hlp+
+..\lib\inp+
+..\lib\mfbpc+
+..\lib\misc+
+graphics /se:1000 /st:18000;

@@ -1,0 +1,42 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= b1.c b1acld.c b1ask.c b1cvtest.c b1del.c b1dest.c b1disto.c \
+		  b1dset.c b1eval.c b1getic.c b1ld.c b1mask.c b1mdel.c \
+		  b1moscap.c b1mpar.c b1par.c b1pzld.c b1set.c b1temp.c \
+		  b1trunc.c 
+
+COBJS		= b1.o b1acld.o b1ask.o b1cvtest.o b1del.o b1dest.o b1disto.o \
+		  b1dset.o b1eval.o b1getic.o b1ld.o b1mask.o b1mdel.o \
+		  b1moscap.o b1mpar.o b1par.o b1pzld.o b1set.o b1temp.o \
+		  b1trunc.o 
+
+REAL_CC_OPT	= $(CC_OPT_SAFE)
+
+MODULE		= bsim1
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3
+
+b1.o: b1.c
+b1acld.o: b1acld.c
+b1ask.o: b1ask.c
+b1cvtest.o: b1cvtest.c
+b1del.o: b1del.c
+b1dest.o: b1dest.c
+b1disto.o: b1disto.c
+b1dset.o: b1dset.c
+b1eval.o: b1eval.c
+b1getic.o: b1getic.c
+b1ld.o: b1ld.c
+b1mask.o: b1mask.c
+b1mdel.o: b1mdel.c
+b1moscap.o: b1moscap.c
+b1mpar.o: b1mpar.c
+b1par.o: b1par.c
+b1pzld.o: b1pzld.c
+b1set.o: b1set.c
+b1temp.o: b1temp.c
+b1trunc.o: b1trunc.c

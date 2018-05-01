@@ -1,0 +1,39 @@
+# Generate batch compile scripts for the IBM PC (MS-DOS)
+
+OBJECTIVE	= pcspice3
+MSC_ERRS	= msc.out
+CC		= cl
+LIB_NAME	= $(NAME)
+
+DEVICES		= asrc bjt cap cccs ccvs csw dio ind isrc \
+		  mos1 mos2 res vccs vcvs vsrc
+
+C_DEVICES	= asrc bjt cap cccs ccvs csw dio ind isrc \
+		  mos1 res vccs vcvs vsrc
+
+ANALYSES	= op dc tf ac tran pz noise
+C_ANALYSES	= op dc tf ac tran pz
+
+#	NOTE:  You must have two '\' because in C '\' is special
+S_SPICE_DIR	= D:spice3
+S_SPICE_LIB_DIR	= $(S_SPICE_DIR)\\lib
+S_SPICE_EXEC_DIR= $(S_SPICE_DIR)\\bin
+
+ALL_PURPOSE	= MSC
+
+TUNEFILE	= tunepc
+
+MFBLIB		= mfbpc
+
+MAKE_SUBDIRS	= $(MSC_SUBDIRS)
+
+PS		= \#
+
+IAMMSC		= 1
+
+DEV_SUBDIRS	= $(ALL_DEVICES)
+SPICED_LOG	=
+BUG_ADDR	=
+
+OBJ_TOP		= $(SRC_TOP)
+ASCII_RAWFILE	= 1

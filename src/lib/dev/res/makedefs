@@ -1,0 +1,37 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= res.c resask.c resdel.c resdest.c resload.c resmask.c \
+		  resmdel.c resmpar.c resnoise.c resparam.c respzld.c \
+		  ressacl.c ressetup.c ressload.c ressprt.c ressset.c \
+		  restemp.c 
+
+COBJS		= res.o resask.o resdel.o resdest.o resload.o resmask.o \
+		  resmdel.o resmpar.o resnoise.o resparam.o respzld.o \
+		  ressacl.o ressetup.o ressload.o ressprt.o ressset.o \
+		  restemp.o 
+
+MODULE		= res
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1
+
+res.o: res.c
+resask.o: resask.c
+resdel.o: resdel.c
+resdest.o: resdest.c
+resload.o: resload.c
+resmask.o: resmask.c
+resmdel.o: resmdel.c
+resmpar.o: resmpar.c
+resnoise.o: resnoise.c
+resparam.o: resparam.c
+respzld.o: respzld.c
+ressacl.o: ressacl.c
+ressetup.o: ressetup.c
+ressload.o: ressload.c
+ressprt.o: ressprt.c
+ressset.o: ressset.c
+restemp.o: restemp.c

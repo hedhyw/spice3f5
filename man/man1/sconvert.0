@@ -1,0 +1,198 @@
+
+
+
+20 March 1986                                         SCONVERT(1)
+
+
+
+NAME
+     sconvert - convert spice formats
+
+SYNOPSIS
+     sconvert fromtype fromfile totype tofile
+     sconvert fromtype totype
+     sconvert
+
+DESCRIPTION
+     Sconvert translates spice output files among three formats:
+     the old binary format, a new binary format, and a new ascii
+     format.  The formats are specified by the fromtype and
+     totype arguments: `o' for the old format, `b' for the new
+     binary format, and `a' for the new ascii format.  Fromtype
+     specifies the format to be read, and totype specifies the
+     format to be written.  If fromfile and tofile are given,
+     then they are used as the input and output, otherwise stan-
+     dard input and output are used.  (Note that this second
+     option is only available on UNIX systems - on VMS and other
+     systems you must supply the filenames.) If no arguments are
+     given, the parameters are prompted for.
+
+     Binary format is the preferred format for general use, as it
+     is the most economical in terms of space and speed of
+     access, and ascii is provided to make it easy to modify data
+     files and transfer them between machines with different
+     floating-point formats.  The old format is provided only for
+     backward compatibility. The three formats are as follows:
+
+     Old:
+
+              What          Size in Bytes
+
+          title                    80
+          date                8
+          time                8
+          numoutputs               2
+          the integer 4            2
+          variable names --
+               char[numoutputs][8] numoutputs * 8
+          types of output               numoutputs * 2
+          node index               numoutputs * 2
+          plot title               numoutputs * 24
+          the actual data               numpoints * numoutputs * 8
+
+     Ascii:
+
+          Title: _T_i_t_l_e _C_a_r_d _S_t_r_i_n_g
+          Date: _D_a_t_e
+          [ Plotname: _P_l_o_t _N_a_m_e
+            Flags: _c_o_m_p_l_e_x or _r_e_a_l
+            No. Variables: _n_u_m_o_u_t_p_u_t_s
+
+
+
+                                                                1
+
+
+
+
+
+
+SCONVERT(1)                                         20 March 1986
+
+
+
+            No. Points: _n_u_m_p_o_i_n_t_s
+            Command: _n_u_t_m_e_g _c_o_m_m_a_n_d
+            Variables:   0 _v_a_r_n_a_m_e_1 _t_y_p_e_n_a_m_e_1
+                    1 _v_a_r_n_a_m_e_2 _t_y_p_e_n_a_m_e_2
+                    etc...
+            Values:
+              0     n    n    n    n    ...
+              1     n    n    n    n    ...
+              And so forth...
+          ] repeated one or more times
+
+
+     If one of the flags is _c_o_m_p_l_e_x, the points look like r,i where r and i
+     are floating point (in %e format). Otherwise they are in %e format.
+     Only one of _r_e_a_l and _c_o_m_p_l_e_x should appear.
+
+     The lines are guaranteed to be less than 80 columns wide (unless the
+     plot title or variable names are very long), so this format is safe
+     to mail between systems like CMS.
+
+     Any number of Command: lines may appear between the No. Points:
+     and the Variables: lines, and whenever the plot is loaded into
+     nutmeg they will be executed.
+
+     Binary:
+
+          _T_i_t_l_e _C_a_r_d            (a NULL terminated string)
+          _D_a_t_e, _T_i_m_e            (a NULL terminated string)
+          [
+            _P_l_o_t _t_i_t_l_e          (a NULL terminated string)
+            _N_u_m_b_e_r _o_f _v_a_r_i_a_b_l_e_s   (an int)
+            _N_u_m_b_e_r _o_f _d_a_t_a _p_o_i_n_t_s (an int)
+            _f_l_a_g_s          (a short)
+            _v_a_r_i_a_b_l_e _h_e_a_d_e_r _s_t_r_u_c_t (repeated numoutputs times)
+               _v_a_r_i_a_b_l_e _n_a_m_e    (a NULL terminated string)
+               _v_a_r_i_a_b_l_e _t_y_p_e    (an int)
+            _s_e_t _o_f _o_u_t_p_u_t_s      (repeated numpoints times)
+          ] repeated one or more times.
+
+
+     A set of outputs is a vector of doubles of length numoutputs, or
+     a vector of real-imaginary pairs of doubles if the data is complex.
+
+SEE ALSO
+     nutmeg(1), spice(1), writedata(3)
+
+AUTHOR
+     Wayne Christopher (faustus@cad.berkeley.edu)
+
+BUGS
+     If variable names and the title and plotname strings have
+     trailing blanks in them they will be stripped off when the
+
+
+
+2
+
+
+
+
+
+
+20 March 1986                                         SCONVERT(1)
+
+
+
+     file is read, if it is in ascii format.
+
+     If a plot title begins with "Title:" nutmeg will be fooled
+     into thinking that this is an ascii format file. Sconvert
+     always requires the type to be specified, however.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                3
+
+
+

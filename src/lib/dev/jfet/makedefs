@@ -1,0 +1,38 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= jfet.c jfetacld.c jfetask.c jfetdel.c jfetdest.c jfetdist.c \
+		  jfetdset.c jfetic.c jfetload.c jfetmask.c jfetmdel.c \
+		  jfetmpar.c jfetnoi.c jfetpar.c jfetpzld.c jfetset.c \
+		  jfettemp.c jfettrun.c 
+
+COBJS		= jfet.o jfetacld.o jfetask.o jfetdel.o jfetdest.o jfetdist.o \
+		  jfetdset.o jfetic.o jfetload.o jfetmask.o jfetmdel.o \
+		  jfetmpar.o jfetnoi.o jfetpar.o jfetpzld.o jfetset.o \
+		  jfettemp.o jfettrun.o 
+
+MODULE		= jfet
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3
+
+jfet.o: jfet.c
+jfetacld.o: jfetacld.c
+jfetask.o: jfetask.c
+jfetdel.o: jfetdel.c
+jfetdest.o: jfetdest.c
+jfetdist.o: jfetdist.c
+jfetdset.o: jfetdset.c
+jfetic.o: jfetic.c
+jfetload.o: jfetload.c
+jfetmask.o: jfetmask.c
+jfetmdel.o: jfetmdel.c
+jfetmpar.o: jfetmpar.c
+jfetnoi.o: jfetnoi.c
+jfetpar.o: jfetpar.c
+jfetpzld.o: jfetpzld.c
+jfetset.o: jfetset.c
+jfettemp.o: jfettemp.c
+jfettrun.o: jfettrun.c

@@ -1,0 +1,4 @@
+# For the spice3 makefile in the octtools distribution
+SPICE_DIR	= $(OCTTOOLS)
+SPICE_LIB_DIR	= $(OCTTOOLS)/lib/spice3
+S_SPICE_LIB_DIR	= $(OCTTOOLS)/lib/spice3

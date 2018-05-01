@@ -1,0 +1,32 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= vsrc.c vsrcacct.c vsrcacld.c vsrcask.c vsrcdel.c vsrcdest.c \
+		  vsrcfbr.c vsrcload.c vsrcmdel.c vsrcpar.c vsrcpzld.c \
+		  vsrcpzs.c vsrcset.c vsrctemp.c 
+
+COBJS		= vsrc.o vsrcacct.o vsrcacld.o vsrcask.o vsrcdel.o vsrcdest.o \
+		  vsrcfbr.o vsrcload.o vsrcmdel.o vsrcpar.o vsrcpzld.o \
+		  vsrcpzs.o vsrcset.o vsrctemp.o 
+
+MODULE		= vsrc
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1
+
+vsrc.o: vsrc.c
+vsrcacct.o: vsrcacct.c
+vsrcacld.o: vsrcacld.c
+vsrcask.o: vsrcask.c
+vsrcdel.o: vsrcdel.c
+vsrcdest.o: vsrcdest.c
+vsrcfbr.o: vsrcfbr.c
+vsrcload.o: vsrcload.c
+vsrcmdel.o: vsrcmdel.c
+vsrcpar.o: vsrcpar.c
+vsrcpzld.o: vsrcpzld.c
+vsrcpzs.o: vsrcpzs.c
+vsrcset.o: vsrcset.c
+vsrctemp.o: vsrctemp.c

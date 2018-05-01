@@ -1,0 +1,5 @@
+multidec.obj
+multidec.exe/NOI /NOE /E /F /PACKC
+multidec.map
+..\lib\sparse+
+..\lib\misc /se:1000 /st:18000;

@@ -1,0 +1,48 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= ind.c indacld.c indask.c inddel.c inddest.c indload.c \
+		  indmdel.c indparam.c indpzld.c indsacl.c indsetup.c \
+		  indsload.c indsprt.c indsset.c indsupd.c indtrunc.c \
+		  mutacld.c mutask.c mutdel.c mutdest.c mutmdel.c mutparam.c \
+		  mutpzld.c mutsetup.c mutsprt.c mutsset.c 
+
+COBJS		= ind.o indacld.o indask.o inddel.o inddest.o indload.o \
+		  indmdel.o indparam.o indpzld.o indsacl.o indsetup.o \
+		  indsload.o indsprt.o indsset.o indsupd.o indtrunc.o \
+		  mutacld.o mutask.o mutdel.o mutdest.o mutmdel.o mutparam.o \
+		  mutpzld.o mutsetup.o mutsprt.o mutsset.o 
+
+MODULE		= ind
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1
+
+ind.o: ind.c
+indacld.o: indacld.c
+indask.o: indask.c
+inddel.o: inddel.c
+inddest.o: inddest.c
+indload.o: indload.c
+indmdel.o: indmdel.c
+indparam.o: indparam.c
+indpzld.o: indpzld.c
+indsacl.o: indsacl.c
+indsetup.o: indsetup.c
+indsload.o: indsload.c
+indsprt.o: indsprt.c
+indsset.o: indsset.c
+indsupd.o: indsupd.c
+indtrunc.o: indtrunc.c
+mutacld.o: mutacld.c
+mutask.o: mutask.c
+mutdel.o: mutdel.c
+mutdest.o: mutdest.c
+mutmdel.o: mutmdel.c
+mutparam.o: mutparam.c
+mutpzld.o: mutpzld.c
+mutsetup.o: mutsetup.c
+mutsprt.o: mutsprt.c
+mutsset.o: mutsset.c

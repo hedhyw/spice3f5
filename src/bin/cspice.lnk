@@ -1,0 +1,13 @@
+cspice.obj cconf.obj tunepc.obj
+cspice.exe/NOI /NOE /E /F /PACKC
+cspice.map
+..\lib\fte+
+..\lib\cp+
+..\lib\dev1+
+..\lib\dev2+
+..\lib\dev3+
+..\lib\ckt+
+..\lib\inp+
+..\lib\ni+
+..\lib\sparse+
+..\lib\misc /se:1000 /st:18000;

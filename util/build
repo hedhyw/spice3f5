@@ -1,0 +1,183 @@
+#! /bin/sh -
+PROG=`basename "$0"`
+PATH=/bin:/usr/bin:/usr/ucb
+if test "$#" -eq 0; then
+        echo "Usage: ${PROG} [-dnD] <system> [<modifiers>]"
+        echo "       ${PROG} -help"
+        exit 1
+fi
+
+TMP_DIR=/tmp
+CWD=`pwd`
+UTIL_PATH=`echo $0 | sed -e 's|/[^/]*$||'`
+UTIL_DIR=`(cd "${UTIL_PATH}"; pwd )`
+
+TOP0=`(cd "${UTIL_PATH}/.."; pwd )`
+TOP1=`(cd "${TOP0}/.."; pwd )`
+TOP2=`(cd "${TOP1}/.."; pwd )`
+TOP3=`(cd "${TOP2}/.."; pwd )`
+TOP4=`(cd "${TOP3}/.."; pwd )`
+
+DIR=`echo "${CWD}/" | sed -e "s|^${TOP0}/||" -e 's|/.*$||'`
+if test "x${DIR}" = "x"; then
+	SUBDIR=
+else
+	DIR="${DIR}/"
+	SUBDIR=`echo "${CWD}/" | sed -e "s|^${TOP0}/${DIR}||"`
+fi
+
+if test -f "/usr/ucb/fmt"; then
+	fmt='/usr/ucb/fmt -60'
+else
+	fmt='cat'
+fi
+if test -d "${TOP0}/conf"; then
+	CONF_DIR="${TOP0}/conf"
+elif test -d "${TOP1}/conf"; then
+	CONF_DIR="${TOP1}/conf"
+elif test -d "${TOP2}/conf"; then
+	CONF_DIR="${TOP2}/conf"
+elif test -d "${TOP3}/conf"; then
+	CONF_DIR="${TOP3}/conf"
+elif test -d "${TOP4}/conf"; then
+	CONF_DIR="${TOP4}/conf"
+else
+	echo "Can't locate \"conf/\" subdirectory."
+	exit 1
+fi
+SKEL_DIR="${UTIL_DIR}/skeleton"
+
+if test "x$1" = "x-help"; then
+	echo "options (flags):"
+	echo "	-help	This message"
+	echo '	-T dir	Use "dir" to store temp files (defaults to /tmp)'
+	echo "	-l	List Systems/Targets in detail"
+	echo "	-d	Dump synthesized makefile to a temp file"
+	echo "	-s name	Set system name to 'name' instead of first config file"
+	echo "	-n	Pass '-n' to make (show commands executed)"
+	echo "	-N	Show 'make' command that will be executed"
+	echo "	-D	Show shell commands executed by build (do set -v)"
+	echo Systems:
+	ls ${CONF_DIR} | sed '/defaults/d' | $fmt | sed 's/^/	/'
+	echo Targerts:
+	ls ${SKEL_DIR}/*.bld | sed -e 's@^.*/@@g' -e 's/.bld//g' | \
+		$fmt | sed 's/^/	/'
+        exit 0
+fi
+if test "x$1" = "x-l"; then
+	echo Systems:
+	for name in ${CONF_DIR}/*; do
+		echo "	"`basename $name`"      	"`head -1 $name |\
+			sed 's/#/:/'`
+	done
+	echo Targerts:
+	for name in ${SKEL_DIR}/*.bld; do
+		case "$name" in
+		default)
+			;;
+		*)
+			echo "	"`basename $name | sed 's/\.bld//'\
+				`"     	"`head -1 $name | sed 's/#/:/'`
+			;;
+		esac
+	done
+        exit 0
+fi
+if test "x$1" = "x-T"; then
+	TMP_DIR="$2"
+	shift
+	shift
+fi
+
+DIR1=`basename ${TOP0}`
+DIR2=`basename ${TOP1}`
+DIR3=`basename ${TOP2}`
+DIR4=`basename ${TOP3}`
+
+TMP_LEADER="${TMP_DIR}/buildl$$"
+TMP_TRAILER="${TMP_DIR}/buildt$$"
+trap 'rm -f ${TMP_LEADER} ${TMP_TRAILER}; exit 1' 1 2 3 4 6 7 8 9 10 12 13 14 15
+echo > "${TMP_TRAILER}"
+BAD=false
+DEBUG=
+FILES0="${TMP_LEADER} ${SKEL_DIR}/make_def.bd ${CONF_DIR}/defaults"
+while test $# -gt 0; do
+	case "$1" in
+	*=*)	echo "$1" >> "${TMP_TRAILER}"
+		;;
+	-s)	shift
+		SYS_NAME="$1"
+		;;
+	-n)
+		echo "MAKEFLAGS = -n" >> "${TMP_TRAILER}"
+		;;
+	-N)
+		EXEC=echo
+		;;
+	-D)
+		set -v
+		;;
+	-d)
+		DEBUG="true"
+		;;
+	*)	if test -z "${SYS_NAME}"; then
+			SYS_NAME="$1"
+		fi
+		if test -r "${CONF_DIR}/$1"; then
+			FILES0="${FILES0} ${CONF_DIR}/$1"
+		elif test -r "${SKEL_DIR}/$1.bld"; then
+			FILES0="${FILES0} ${SKEL_DIR}/$1.bld"
+		else
+			echo "$PROG: no information for \"$1\"" \
+				in config or util directory 1>&2
+			BAD=true
+		fi
+		;;
+	esac
+	shift
+done
+if test ! -r makedefs; then
+        echo "No \"makedefs\" file"
+        BAD=true
+fi
+
+if "${BAD}"; then
+	echo "Build not run" 1>&2
+	exit 1
+fi
+
+BUILD_DATE="`date`"
+cat > "${TMP_LEADER}" << ENDOFDEFINES
+SYSTEM		= ${SYS_NAME}
+UTIL_DIR	= ${UTIL_DIR}
+PID		= $$
+
+TOP4		= ${TOP4}
+TOP3		= \$(TOP4)/\$(DIR4)
+TOP2		= \$(TOP3)/\$(DIR3)
+TOP1		= \$(TOP2)/\$(DIR2)
+TOP0		= \$(TOP1)/\$(DIR1)
+
+DIR4		= ${DIR4}
+DIR3		= ${DIR3}
+DIR2		= ${DIR2}
+DIR1		= ${DIR1}
+
+FILES_L		= ${FILES0}
+FILES_T		= ${TMP_TRAILER} ${SKEL_DIR}/make_std.bd
+ENDOFDEFINES
+
+if test -z "${DEBUG}"; then
+	echo Begin build on `hostname` for "${SYS_NAME}" on "${BUILD_DATE}":
+	$EXEC cat ${FILES0} "${TOP0}/${DIR}/${SUBDIR}/makedefs" \
+		"${TMP_TRAILER}" "${SKEL_DIR}/make_std.bd" \
+	| make -f - bootstrap DIR="${DIR}" SUBDIR="${SUBDIR}" \
+		VPATH="${TOP0}/${DIR}/${SUBDIR}" CWD="${CWD}"
+	echo Done with build at `date`
+else
+	$EXEC cat ${FILES0} "${TOP0}/${DIR}/${SUBDIR}/makedefs" \
+		"${TMP_TRAILER}" "${SKEL_DIR}/make_std.bd" > /tmp/build.out$$
+	echo Output is in "/tmp/build.out$$"
+fi
+rm -f ${TMP_LEADER} ${TMP_TRAILER}
+

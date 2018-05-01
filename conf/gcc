@@ -1,0 +1,6 @@
+# For use with gcc; use "build <system> gcc"
+
+CC		= gcc
+CC_OPT		= -O
+CC_OPT_SAFE	= -O
+ASM_HACK	= < /dev/null

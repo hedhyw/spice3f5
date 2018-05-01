@@ -1,0 +1,9 @@
+help.obj tunepc.obj
+help.exe/NOI /NOE /E /F /PACKC
+help.map
+..\lib\fte+
+..\lib\cp+
+..\lib\hlp+
+..\lib\inp+
+..\lib\mfbpc+
+..\lib\misc /se:1000 /st:18000;

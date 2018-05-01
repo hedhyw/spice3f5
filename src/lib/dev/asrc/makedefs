@@ -1,0 +1,30 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= asrc.c asrcacld.c asrcask.c asrcconv.c asrcdel.c asrcdest.c \
+		  asrcfbr.c asrcload.c asrcmdel.c asrcpar.c asrcpzld.c \
+		  asrcset.c 
+
+COBJS		= asrc.o asrcacld.o asrcask.o asrcconv.o asrcdel.o asrcdest.o \
+		  asrcfbr.o asrcload.o asrcmdel.o asrcpar.o asrcpzld.o \
+		  asrcset.o 
+
+MODULE		= asrc
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1
+
+asrc.o: asrc.c
+asrcacld.o: asrcacld.c
+asrcask.o: asrcask.c
+asrcconv.o: asrcconv.c
+asrcdel.o: asrcdel.c
+asrcdest.o: asrcdest.c
+asrcfbr.o: asrcfbr.c
+asrcload.o: asrcload.c
+asrcmdel.o: asrcmdel.c
+asrcpar.o: asrcpar.c
+asrcpzld.o: asrcpzld.c
+asrcset.o: asrcset.c

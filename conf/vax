@@ -1,0 +1,4 @@
+# DEC VAX running ultrix 4.0 or later
+
+ASM_HACK	= < /dev/null
+

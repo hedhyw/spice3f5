@@ -1,0 +1,31 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= vccs.c vccsask.c vccsdel.c vccsdest.c vccsload.c vccsmdel.c \
+		  vccspar.c vccspzld.c vccssacl.c vccsset.c vccssld.c \
+		  vccssprt.c vccssset.c 
+
+COBJS		= vccs.o vccsask.o vccsdel.o vccsdest.o vccsload.o vccsmdel.o \
+		  vccspar.o vccspzld.o vccssacl.o vccsset.o vccssld.o \
+		  vccssprt.o vccssset.o 
+
+MODULE		= vccs
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1
+
+vccs.o: vccs.c
+vccsask.o: vccsask.c
+vccsdel.o: vccsdel.c
+vccsdest.o: vccsdest.c
+vccsload.o: vccsload.c
+vccsmdel.o: vccsmdel.c
+vccspar.o: vccspar.c
+vccspzld.o: vccspzld.c
+vccssacl.o: vccssacl.c
+vccsset.o: vccsset.c
+vccssld.o: vccssld.c
+vccssprt.o: vccssprt.c
+vccssset.o: vccssset.c

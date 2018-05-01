@@ -1,0 +1,33 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= alias.c backq.c complete.c cshpar.c front.c glob.c \
+		  history.c input.c lexical.c modify.c output.c quote.c \
+		  spawn.c std.c unixcom.c variable.c var2.c wlist.c numparse.c
+
+COBJS		= alias.o backq.o complete.o cshpar.o front.o glob.o \
+		  history.o input.o lexical.o modify.o output.o quote.o \
+		  spawn.o std.o unixcom.o variable.o var2.o wlist.o numparse.o
+
+LIBRARY		= cp
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+alias.o: alias.c
+backq.o: backq.c
+complete.o: complete.c
+cshpar.o: cshpar.c
+front.o: front.c
+glob.o: glob.c
+history.o: history.c
+input.o: input.c
+lexical.o: lexical.c
+modify.o: modify.c
+output.o: output.c
+quote.o: quote.c
+spawn.o: spawn.c
+std.o: std.c
+unixcom.o: unixcom.c
+variable.o: variable.c
+var2.o: var2.c
+wlist.o: wlist.c
+numparse.o: numparse.c

@@ -1,0 +1,20 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= help.c provide.c readhelp.c textdisp.c x11disp.c xdisplay.c 
+
+COBJS		= help.o provide.o readhelp.o textdisp.o x11disp.o xdisplay.o 
+
+LIBRARY		= hlp
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+
+INCLUDE		= -I$(INCLUDE_DIR) $(INCX)
+CFLAGS		= $(CC_OPT) $(SYS_CFLAGS) $(INTERFACE_OPTS)
+CONF_DEP_EXTRA	= $(CONF_XCC)
+help.o: help.c
+provide.o: provide.c
+readhelp.o: readhelp.c
+textdisp.o: textdisp.c
+x11disp.o: x11disp.c
+xdisplay.o: xdisplay.c

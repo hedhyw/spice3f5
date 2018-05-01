@@ -1,0 +1,31 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= atander.c cosderiv.c cubeder.c divderiv.c equalder.c \
+		  expderiv.c invderiv.c multder.c plusder.c powderiv.c \
+		  sqrtder.c tanderiv.c timesder.c 
+
+COBJS		= atander.o cosderiv.o cubeder.o divderiv.o equalder.o \
+		  expderiv.o invderiv.o multder.o plusder.o powderiv.o \
+		  sqrtder.o tanderiv.o timesder.o 
+
+MODULE		= disto
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1
+
+atander.o: atander.c
+cosderiv.o: cosderiv.c
+cubeder.o: cubeder.c
+divderiv.o: divderiv.c
+equalder.o: equalder.c
+expderiv.o: expderiv.c
+invderiv.o: invderiv.c
+multder.o: multder.c
+plusder.o: plusder.c
+powderiv.o: powderiv.c
+sqrtder.o: sqrtder.c
+tanderiv.o: tanderiv.c
+timesder.o: timesder.c

@@ -1,0 +1,6 @@
+# Options for HP 9000/300 systems ("build hpux hp300")
+#	if you use "hpux" as the system name for other HP systems, try
+#	"build -s hp300 hpux hp300" -- the order is important because
+#	definitions in later files override those in earlier files.
+
+CFLAGS	=	-Wc,-Np300 -Wc,-Ns10000

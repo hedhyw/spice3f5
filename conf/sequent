@@ -1,0 +1,16 @@
+# Sequent running Dynix; note parallel compile option
+
+X_DIR		= /usr/X11R4/
+XLIB_DIR	= /usr/X11R4/lib
+LIBX		= $(XLIB_DIR)/libXaw.a $(XLIB_DIR)/libXt.a		     \
+		  $(XLIB_DIR)/libXext.a $(XLIB_DIR)/libXmu.a		     \
+		  $(XLIB_DIR)/libX11.a
+
+SPICE_DIR	= ~beorn/spice$(VERSION)/$(SYSTEM)
+MAKE		= /bin/make -P$(NPARALLEL)
+NPARALLEL	= 14
+PARALLEL	= &
+
+GETOPTLIB	= -lseq
+
+MKDIR		= $(UTIL_DIR)/mkdir.sh

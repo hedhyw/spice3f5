@@ -1,0 +1,15 @@
+# IBM RS/6000, running AIX
+
+SYS_CFLAGS	= -Daix
+INCX		= -I/usr/include/X11					      \
+		  -I/usr/lpp/X11/include/X11/Xaw			      \
+		  -I/usr/lpp/X11/include/X11/Xmu
+
+LIBX		= /usr/lpp/X11/Xamples/lib/Xaw/libXaw.a -lXt -lXext	      \
+		  /usr/lpp/X11/Xamples/lib/Xmu/libXmu.a -lX11
+
+MAKE		= /bin/make
+
+LDFLAGS		= -lm
+
+MKDIR		= $(UTIL_DIR)/mkdir.sh

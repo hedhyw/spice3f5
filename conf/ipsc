@@ -1,0 +1,19 @@
+# Intel iPSC/860 hypercube - System V
+
+# Location of Sun4 Cross Development System
+IPSC_DIR	= /usr/ipsc/XDEV/i860
+
+IPSC_INCLUDE	= $(IPSC_DIR)/include-ipsc
+CC		= $(IPSC_DIR)/bin/icc -I$(IPSC_INCLUDE)
+SYS_CFLAGS	= -i860 -Dipsc
+LDFLAGS		= -lm -i860 -node
+INCX		=
+LIBX		=
+
+AR		= $(IPSC_DIR)/bin/ar860
+RANLIB		= $(AR) t$(ARLOCAL)
+MAKE		= /bin/make
+SHELL		= /bin/sh
+
+INTERFACE_OPTS	= -DWANT_MFB
+CLEANASYOUGO	= false

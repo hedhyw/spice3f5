@@ -1,0 +1,4 @@
+
+SUBDIRS = $(LIBRARIES)
+# ckt cp dev fte hlp inp mfb mfbpc misc ni smp sparse
+

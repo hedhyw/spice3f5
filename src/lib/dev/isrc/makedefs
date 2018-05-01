@@ -1,0 +1,26 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= isrc.c isrcacct.c isrcacld.c isrcask.c isrcdel.c isrcdest.c \
+		  isrcload.c isrcmdel.c isrcpar.c isrctemp.c 
+
+COBJS		= isrc.o isrcacct.o isrcacld.o isrcask.o isrcdel.o isrcdest.o \
+		  isrcload.o isrcmdel.o isrcpar.o isrctemp.o 
+
+MODULE		= isrc
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1
+
+isrc.o: isrc.c
+isrcacct.o: isrcacct.c
+isrcacld.o: isrcacld.c
+isrcask.o: isrcask.c
+isrcdel.o: isrcdel.c
+isrcdest.o: isrcdest.c
+isrcload.o: isrcload.c
+isrcmdel.o: isrcmdel.c
+isrcpar.o: isrcpar.c
+isrctemp.o: isrctemp.c

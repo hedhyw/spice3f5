@@ -1,0 +1,46 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= mos3.c mos3acld.c mos3ask.c mos3conv.c mos3del.c mos3dest.c \
+		  mos3dist.c mos3dset.c mos3ic.c mos3load.c mos3mask.c \
+		  mos3mdel.c mos3mpar.c mos3noi.c mos3par.c mos3pzld.c \
+		  mos3sacl.c mos3set.c mos3sld.c mos3sprt.c mos3sset.c \
+		  mos3supd.c mos3temp.c mos3trun.c 
+
+COBJS		= mos3.o mos3acld.o mos3ask.o mos3conv.o mos3del.o mos3dest.o \
+		  mos3dist.o mos3dset.o mos3ic.o mos3load.o mos3mask.o \
+		  mos3mdel.o mos3mpar.o mos3noi.o mos3par.o mos3pzld.o \
+		  mos3sacl.o mos3set.o mos3sld.o mos3sprt.o mos3sset.o \
+		  mos3supd.o mos3temp.o mos3trun.o 
+
+MODULE		= mos3
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 2
+
+mos3.o: mos3.c
+mos3acld.o: mos3acld.c
+mos3ask.o: mos3ask.c
+mos3conv.o: mos3conv.c
+mos3del.o: mos3del.c
+mos3dest.o: mos3dest.c
+mos3dist.o: mos3dist.c
+mos3dset.o: mos3dset.c
+mos3ic.o: mos3ic.c
+mos3load.o: mos3load.c
+mos3mask.o: mos3mask.c
+mos3mdel.o: mos3mdel.c
+mos3mpar.o: mos3mpar.c
+mos3noi.o: mos3noi.c
+mos3par.o: mos3par.c
+mos3pzld.o: mos3pzld.c
+mos3sacl.o: mos3sacl.c
+mos3set.o: mos3set.c
+mos3sld.o: mos3sld.c
+mos3sprt.o: mos3sprt.c
+mos3sset.o: mos3sset.c
+mos3supd.o: mos3supd.c
+mos3temp.o: mos3temp.c
+mos3trun.o: mos3trun.c

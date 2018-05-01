@@ -1,0 +1,17 @@
+simple resistor circuit
+*simple resistor circuit to test which ones of vspice, uf77spice and
+* spice3 give the correct results
+
+iin 1 0 1m AC
+rl 1 0 1k
+
+*.control
+*noise v(1) iin dec 1 1k 1k 1
+*setplot noise3
+*print onoise.spectrum > spice3.noise.out
+*.endc
+
+.noise v(1) iin dec 10 10 100k 1
+.print noise "onoise-spectrum"
+
+.end

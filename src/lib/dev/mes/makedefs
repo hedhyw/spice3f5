@@ -1,0 +1,38 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= mes.c mesacl.c mesask.c mesdel.c mesdest.c mesdisto.c \
+		  mesdset.c mesgetic.c mesload.c mesmask.c mesmdel.c \
+		  mesmpar.c mesnoise.c mesparam.c mespzld.c messetup.c \
+		  mestemp.c mestrunc.c 
+
+COBJS		= mes.o mesacl.o mesask.o mesdel.o mesdest.o mesdisto.o \
+		  mesdset.o mesgetic.o mesload.o mesmask.o mesmdel.o \
+		  mesmpar.o mesnoise.o mesparam.o mespzld.o messetup.o \
+		  mestemp.o mestrunc.o 
+
+MODULE		= mes
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3
+
+mes.o: mes.c
+mesacl.o: mesacl.c
+mesask.o: mesask.c
+mesdel.o: mesdel.c
+mesdest.o: mesdest.c
+mesdisto.o: mesdisto.c
+mesdset.o: mesdset.c
+mesgetic.o: mesgetic.c
+mesload.o: mesload.c
+mesmask.o: mesmask.c
+mesmdel.o: mesmdel.c
+mesmpar.o: mesmpar.c
+mesnoise.o: mesnoise.c
+mesparam.o: mesparam.c
+mespzld.o: mespzld.c
+messetup.o: messetup.c
+mestemp.o: mestemp.c
+mestrunc.o: mestrunc.c

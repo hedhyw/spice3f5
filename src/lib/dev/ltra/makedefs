@@ -1,0 +1,33 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= ltra.c ltraacct.c ltraacld.c ltraask.c ltradel.c ltradest.c \
+		  ltraload.c ltramdel.c ltramisc.c ltrampar.c ltrapar.c \
+		  ltraset.c ltratemp.c ltratrun.c ltramask.c
+
+COBJS		= ltra.o ltraacct.o ltraacld.o ltraask.o ltradel.o ltradest.o \
+		  ltraload.o ltramdel.o ltramisc.o ltrampar.o ltrapar.o \
+		  ltraset.o ltratemp.o ltratrun.o ltramask.o
+
+MODULE		= ltra
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3
+
+ltra.o: ltra.c
+ltraacct.o: ltraacct.c
+ltraacld.o: ltraacld.c
+ltraask.o: ltraask.c
+ltradel.o: ltradel.c
+ltradest.o: ltradest.c
+ltraload.o: ltraload.c
+ltramdel.o: ltramdel.c
+ltramisc.o: ltramisc.c
+ltrampar.o: ltrampar.c
+ltrapar.o: ltrapar.c
+ltraset.o: ltraset.c
+ltratemp.o: ltratemp.c
+ltratrun.o: ltratrun.c
+ltramask.o: ltramask.c

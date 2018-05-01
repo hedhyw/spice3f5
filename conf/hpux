@@ -1,0 +1,13 @@
+# HP-UX 7.? or 8.? (HP Unix), defaults for 9000/700
+
+INCX	=	-I/usr/include/X11R4/Xaw -I/usr/include/X11R4/Xmu \
+		-I/usr/include/X11R4
+LIBX	=	-L/usr/lib/X11R4/ -lXaw -lXt -lXext -lXmu -lX11
+MAKE	=	/bin/make
+
+# Note: there is a bug on some HP-UX 8.07 (?) systems which makes the
+# compiler with "-O" run out of memory.  If you have this problem, rebuild
+# with "CFLAGS=-g".
+
+CFLAGS	=	-O
+RANLIB	=	echo

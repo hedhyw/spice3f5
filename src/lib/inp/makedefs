@@ -1,0 +1,80 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= ifeval.c ifnewuid.c inp2b.c inp2c.c inp2d.c inp2dot.c \
+		  inp2e.c inp2f.c inp2g.c inp2h.c inp2i.c inp2j.c inp2k.c \
+		  inp2l.c inp2m.c inp2o.c inp2q.c inp2r.c inp2s.c inp2t.c \
+		  inp2u.c inp2v.c inp2w.c inp2z.c inpaname.c inpapnam.c \
+		  inpcfix.c inpdomod.c inpdoopt.c inpdpar.c inperrc.c \
+		  inperror.c inpeval.c inpfindl.c inpgmod.c inpgtitl.c \
+		  inpgtok.c inpgval.c inpkmods.c inplist.c inplkmod.c \
+		  inpmkmod.c inpmktmp.c inppas1.c inppas2.c inppname.c \
+		  inpptree.c inpsymt.c inptyplk.c ptfuncs.c sperror.c \
+		  inpgstr.c
+
+COBJS		= ifeval.o ifnewuid.o inp2b.o inp2c.o inp2d.o inp2dot.o \
+		  inp2e.o inp2f.o inp2g.o inp2h.o inp2i.o inp2j.o inp2k.o \
+		  inp2l.o inp2m.o inp2o.o inp2q.o inp2r.o inp2s.o inp2t.o \
+		  inp2u.o inp2v.o inp2w.o inp2z.o inpaname.o inpapnam.o \
+		  inpcfix.o inpdomod.o inpdoopt.o inpdpar.o inperrc.o \
+		  inperror.o inpeval.o inpfindl.o inpgmod.o inpgtitl.o \
+		  inpgtok.o inpgval.o inpkmods.o inplist.o inplkmod.o \
+		  inpmkmod.o inpmktmp.o inppas1.o inppas2.o inppname.o \
+		  inpptree.o inpsymt.o inptyplk.o ptfuncs.o sperror.o \
+		  inpgstr.o
+
+LIBRARY		= inp
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+ifeval.o: ifeval.c
+ifnewuid.o: ifnewuid.c
+inp2b.o: inp2b.c
+inp2c.o: inp2c.c
+inp2d.o: inp2d.c
+inp2dot.o: inp2dot.c
+inp2e.o: inp2e.c
+inp2f.o: inp2f.c
+inp2g.o: inp2g.c
+inp2h.o: inp2h.c
+inp2i.o: inp2i.c
+inp2j.o: inp2j.c
+inp2k.o: inp2k.c
+inp2l.o: inp2l.c
+inp2m.o: inp2m.c
+inp2o.o: inp2o.c
+inp2q.o: inp2q.c
+inp2r.o: inp2r.c
+inp2s.o: inp2s.c
+inp2t.o: inp2t.c
+inp2u.o: inp2u.c
+inp2v.o: inp2v.c
+inp2w.o: inp2w.c
+inp2z.o: inp2z.c
+inpaname.o: inpaname.c
+inpapnam.o: inpapnam.c
+inpcfix.o: inpcfix.c
+inpdomod.o: inpdomod.c
+inpdoopt.o: inpdoopt.c
+inpdpar.o: inpdpar.c
+inperrc.o: inperrc.c
+inperror.o: inperror.c
+inpeval.o: inpeval.c
+inpfindl.o: inpfindl.c
+inpgmod.o: inpgmod.c
+inpgtitl.o: inpgtitl.c
+inpgtok.o: inpgtok.c
+inpgval.o: inpgval.c
+inpkmods.o: inpkmods.c
+inplist.o: inplist.c
+inplkmod.o: inplkmod.c
+inpmkmod.o: inpmkmod.c
+inpmktmp.o: inpmktmp.c
+inppas1.o: inppas1.c
+inppas2.o: inppas2.c
+inppname.o: inppname.c
+inpptree.o: inpptree.c
+inpsymt.o: inpsymt.c
+inptyplk.o: inptyplk.c
+ptfuncs.o: ptfuncs.c
+sperror.o: sperror.c
+inpgstr.o: inpgstr.c

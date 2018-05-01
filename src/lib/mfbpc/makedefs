@@ -1,0 +1,11 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= mfbpc.c
+
+COBJS		= mfbpc.o
+
+LIBRARY		= mfbpc
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+mfbpc.o: mfbpc.c

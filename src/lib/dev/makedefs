@@ -1,0 +1,22 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+SUBDIRS		= disto $(DEV_SUBDIRS)
+MSC_REC_SUBDIRS	= disto $(DEVICES)
+
+CFILES		= devsup.c 
+
+COBJS		= devsup.o 
+
+LIBRARY_NRL	= dev
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY_NRL).a
+
+PRE_PURPOSE	= check_synth
+
+MODULE		= local
+RANLIB_TARGET	= $(SCRAP_DIR)/.synth_ranlib
+LIBRARY_HACK	= $(LIB_TARGET)
+NUMBER		= 1
+
+devsup.o: devsup.c

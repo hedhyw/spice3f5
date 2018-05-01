@@ -1,0 +1,27 @@
+cl /I..\..\..\include /c ind.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indacld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c inddel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c inddest.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indload.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indmdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indparam.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indpzld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indsacl.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indsetup.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indsload.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indsprt.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indsset.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indsupd.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c indtrunc.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutacld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutdest.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutmdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutparam.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutpzld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutsetup.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutsprt.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mutsset.c >> ..\..\..\msc.out
+lib ..\..\dev1.lib @response.lib >> ..\..\..\msc.out

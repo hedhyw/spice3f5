@@ -1,0 +1,6 @@
+# Util target for cleaning
+
+BLOCK_UPDATE	= true
+
+PURPOSE		= clean
+DEVICES		= $(ALL_DEVICES)

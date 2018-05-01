@@ -1,0 +1,11 @@
+# UCB local definitions (Prof. Pederson)
+
+OBJECTIVE	= dopspice
+
+SPICE_DIR	= /users/dop
+SPICE_LIB_DIR	= $(SPICE_DIR)/lib/spice-lib
+SPICE_EXEC_DIR	= $(SPICE_DIR)/bin
+
+S_SPICE_DIR	= ~dop
+S_SPICE_LIB_DIR	= $(S_SPICE_DIR)/spice-lib
+S_SPICE_EXEC_DIR= $(S_SPICE_DIR)/bin

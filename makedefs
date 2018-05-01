@@ -1,0 +1,15 @@
+SUBDIRS		= src
+INSTALL_SUBDIRS	= src lib
+
+UPDATE_TARGET	= update
+INSTALL_SPECIAL	= directories
+
+SPECIAL_CLEAN	= manifest
+MANIFEST	= manifest
+
+ALL_INSTALL_DIRS= $(INSTALL_DIRS) $(SPICE_LIB_DIR)/helpdir \
+		  $(SPICE_LIB_DIR)/scripts
+
+SPECIAL_MSC	= set CL=/Gt64 /Os /FPi87 /AL /G2 /W2
+
+SCRIPTS		= MSC_SCRIPTS util/delall.bat

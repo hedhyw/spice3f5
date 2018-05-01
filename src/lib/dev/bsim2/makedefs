@@ -1,0 +1,38 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= b2.c b2acld.c b2ask.c b2cvtest.c b2del.c b2dest.c b2eval.c \
+		  b2getic.c b2ld.c b2mask.c b2mdel.c b2moscap.c b2mpar.c \
+		  b2par.c b2pzld.c b2set.c b2temp.c b2trunc.c 
+
+COBJS		= b2.o b2acld.o b2ask.o b2cvtest.o b2del.o b2dest.o b2eval.o \
+		  b2getic.o b2ld.o b2mask.o b2mdel.o b2moscap.o b2mpar.o \
+		  b2par.o b2pzld.o b2set.o b2temp.o b2trunc.o 
+
+MODULE		= bsim2
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+REAL_CC_OPT	= $(CC_OPT_SAFE)
+
+NUMBER		= 3
+
+b2.o: b2.c
+b2acld.o: b2acld.c
+b2ask.o: b2ask.c
+b2cvtest.o: b2cvtest.c
+b2del.o: b2del.c
+b2dest.o: b2dest.c
+b2eval.o: b2eval.c
+b2getic.o: b2getic.c
+b2ld.o: b2ld.c
+b2mask.o: b2mask.c
+b2mdel.o: b2mdel.c
+b2moscap.o: b2moscap.c
+b2mpar.o: b2mpar.c
+b2par.o: b2par.c
+b2pzld.o: b2pzld.c
+b2set.o: b2set.c
+b2temp.o: b2temp.c
+b2trunc.o: b2trunc.c

@@ -1,0 +1,46 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= mos2.c mos2acld.c mos2ask.c mos2conv.c mos2del.c mos2dest.c \
+		  mos2dist.c mos2dset.c mos2ic.c mos2load.c mos2mdel.c \
+		  mos2mpar.c mos2noi.c mos2par.c mos2pzld.c mos2sacl.c \
+		  mos2set.c mos2sld.c mos2sprt.c mos2sset.c mos2supd.c \
+		  mos2temp.c mos2trun.c mos2mask.c
+
+COBJS		= mos2.o mos2acld.o mos2ask.o mos2conv.o mos2del.o mos2dest.o \
+		  mos2dist.o mos2dset.o mos2ic.o mos2load.o mos2mdel.o \
+		  mos2mpar.o mos2noi.o mos2par.o mos2pzld.o mos2sacl.o \
+		  mos2set.o mos2sld.o mos2sprt.o mos2sset.o mos2supd.o \
+		  mos2temp.o mos2trun.o mos2mask.o
+
+MODULE		= mos2
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 2
+
+mos2.o: mos2.c
+mos2acld.o: mos2acld.c
+mos2ask.o: mos2ask.c
+mos2conv.o: mos2conv.c
+mos2del.o: mos2del.c
+mos2dest.o: mos2dest.c
+mos2dist.o: mos2dist.c
+mos2dset.o: mos2dset.c
+mos2ic.o: mos2ic.c
+mos2load.o: mos2load.c
+mos2mdel.o: mos2mdel.c
+mos2mpar.o: mos2mpar.c
+mos2noi.o: mos2noi.c
+mos2par.o: mos2par.c
+mos2pzld.o: mos2pzld.c
+mos2sacl.o: mos2sacl.c
+mos2set.o: mos2set.c
+mos2sld.o: mos2sld.c
+mos2sprt.o: mos2sprt.c
+mos2sset.o: mos2sset.c
+mos2supd.o: mos2supd.c
+mos2temp.o: mos2temp.c
+mos2trun.o: mos2trun.c
+mos2mask.o: mos2mask.c

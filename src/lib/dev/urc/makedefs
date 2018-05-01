@@ -1,0 +1,25 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= urc.c urcask.c urcdel.c urcdest.c urcmask.c urcmdel.c \
+		  urcmpar.c urcparam.c urcsetup.c 
+
+COBJS		= urc.o urcask.o urcdel.o urcdest.o urcmask.o urcmdel.o \
+		  urcmpar.o urcparam.o urcsetup.o 
+
+MODULE		= urc
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3
+
+urc.o: urc.c
+urcask.o: urcask.c
+urcdel.o: urcdel.c
+urcdest.o: urcdest.c
+urcmask.o: urcmask.c
+urcmdel.o: urcmdel.c
+urcmpar.o: urcmpar.c
+urcparam.o: urcparam.c
+urcsetup.o: urcsetup.c

@@ -1,0 +1,33 @@
+$(SPICE_LIB_DIR)/mfbcap: $(DISTLIB_DIR)/mfbcap
+	-rm -f $@
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/news: $(DISTLIB_DIR)/news
+	-rm -f $@
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/scripts/setplot: $(DISTLIB_DIR)/scripts/setplot
+	-rm -f $@
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/scripts/spinit: $(DISTLIB_DIR)/scripts/spinit
+	-rm -f $@
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/helpdir/spice.txt: $(DISTLIB_DIR)/helpdir/spice.txt
+	-rm -f $@
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/helpdir/spice.idx: $(DISTLIB_DIR)/helpdir/spice.txt
+$(SPICE_LIB_DIR)/helpdir/spice.idx: $(OBJBIN_DIR)/makeidx
+	-rm -f $(SPICE_LIB_DIR)/helpdir/spice.idx
+	$(OBJBIN_DIR)/makeidx $(SPICE_LIB_DIR)/helpdir/spice.txt
+
+$(SPICE_LIB_DIR):
+	mkdir -p $(SPICE_LIB_DIR)
+
+$(SPICE_LIB_DIR)/scripts:
+	mkdir -p $(SPICE_LIB_DIR)/scripts
+
+$(SPICE_LIB_DIR)/helpdir:
+	mkdir -p $(SPICE_LIB_DIR)/helpdir

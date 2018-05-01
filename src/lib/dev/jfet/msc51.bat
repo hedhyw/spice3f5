@@ -1,0 +1,19 @@
+cl /I..\..\..\include /c jfet.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetacld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetdest.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetdist.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetdset.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetic.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetload.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetmask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetmdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetmpar.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetnoi.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetpar.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetpzld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfetset.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfettemp.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c jfettrun.c >> ..\..\..\msc.out
+lib ..\..\dev3.lib @response.lib >> ..\..\..\msc.out

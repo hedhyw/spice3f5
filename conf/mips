@@ -1,0 +1,8 @@
+# DECstation MIPS based system
+RANLIB		= ar ts$(ARLOCAL)
+#
+#	For Ultrix 4.2 you want -O0, for 4.1 you want -g
+#	(-O gives a runtime error under 4.1, I don't recall for 4.2)
+CC_OPT		= -g
+CC_OPT_SAFE	= -O0
+ARLOCAL		=

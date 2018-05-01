@@ -1,0 +1,11 @@
+# UCB local site definitions (Power group)
+
+OBJECTIVE	= crownspice
+
+SPICE_DIR	= /tmp/$(OBJECTIVE)
+SPICE_LIB_DIR	= $(SPICE_DIR)/lib/spice3f
+SPICE_EXEC_DIR	= $(SPICE_DIR)/bin
+
+S_SPICE_DIR	= /usr/local/cad
+S_SPICE_LIB_DIR	= $(S_SPICE_DIR)/lib/spice3f
+S_SPICE_EXEC_DIR= $(S_SPICE_DIR)/bin

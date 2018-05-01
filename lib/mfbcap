@@ -1,0 +1,944 @@
+###############################################################################
+#
+# MFB CAPabilities file
+# Giles C. Billingsley, UC Berkeley
+#
+#
+# CURRENT ENTRIES
+# ***************
+#
+#  a0 or A0	AED 767 with 8-bit encoding
+#  a1 or A1	AED 767 with 8-bit encoding and joystick
+#  a2 or A2	AED 767 with 8-bit encoding and 4 button tablet
+#  a6 or A6	AED 512 with 8-bit encoding for standard version 97
+#		compatible ROM set
+#  a7 or A7	AED 512 with 8-bit encoding and joystick for standard
+#		version 97 compatible ROM set
+#  a8 or A8	AED 512 with 8-bit encoding and 4 button tablet for
+#		standard version 97 compatible ROM set
+#  af or AF	AED 512 with 8-bit encoding for Berkeley Evans Hall ROM set
+#  ae or AE	AED 512 with 8-bit encoding and 4 button table for Berkeley
+#		Evans Hall ROM set
+#  j0 or J0	Jupiter 7 with 8-bit encoding
+#  j1 or J1	Jupiter 7 with 8-bit encoding and joystick
+#  j2 or J2	Jupiter 7 with 8-bit encoding and 4 button tablet
+#  j3 or J3	Jupiter 7 with 8-bit encoding and 3 button optical mouse
+#  t1 or T1	Tek 4014 with enhanced graphics module
+#  t2 or T2	Basic Tek 4113 with no pointing device
+#  t3 or T3	Tek 4113 with 4 button tablet, dialog area keyboard control
+#  t4 or T4	Tek 4113 with thumbwheels and dialog area keyboard control
+#  t5 or T5	Tek 4113 with 4 button tablet
+#  t6 or T6	Tek 4113 with thumbwheels
+#  t7 or T7     Tek 4017 with joydisk
+#  t7b or T7b   Tek 4107 with 4-button tablet
+#  ta or TA	Basic Tek 4100 family commands
+#  tb or TB	Tek 4105 with standard paddle pointing device
+#  m1 or M1	Metheus Omega 400 display controller with 4 button tablet
+#  h0 or H0	HP 2648
+#  h1 or H1	HP 2648 with 3 button tablet
+#  h2 or H2	HP 2648 with binary encoding
+#  ha or Ha	HP 9872 color pen plotter
+#  hb or HB	HP 9872 color pen plotter with maximum horizontal size
+#  d0 or D0	DEC vt125 black and white graphics terminal
+#  ax or AX	AED 512 with hex encoding for old Berkeley EECS ROM set
+#  ay or AY	AED 512 with hex encoding for old Berkeley EECS ROM set
+#  az or AZ	AED 512 with hex encoding for old Berkeley EECS ROM set
+#  aa or AA	AED 512 with 8-bit encoding for old Berkeley EECS ROM set
+#  ab or AB	AED 512 with 8-bit encoding for old Berkeley EECS ROM set
+#  ac or AC	AED 512 with 8-bit encoding for old Berkeley EECS ROM set
+#
+#
+# COMMENTS
+# ********
+#
+#     READ THE MANUAL FOR MFBCAP FOR DEVICE NAMING CONVENTIONS!
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#
+#     Specification of Font Size
+#     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+#     The following diagram illustrates the meaning of GCH, GCW, GTH,
+#     and GTW.  For the font shown, GCH = 12, GCW = 6, GTH = 4, 
+#     and GTW = 3.
+#
+#         _  . . . . . .     0 . . . . .
+#         |  .         .     0         .
+#         |  .         .     0         .
+#         |  . 0 0 0 0 .     0 0 0 0   .
+#         |  0         0     0       0 .
+#         |  0         0     0         0
+#        GCH 0         0     0         0
+#     _   |  . 0 0 0 0 0     0         0
+#     |   |  .         0     .         .
+#     |   |  .         0     .         .
+#    GTH  |  0         0     .         .
+#     |   |  . 0 0 0 0 .     . . . . . .
+#     -   -
+#            |---GCW---|-GTW-|
+#
+#
+#
+###############################################################################
+#
+#
+# AED TERMINALS
+#	For all of these entries, it is assumed that the AED has a
+#	seriel link to the host at 9600 baud.  The switch settings
+#	in the back of the AED should be as follows:
+#
+#		COM			OPTIONS
+#         1 2 3 4 5 6 7 8           1 2 3 4 5 6 7 8
+#         u u u d u u d u           d d d d d d d d
+#
+#	where u = up and d = down
+#
+#	If you are using a Summagraphics One bitpad, the internal DIP
+#	switches should be set as follows:
+#
+#          10 SWITCH DIP             9 SWITCH DIP         6 SWITCH
+#       1 2 3 4 5 6 7 8 9 10      1 2 3 4 5 6 7 8 9      1 2 3 4 5 6
+#       O O O O O O O O O O       O O O O O O O O O      O O O O O O
+#       F N F F F F F F F F       N F N F N F F N N      F F F F F F
+#       F   F F F F F F F F         F   F   F F          F F F F F F
+#
+#
+#
+#
+# AED 767 with eight bit binary coordinate encoding, no pointing device
+# NOTE:  AED say's that text will not work right (i.e, will destroy the
+# background rather than overstrike) if the DIP switches aren't set right
+# in the back.  See AED documentation or call AED for this info.
+# The 767 requires a 'working color' to fill polygons; to provide the
+# capability of filled polygons, the last entry in the VLT is reserved
+# and consequently the maximum number of colors is 255 (not 256).
+#
+a0|A0|BAED767-8|basic Advanced Electronics Design 767 with 8 bit binary mode,
+	8BB, TTY, APT, GTH#2, GTW#1, GTO, MXC#768, MYC#575, GCH#9,
+	GCW#6, GTS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\01,
+	GTE=\E, MFP#256, MLS#1, MCL#255, BELL=^A^G\E$<#100>,
+	GIS=\E\E0$<#2000>\E\EG1888N~\^15\06\011L$<#1000>,
+	GFS=\E\E\E\E\E\E\E\E\E\E0$<#3000>\E`\200^L^A,
+	VLT, VTI#255, VTL#8, VTE=K%X%c^A%Y%c%Z%c%T%c,
+	SCS=C%X%c[%X%c, VWM=L%X%c, GMS=$<#1000>\E\E\E\E\E\E\E\E\E\E\E\E\E\E\E\E,
+	IFP=\EG1HHHN+!00FFFFFFFFFFFFFFFF+!01FE82BAAAA2BE80FF+!021824428181422418+!032C4281818181422C+!0455AA55AA55AA55AA+!05CCCC3333CCCC3333+!065500550055005500+!07F0F0F0F00F0F0F0F\EG1888N,
+	GME=^A, GCS=`\120^L\E`\160$<#400>,
+	BLD, NBL#8, BLS=\E4%X%c%Y%c%Z%c%T%c\060\013,
+	BLE=\E4%X%c%Y%c%Z%c%T%c\060%@, SFP="%X%c, SLS=1%=#255%c%c,
+	DFP, FDH#8, FDW#8, FDR, FDE=, FDF=%Y%c, FDS=+!%X%c,
+	MPS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	WPX=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cT%C%c,
+	DLT=A%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	DCS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cO%Z%c,
+	DLS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cA%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	DBS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%co%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	PLS=!%=#255%c%Z%>>#8%&#255%c%Z%c%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	FPOLY, PLV=%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c, PLE=\E,
+	KYBRD, KYB=\EC%@[%@^A^H\EC%C%c[%C%c^A, KYX#3, KYY#1, 
+	KYS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\E^A, KYE=\E,
+#
+# AED 767 with joystick and 8 bit binary coordinate encoding
+#
+a1|A1|AED767J8|Advanced Electronics Design 767 with joystick and 8 bit mode,
+	POD, PDF=%h1%<<#8%R%>>#2%&#768%X%h2%|%X%X%h2%|%R%&#1023%Y,
+	PDS=\EG1HHHNc%X%h2%Y%h2\050U, PDE=dG1888N\E\E, PDR=j, PRI,
+	MCE=A0,
+#
+# AED 767 with tablet and 8 bit binary coordinate encoding
+#
+a2|A2|AED767T8|Advanced Electronics Design 767 with tablet and 8 bit mode,
+	PDB, NPB#4, PDS=\EG1HHHNc%X%h2%Y%h2022019001F42828, PDE=3%@G1888N\E,
+	BU1#1, BU2#2, BU3#4, BU4#8, POD, PDR=3^B, PDF=^B%h2%T%h4%X%h4%Y, MCE=A0,
+#
+#
+#
+# The following AED entries are for release 97 compatible PROMS
+#
+# AED with 8 bit binary coordinate encoding, no pointing device,
+# Release 97 compatible standard AED ROM set
+#
+a6|A6|BAED8|BAED512-8|basic Advanced Electronics Design 512 with 8 bit mode,
+	8BB, TTY, APT, GTH#2, GTW#2, GTO, MXC#511, MYC#482, GCH#8,
+	GCW#5, GTS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c^A,
+	GTE=\E, MFP#256, MLS#2, MCL#256, BELL=^A^G\E$<#100>,
+	GIS=\E\E\E\E\E\E\E\E\E\E0$<#2500>\E`\160\^15\06\011LG1888N,
+	GFS=\E\E\E\E\E\E\E\E\E\E0$<#2500>\E`\100^L^A,
+	VLT, VTI#255, VTL#8, VTE=K%X%c^A%Y%c%Z%c%T%c,
+	SCS=C%X%c[%X%c, VWM=L%X%c, GCS=`\120^L\E`\160$<#200>,
+	BLD, NBL#8, BLS=\E4%X%c%Y%c%Z%c%T%c\060\013,
+	BLE=\E4%X%c%Y%c%Z%c%T%c\060%@, SFP="%X%c,
+	DFP, FDH#8, FDW#8, FDR, FDE=, FDF=%Y%c, FDS=+!%X%c,
+	MPS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	WPX=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cT%C%c,
+	DLT=A%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	DCS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cO%Z%c,
+	DLS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cA%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	DBS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%co%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	IFP=\EG1HHHN+!00FFFFFFFFFFFFFFFF+!01FE82BAAAA2BE80FF+!021824428181422418+!032C4281818181422C+!0455AA55AA55AA55AA+!05CCCC3333CCCC3333+!065500550055005500+!07F0F0F0F00F0F0F0F\EG1888N,
+	PLS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	PLV=A%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	PLE=A%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\E,
+	DLP, LDL#1, LDF=1%Y%c%=#255%c, SFP="%X%c, SSLS=1%=#255%c%c,
+	KYBRD, KYB=\EC%@[%@^A^H\EC%C%c[%C%c^A, KYX#3, KYY#1, 
+	KYS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\E^A$<#5>, KYE=\E,
+#
+# AED with joystick and 8 bit binary coordinate encoding.
+# Release 97 compatible standard AED ROM set
+#
+a7|A7|AEDJ8|AED512J8|Advanced Electronics Design 512 with joystick & 8 bit mode,
+	PDF=%h1%<<#8%R%>>#2%&#768%X%h2%|%X%X%h2%|%R%&#1023%Y,
+	POD, PDS=\EG1HHHN$<#20>c%X%h2%Y%h2\002U, PDE=dG1888N$<#20>\E,
+	PDR=j, PRI, MCE=BAED8,
+#
+# AED with four button mouse and 8 bit binary coordinate encoding.
+# Release 97 compatible standard AED ROM set
+#
+a8|A8|AEDT8|AED512T8|Advanced Electronics Design 512 with tablet and 8 bit mode,
+	PDB, NPB#4, PDS=\EG1HHHNc%X%h2%Y%h2022019001F42828, PDE=3%@G1888N\E,
+	POD, BU1#1, BU2#2, BU3#4, BU4#8, PDR=3\002,
+	PDF=\002%h2%T%h4%X%h4%Y, MCE=BAED8,
+#
+#
+#
+# AED definition for the Berkeley ROM set developed by Jim McCormick
+# (Evans Hall AED's)
+# This ROM set supports raster commands but without ALU modes.
+#
+af|AF|BAED8E|basic Advanced Electronics Design 512 with 8 bit mode (Evans Hall),
+	8BB, TTY, APT, GTH#2, GTW#2, GTO, MXC#510, MYC#482, GCH#8,
+	GCW#5, GTS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c^A,
+	GTE=\E, MFP#256, MLS#2, MCL#256, SCS=C%X%c[%X%c,
+	GIS=\E\E\E\E\E\E\E\E\E\E0$<#3000>\E`\160\^15\06\011LG1888N,
+	GFS=\E\E\E\E\E\E\E\E\E\E0$<#3000>\E`\100^L^A,
+	VLT, VTI#255, VTL#8, VTE=K%X%c^A%Y%c%Z%c%T%c, VWM=L%X%c,
+	GCS=`\120^L\E`\160$<#200>, BELL=^A^G\E$<#100>,
+	DFP, FDH#8, FDW#8, FDR, FDE=, FDF=%Y%c, FDS=\,%X%c,
+	MPS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	WPX=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cT%C%c,
+	DLT=A%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	DCS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cO%Z%c,
+	DLS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cA%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	DBS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%co%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	IFP=\EG1HHHN\,00FFFFFFFFFFFFFFFF\,01FE82BAAAA2BE80FF\,021824428181422418\,032C4281818181422C\,0455AA55AA55AA55AA\,05CCCC3333CCCC3333\,065500550055005500\,07F0F0F0F00F0F0F0F\EG1888N,
+	DLP, LDL#1, LDF=1%Y%c%=#255%c, SSLS=1%=#255%c%c,
+	KYBRD, KYB=\EC%@[%@^A^H\EC%C%c[%C%c^A, KYX#3, KYY#1, 
+	KYS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\E^A$<#5>, KYE=\E,
+	BLD, NBL#8, BLS=\E4%X%c%Y%c%Z%c%T%c\060\013,
+	BLE=\E4%X%c%Y%c%Z%c%T%c\060%@, SFP="%X%c,
+	PLS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	PLV=A%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	PLE=A%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\E,
+	RSCPS=^X, RSCSF, OFFMX#0, OFFMY#483, OFFDX#511, OFFDY#29,
+	RSSRC=%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	RSDST=%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+#
+# AED with Evans Hall ROM Set, tablet, and 8 bit binary encoding
+# The joystick does not work with this ROM ste.
+#
+ae|AE|AEDTE8|Advanced Electronics Design 512 with tablet and 8 bit mode,
+	PDB, NPB#4, PDS=\EG1HHHNc%X%h2%Y%h2022019001F42828, PDE=3%@G1888N\E,
+	POD, BU1#1, BU2#2, BU3#4, BU4#8, PDR=3\002,
+	PDF=\002%h2%T%h4%X%h4%Y, MCE=BAED8E,
+###############################################################################
+#
+#
+# JUPITER TERMINALS
+#	For all of these entries, it is assumed that the Jupiter 7
+#	has a seriel link to the host at 9600 baud.
+#
+#
+# Jupiter 7 with eight bit binary coordinate encoding, no pointing device.
+# The Jupiter 7 is similar to the AED 767.
+#
+j0|J0|BJUP7-8|basic Jupiter 7 with 8 bit binary mode,
+	8BB, TTY, APT, GTH#2, GTW#1, GTO, MXC#768, MYC#575, GCH#9,
+	GCW#6, GTS=\EQ%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\01,
+	GTE=\E, MFP#16, MLS#1, MCL#256, BELL=^A^G\E$<#100>,
+	GIS=\E\E0$<#2000>\E\EG1888N~\^15\06\011L$<#1000>\E,
+	GFS=\E\E\E\E\E\E\E\E\E\E0$<#3000>\E`\200^L^A,
+	VLT, VTI#255, VTL#8, VTE=\EK%X%c^A%Y%c%Z%c%T%c, SCS=\EC%X%c[%X%c,
+	VWM=\EL%X%c, GMS=$<#900>\E\E\E\E\E\E\E\E\E\E\E\E\E\E\E\E$<#900>,
+	IFP=\EG1HHHN+!00FFFFFFFFFFFFFFFF+!01FE82BAAAA2BE80FF+!021824428181422418+!032C4281818181422C+!0455AA55AA55AA55AA+!05CCCC3333CCCC3333+!065500550055005500+!07F0F0F0F00F0F0F0F\EG1888N,
+	GCS=\E`\120^L\E`\160$<#400>,
+	BLD, NBL#8, BLS=\E4%X%c%Y%c%Z%c%T%c\060\013,
+	BLE=\E4%X%c%Y%c%Z%c%T%c\060%@, SFP=\E"%X%c, SLS=\E1%=#255%c%c,
+	DFP, FDH#8, FDW#8, FDR, FDE=\E, FDF=%Y%c, FDS=\E+!%X%c,
+	MPS=\EQ%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	WPX=\EQ%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cT%C%c,
+	DLT=\EA%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	DCS=\EQ%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cO%Z%c,
+	DLS=\EQ%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cA%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	DBS=\EQ%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%co%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	PLS=\E!%Z%>>#8%&#255%c%Z%c%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	FPOLY, PLV=%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c, PLE=\E,
+	KYBRD, KYB=\EC%@[%@^A^H\EC%C%c[%C%c^A, KYX#3, KYY#1, 
+	KYS=\EQ%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\E^A, KYE=\E,
+#
+# Jupiter 7 with joystick and 8 bit binary encoding
+#
+j1|J1|JUP7-J|JUP7-J8|Jupiter 7 with joystick and 8 bit mode,
+	POD, PDF=%h1%<<#8%R%>>#2%&#768%X%h2%|%X%X%h2%|%R%&#1023%Y,PRI,
+	PDS=\EG1HHHNc%X%h2%Y%h2\050U, PDE=\EdG1888N\E\E, PDR=\Ej, MCE=J0,
+#
+# Jupiter 7 with tablet and 8 bit binary coordinate encoding (NEVER TESTED)
+#
+j2|J2|JUP7-T|JUP7-T8|Jupiter 7 with tablet and 8 bit mode,
+	PDB, NPB#4, PDS=\EG1HHHNc%X%h2%Y%h2022019001F42828, PDE=\E3%@G1888N\E,
+	BU1#1, BU2#2, BU3#4, BU4#8, POD, PDR=3^B, PDF=^B%h2%T%h4%X%h4%Y, MCE=J0,
+#
+# Jupiter 7 with 3 button optical mouse and 8 bit binary coordinate encoding
+#
+j3|J3|JUP7-O|JUP7-O8|Jupiter 7 with 3 button optical mouse and 8 bit mode,
+	PDB, NPB#3, PDS=\EG1HHHNc%X%h2%Y%h2022019001F42828, PDE=3%@G1888N\E,
+	BU1#2, BU2#4, BU3#1, POD, PDR=3^B, PDF=^B%h2%T%h4%X%h4%Y, MCE=J0,
+###############################################################################
+#
+#
+#
+#
+# TEKTRONIX TERMINALS
+#
+# Tektronix 4010 with thumbwheels
+# works "better" than a 4014... pretends to have color (ugh!)
+#
+t0|T0|4010|tek4010|TEK4010|Tektronix 4010 hack,
+	GIS=\E\E\E\E\E\E\E\E\E^L\E^]\E;, GFS=\E\E\E\\EE\E\E\E\E9\E^L\E^_,
+	APT, TTY, MLS#9, MCL#9, MXC#4095, MYC#3071, MFP#8,
+	GIS=, GFS=,
+	DLS=\E^]\E`%t1%t2, MPS=\E^]\E`%t1, DLT=%t1,
+	DSB=\E^]\E`%t1%Z%R%t4%t2%T%R%t3%t1,
+	WPX=\E^]\E`%t1%t1, PLS=\E^]\E`%t1, PLV=%t1, PLE=%t1\E,
+	GTS=\E^]%t1\E^_, GTE=\E^], GCW#30, GCH#50,
+	KYBRD, KYS=\E^]%t1\E^_, KYE=\E^], BELL=\E^_^G\E^],
+	POD, PDS=\E\E\E\E^], PDR=\E^Z, PDE=\E\E\E\E^],
+	PDF=%c%Z%c%&#31%<<#5%R%c%&#31%|%R%*#4%X%c%&#31%<<#5%R%c%&#31%|%R%*#4%Y,
+	GCS=\E^L$<#1000>\E\E\E\E\E^],
+#
+# Tektronix 4014 with thumbwheels
+#
+t1|T1|4014|tek4014|4014-1E|TEK4014-1E|Tektronix 4014-1 with enhanced graphics module,
+	APT, TTY, MLS#1, MCL#1, MXC#4095, MYC#3071, MFP#8,
+	GIS=\E\E\E\E\E\E\E\E\E^L\E^]\E;, GFS=\E\E\E\\EE\E\E\E\E9\E^L\E^_,
+	DLS=\E^]\E`%t1%t2, MPS=\E^]\E`%t1, DLT=%t1,
+	DSB=\E^]\E`%t1%Z%R%t4%t2%T%R%t3%t1,
+	WPX=\E^]\E`%t1%t1, PLS=\E^]\E`%t1, PLV=%t1, PLE=%t1\E,
+	GTS=\E^]%t1\E^_, GTE=\E^], GCW#30, GCH#50,
+	KYBRD, KYS=\E^]%t1\E^_, KYE=\E^], BELL=\E^_^G\E^],
+	POD, PDS=\E\E\E\E^], PDR=\E^Z, PDE=\E\E\E\E^],
+	PDF=%c%Z%c%&#31%<<#5%R%c%&#31%|%R%*#4%X%c%&#31%<<#5%R%c%&#31%|%R%*#4%Y,
+	GCS=\E^L$<#1000>\E\E\E\E\E^],
+#
+# Tektronix 4113 with no pointing device, no keyboard
+#	The keyboard is defined with the pointing device to allow the
+#	option of not using the dialog area.
+#	The QUEUSIZE is set to 8K; there must be at least that much memory.
+#
+t2|T2|BAS4113|BAS-T4113|BAS-TEK4113|basic Tektronix 4113,
+	TTY, APT, MCL#16, MFP#32767, MLS#8, DFP,
+	KYBRD, GCS=\ERR `` @#ow$_%C%ti$<#200>,
+	GIS=\E\E\E\E^]\ENC00\ENT1=\ENF3\EIM1\ENQH@0\ENU0\ERD14\ERG1>1B02B=3C84D35D>6E87F4\ERU!;6\ERW `` @#ow$_\ERS `` @#ow$_\ERA107\ERB0\ETM111\ETG1B00000100E420D9>3F00F04F4005F0F0060F0F07F4F4F4\EIS!20$<#1000>\ELM0\ELS1\ELV0\ELI700\EKA1\EMC451\EMG1\EMQ2\EMT1\EML1\EMS113,
+	GFS=\E\EKL0\ERW '' @8on?_\ETM331\ETG1C<10F402G8C2F43O0C2F440C2F45R<C2F46C<C2F47K4C2F48I6C2F49M2C2F4:P>C2F4;T:C2F4<A>C2F4=E:C2F4>0B10?0D20\ELI144\ELV1\EMG0\EMT1\EKA1\EID!$<#1000>\E^_\E^L,
+	VLT, VTL#4, VTI#100, VTE=\ETG!4%X%ti%Y%ti%Z%ti%T%ti,
+	FDW#8, FDH#8, FDS=\EMD%X%ti886, FDE=\EME,
+	FDF=\ERP88%Y%&#1%*%C%+#48%c%Y%>>#1%&#1%*%C%+#48%c%Y%>>#2%&#1%*%C%+#48%c%Y%>>#3%&#1%*%C%+#48%c%Y%>>#4%&#1%*%C%+#48%c%Y%>>#5%&#1%*%C%+#48%c%Y%>>#6%&#1%*%C%+#48%c%Y%>>#7%&#1%*%C%+#48%c,
+	MPS=\ELF%t1, DLS=\ELF%t1\ELG%t2, DSB=\ERR%t1%t2%C%ti,
+	DLT=\ELG%t1, DBS=\ELP%t10^]%Z%R%t4^]%t2^]%T%R%t3\ELE,
+	WPX=\ERH%t1\ERP11%C%ti, SSFP=\EMP%=#0%-%C%ti,
+	SLS=\EMV%X%ti, SFP=\EMP%X%ti, SCS=\EML%X%ti\EMT%X%ti,
+	PLSOL=\EMP%=#0%-%C%ti\ELP%t10,
+	FPOLY, PLS=\ELP%t10, PLV=^]%t1, PLE=\ELE, BELL=\E^_^G\E^],
+	GTH#2, GTO, GTR, GTW#2, GCH#7, GCW#4, ROT, RTS=\EMR%X%tr,
+	GTS=\ELF%t1\ELT%Z%ti, MXC#639, MYC#479, OFFDX#0, OFFDY#0,
+	GTE=\E, OMO=\EMG1, RMO=\EMG0, OFFMX#639, OFFMY#479,
+	ALUJAM=\ERU!;6, ALUOR=\ERU!?6, ALUNOR=\ERU!26, ALUEOR=\ERU!76,
+	RSCPS=\ERX!, RSDST=%t1, RSSRC=%t1%X%+%Z%R%Y%+%T%r%t5,
+#
+# Tektronix 4113 with 4 button mouse, dialog area keyboard
+#
+t3|T3|4113D|T4113D|TEK4113D|Tektronix 4113,
+	KYS=\ELB2\ELC%&#0%+#640%-%X%/#8%ti\ELI100\ELL2\ELX%Y%*#5%>>#7%&#31%|#32%c`%Y%*#5%>>#2%&#31%|#96%c%X%*#6%>>#7%&#31%|#32%c%X%*#6%>>#2%&#31%|#64%c\ELZ\EKA1\ELV1\E^_,
+	KYB=^H, KYE=\E^]\ELV0\EDA0\ELBB2\ELLB2\ELX `` @,
+	POD, PDB, NPB#4, PDR=\EIE81, PDS=\ERW'`z @>oi=_,
+	PDF=\002%c%T%t1%=#0%+%X%/#6%X%=#0%+%Y%-#1000%/#6%Y%c%c,
+	BU1#90, BU2#49, BU3#50, BU4#51, PDE=\012\ERW `` @#ow$_, MCE=BAS4113, 
+#
+# Tektronix 4113 with thumbwheel cursor, dialog area keyboard
+#
+t4|T4|4113THD|T4113THD|TEK4113THD|Tektronix 4113 with Thumbwheels,
+	KYS=\ELB2\ELC%&#0%+#640%-%X%/#8%ti\ELI100\ELL2\ELX%Y%*#5%>>#7%&#31%|#32%c`%Y%*#5%>>#2%&#31%|#96%c%X%*#6%>>#7%&#31%|#32%c%X%*#6%>>#2%&#31%|#64%c\ELZ\EKA1\ELV1\E^_,
+	KYB=^H, KYE=\E^]\ELV0\EDA0\ELBB2\ELLB2\ELX `` @,
+	POD, PDR=\EIE01, PDF=\002%c%Z%t1%c%c, PDE=\012, MCE=BAS4113, 
+#
+# Tektronix 4113 with 4 button mouse, graphtext keyboard echoing
+#
+t5|T5|4113|T4113|TEK4113|Tektronix 4113,
+	POD, PDB, NPB#4, PDR=\EIE81, PDS=\ERW'`z @>oi=_,
+	PDF=\002%c%T%t1%=#0%+%X%/#6%X%=#0%+%Y%-#1000%/#6%Y%c%c,
+	BU1#90, BU2#49, BU3#50, BU4#51, PDE=\012\ERW `` @#ow$_, MCE=BAS4113, 
+#
+# Tektronix 4113 with thumbwheel cursor, graphtext keyboard echoing
+#
+t6|T6|4113TH|T4113TH|TEK4113TH|Tektronix 4113 with Thumbwheels,
+	POD, PDR=\EIE01, PDF=\002%c%Z%t1%c%c, PDE=\012, MCE=BAS4113, 
+#
+##############################################################################
+#
+# Tektronix 4107 color graphics terminal with joydisc and keyboard.
+# 	No fill codes; the terminal default fill codes can be used by
+# adding the "DFP," boolean parameter.  
+# PDR;  The speed of the joydisc can be changed with the IJxy parameter
+#  where x is the unshifted speed between 1 and 10 and y the shifted speed.
+# The cursor color can be changed by the TCXXX statement, where XXX
+# are the HMS numbers (000 is black).
+# is black, 111 is white.
+#  *****  last modified 5/2/84. Brian L. Biehl, Tektronix Inc. ****
+##############################################################################
+t7|T7|4107|t4107|tek4107|Tektronix 4107,
+	ALUJAM=\ERU1;6,
+	ALUOR=\ERU1?6,
+	ALUEOR=\ERU176,
+	KYBRD, KYB=^H, POD, 
+	KYY#10,
+	GCH#9, GCW#7, GTH#2, GTW#1,
+	MCL#16, MFP#16, MLS#8, MXC#639, MYC#479,
+	VTL#4,
+	DSB=\ERR%t1%t2%C%ti,
+	GIS=\E\E\E\E%%!0\E^]\ENC00\ENT1=\ENF3\EIM1\ENQH@0\ENU0\ERA107\ETM111\ERW `` @#ow$_\ELM0\ELS1\ELV0\ELI700\ELZ\EKA1\EMC572\EMG0\EMQ2\EMT1\EML1\EMS113\ERD14\ERG1>1B02B=3C84D35D>6E87F4\ERU1;6\ERW `` @#ow$_\ERS `` @#ow$_\ETG1B00000100E420D9>3F00F04F4005F0F0060F0F07F4F4F4\EIS!20$<#1000>,
+	GFS=\E\EKL0\ERW '' @8on?_\ETM331\ETG1C<10F402G8C2F43O0C2F440C2F45R<C2F46C<C2F47K4C2F48I6C2F49M2C2F4:P>C2F4;T:C2F4<A>C2F4=E:C2F4>0B10?0D20\ELI144\ELV1\EMG0\EMT1\EKA1\EID!$<#1000>\E^_\E^L\ELCE0\ELLB0\ETB144\E%%!1,
+	PDF=%c%Z%c%&#31%<<#5%R%c%&#31%|%R%*#4%X%c%&#31%<<#5%R%c%&#31%|%R%*#4%Y%c,
+	PDS=\E\E\E\E^],
+	PDR=\E^Z\ETC000\EIJ59,
+	PDE=\E\E\E\E^],
+	APT, TTY, FPOLY, ROT, 
+	GCS=\E^L$<#1000>\E\E\E\E\E^],
+	VLT,
+	VTI#100,
+	MPS=\ELF%=%Y%-#100%t1,
+	VTE=\ETG14%X%ti%Y%ti%Z%ti%T%ti,
+	DLS=\ELF%t1\ELG%t2,
+	BELL=\E^_^G\E^],
+	DLT=\ELG%t1,
+ 	DBS=\ELP%t10\ELG%Z%R%t4\ELG%t2\ELG%T%R%t3\ELE,
+	WPX=\ERH%t1\ERP11%C%ti,
+	SSFP=\EMP%=#0%-%X%ti,
+	SLS=\EMV%X%ti,
+	SFP=\EMP%=#0%+%X%ti,
+	SCS=\EML%X%ti\EMT%X%ti,
+	PLS=\ELP%t10,
+	PLV=\ELG%t1,
+	PLE=\ELE,
+	PLSOL=\EMP%=#0%-%C%ti\ELP%t10,
+	GTO, GTR, 
+	RTS=\EMR%X%tr0,
+	GTS=\ELF%t1\ELT%Z%ti,
+	GTE=$<#10>\E,
+	OMO=\EMG1,
+	RMO=\EMG0,
+#
+##############################################################################
+#
+# Tektronix 4107 color graphics terminal with tablet, puck and keyboard.
+# 	No fill codes; the terminal default fill codes can be used by
+# adding the "DFP," boolean parameter.  
+#  The cursor color can be changed by the TCXXX statement, where XXX
+# are the HMS numbers (000 is black). (In the GAS string)
+# is black, 111 is white.
+#  *****  last modified 6/5/84. Brian L. Biehl, Tektronix Inc. ****
+#  *****  debugged 1/29/85 by Doug Braun ****
+##############################################################################
+t7b|T7b|4107b|t4107b|tek4107b|Tektronix 4107b,
+	ALUJAM=\ERU1;6,
+	ALUOR=\ERU1?6,
+	ALUEOR=\ERU176,
+	POD, PDB, NPB#4,
+	KYBRD, KYB=^H,
+	BU1#90, BU2#49, BU3#50, BU4#51,
+	KYY#10,
+	GCH#9, GCW#7, GTH#2, GTW#1,
+	MCL#16, MFP#16, MLS#8, MXC#639, MYC#479,
+	VTL#4,
+	DSB=\ERR%t1%t2%C%ti,
+	GIS=\E\E\E\E%%!0\E^]\ENC00\ENT1=\ETCF4F4F4\ENF3\EIM1\ENQH@0\ENU0\ERA107\ETM111\ERW `` @#ow$_\ELM0\ELS1\ELV0\ELI700\ELZ\EKA1\EMC572\EMG0\EMQ2\EMT1\EML1\EMS113\ERD14\ERG1>1B02B=3C84D35D>6E87F4\ERU1;6\ERW `` @#ow$_\ERS `` @#ow$_\ETG1B00000100E420D9>3F00F04F4005F0F0060F0F07F4F4F4\EIS!20$<#1000>,
+	GFS=\E\EKL0\ERW '' @8on?_\ETM331\ETG1C<10F402G8C2F43O0C2F440C2F45R<C2F46C<C2F47K4C2F48I6C2F49M2C2F4:P>C2F4;T:C2F4<A>C2F4=E:C2F4>0B10?0D20\ELI677\ELV1\EMG0\EMT1\EKA1\EID!$<#1000>\E^_\E^L\ELCE0\ELLB0\ETB144\E%%!1,
+	PDR=\EIE81,
+	PDS=\ENT1=\ERW'`z @>oi=_\ERA107,
+	PDE=\ENT0\EID8\ERW `` @#ow$_,
+	PDF=\002%c%T%t1%=#0%+%X%/#6%X%=#0%+%Y%-#1000%/#6%Y%c%c,
+	APT, TTY, FPOLY, ROT, 
+	GCS=\E^L$<#1000>\E\E\E\E\E^],
+	VLT,
+	VTI#100,
+	MPS=\ELF%=%Y%-#100%t1,
+	VTE=\ETG14%X%ti%Y%ti%Z%ti%T%ti,
+	DLS=\ELF%t1\ELG%t2,
+	BELL=\E^_^G\E^],
+	DLT=\ELG%t1,
+ 	DBS=\ELP%t10\ELG%Z%R%t4\ELG%t2\ELG%T%R%t3\ELE,
+	WPX=\ERH%t1\ERP11%C%ti,
+	SSFP=\EMP%=#0%-%X%ti,
+	SLS=\EMV%X%ti,
+	SFP=\EMP%=#0%+%X%ti,
+	SCS=\EML%X%ti\EMT%X%ti,
+	PLS=\ELP%t10,
+	PLV=\ELG%t1,
+	PLE=\ELE,
+	PLSOL=\EMP%=#0%-%C%ti\ELP%t10,
+	GTO, GTR, 
+	RTS=\EMR%X%tr0,
+	GTS=\ELF%t1\ELT%Z%ti,
+	GTE=$<#10>\E,
+	OMO=\EMG1,
+	RMO=\EMG0,
+#
+# Ken Keller's entry for the 4113 with off screen memory.
+#
+kk|KK|k4113|kT4113|kTek4113|Tektronix 4113,
+	MXC#539, MYC#479, OFFDX#99, OFFDY#479,	OFFMX#540, OFFMY#0,
+	POD, PDB, NPB#4, PDR=\EIE81, PDS=\ERW'`z @>oi=_,
+	PDF=\002%c%T%t1%=#0%+%X%/#6%X%=#0%+%Y%-#1000%/#6%Y%c%c,
+	BU1#90, BU2#49, BU3#50, BU4#51, PDE=\012\ERW `` @#ow$_, MCE=BAS4113, 
+#
+# Tektronix 4100 command set with no pointing device, no keyboard
+#	The keyboard is defined with the pointing device to allow the
+#	option of not using the dialog area.
+#	The QUEUSIZE is set to 8K; there must be at least that much memory.
+#
+ta|TA|BAS4100|BAS-T4100|BAS-TEK4100|basic Tektronix 4100,
+	TTY, APT, GCS=\E^L$<#1000>\E\E\E\E\E^],
+	MCL#8, MFP#15, MLS#8, MXC#479, MYC#359,
+	GIS=\E\E\E\E%%!0\E^]\ENC00\ENT1=\ENF3\EIM1\ENQH@0\ENU0\ERA107\ETM111\ELM0\ELS1\ELV0\ELI700\ELZ\EKA1\EMC451\EMG0\EMQ2\EMT1\EML1\EMS113,
+	GFS=\E\EKL0\ELI600\ELV1\EKA1$<#1000>\E^_\E%%!1,
+	VLT, VTL#3, VTI#100, VTE=\ETG14%X%ti%Y%ti%Z%ti%T%ti, HLS,
+	MPS=\ELF%t1, DLS=\ELF%t1\ELG%t2, BELL=\E^_^G\E^],
+	DLT=\ELG%t1, DBS=\ELP%t10\ELG%Z%R%t4\ELG%t2\ELG%T%R%t3\ELE,
+	DSB=\EMP%=#0%-%C%ti\ELP%t10\ELG%Z%R%t4\ELG%t2\ELG%T%R%t3\ELE,
+	WPX=\ELF%t1\ELG%ti, SSFP=\EMP%=#0%-%X%ti,
+	SLS=\EMV%X%ti, SFP=\EMP%X%ti, SCS=\EML%X%ti\EMT%X%ti,
+	FPOLY, PLS=\ELP%t10, PLV=\ELG%t1, PLE=\ELE,
+	PLSOL=\EMP%=#0%-%C%ti\ELP%t10,
+	GTH#2, GTO, GTR, GTW#1, GCH#7, GCW#6,
+	ROT, RTS=\EMR%X%tr0, GTS=\ELF%t1\ELT%Z%ti,
+	GTE=$<#10>\E, OMO=\EMG1, RMO=\EMG0,
+#
+# Tektronix 4105 color graphics terminal
+#
+tb|TB|4105|t4105|tek4105|Tektronix 4105,
+	GIS=\E\E%%!0\E^]\ENC00\ENT1=\ENF3\EIM1\ENQH@0\ENU0\ERA107\ETM111\ERW `` @"oy#W\ELM0\ELS1\ELV0\ELI700\ELZ\EKA1\EMC111\EMG0\EMQ2\EMT1\EML1\EMS113,
+	GFS=\ETG140000\ETF40000\ETF410F4F4\EKL0\E^L\ELI100\ELV1\EKA1$<#1000>\E^_\E%%!1\E^L$<#400>,
+	PDF=%c%Z%c%&#31%<<#5%R%c%&#31%|%R%*#4%X%c%&#31%<<#5%R%c%&#31%|%R%*#4%Y%c,
+	KYBRD, POD, PDS=\E\E\E\E^], PDR=\E^Z, PDE=\E\E\E\E^], MCE=BAS4100,
+###############################################################################
+#
+#
+#
+#
+# METHEUS TERMINALS
+#
+# Metheus Omega 400 display controlloer with raw transfer,
+# and 4 button mouse as a pointing device.
+# WARNING: THE METHEUS 400 DOES NOT FILTER CURSOR BOUNCING VERY WELL!
+#
+m1|M1|M400|M400DC|OMEGA400|Metheus Omega 400 Display Controller,
+	APT, 8BB, RAW, TTY, MXC#1023, MYC#767, MCL#256, MFP#8, MLS#1,
+	POD, PDB, NPB#4, BU1#68, BU2#72, BU3#80, BU4#96, PDR=J^A,
+	GCW#8, GCH#16, GTH#0, GTW#1, GTO, SLS=P8, RLS,
+	GFS=Q%@%@%@%@N%@`$<#800>, GCS=`$<#500>, SFP=P%X%|#48%c,
+	MPS=R%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%c,
+	DLT=S%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%ca,
+	WPX=P8R%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%cm,
+	PLS=P8R%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%c,
+	PLV=S%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%ca, PLE=,
+	GTS=P8R%X%&#255%c%X%>>#8%&#3%c%=#768%-%Y%R%&#255%c%=%R%>>#8%&#3%ck,
+	GTE=\E, VLT, VTI#255, VTL#8, VWM=O%X%&#255%c, SRM=L%X%&#255%c,
+	VTE=Q%X%&#255%c%Y%&#255%c%Z%&#255%c%T%&#255%c, SCS=N%X%c,
+	PDF=%h2%T%h2%&#63%R%h2%&#15%<<#6%|%R%X%h2%&#63%R%h2%&#15%<<#6%|%R%r%=#767%-%r%Y,
+	GIS=%@%@%@%@s20\^`3%@J^C%=#255%c%=#246%c%@|%@<%=#255%c%=#134%cX%@%@O%=#255%c$<#500>,
+	DLS=R%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%cS%Z%&#255%c%Z%>>#8%&#3%c%=#767%-%T%R%&#255%c%=%R%>>#8%&#3%ca,
+	DSB=P%F%|#48%cR%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%cS%Z%&#255%c%Z%>>#8%&#3%c%=#767%-%T%R%&#255%c%=%R%>>#8%&#3%ce,
+	DBS=P%F%|#48%cR%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%cS%Z%&#255%c%Z%>>#8%&#3%c%=#767%-%T%R%&#255%c%=%R%>>#8%&#3%cd,
+	RSCPS=R, RSCSF, RSCPE=f, OFFMX#0, OFFMY#552, OFFDX#736, OFFDY#184,
+	RSSRC=%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%c,
+	RSDST=S%X%&#255%c%X%>>#8%&#3%c%=#767%-%Y%R%&#255%c%=%R%>>#8%&#3%cp%X%&#63%c%Y%>>#8%&#15%c%T%&#63%c%T%>>#8%&#15%c,
+###############################################################################
+#
+#
+# HP TERMINALS
+#
+#
+# HP2648 with local cursor control
+# Because of descenders, the font width is 10x5.
+#
+h0|H0|2648|HP2648|HP2648A|Hewlett-Packard 2648A,
+	MCL#2, MFP#255, MLS#2, TTY, APT, MXC#719, MYC#359,
+	KYBRD, GTO, DFP, DLP, MPS=\E*pa%X%d\,%Y%dZ,
+	ALUEOR=\E*m3A, ALUJAM=\E*m4A,
+	ALUNOR=\E*m1A, ALUOR=\E*m2A,
+	DLT=\E*m2B\E*pf%X%d\,%Y%dZ,
+	DSLT=\E*m1B\E*pf%X%d\,%Y%dZ,
+	DBS=\E*m3b%X%d\,%Y%d\,%Z%d\,%T%dE,
+	DSL=\E*m1B\E*pa%X%d\,%Y%d\,%Z%d\,%T%dZ,
+	DLS=\E*m2B\E*pa%X%d\,%Y%d\,%Z%d\,%T%dZ,
+	WPX=\E*pa%X%d\,%Y%d\,%X%d\,%Y%dZ,
+	PLS=\E*pa%X%d\,%Y%d, PLV=\,%X%d\,%Y%d,
+	PLE=\,%X%d\,%Y%dZ, BELL=\E*dS^G\E*dT,
+	LDL#1, LDF=\E*m%Y%d 1C,
+	GCS=\E*d%X%+#65%c$<#500>, GCH#10, GCW#6,
+	GTE=\E*dT, GTH#0, GTW#2, GTS=\E*pa%X%d\,%Y%dZ\E*dS,
+	RTS=\E*m%X%a%/#90%+#1%dN, ROT,
+	GFS=\EH\EJ\E*mR\E*dlaeD$<#1000>,
+	GIS=\E*mR\E*dlafC$<#2000>,
+	KYB=^H, KYS=\E*pa%X%d\,%Y%dZ\E*m4a\E*dS, KYE=\E*dT, KYX#1, KYY#1,
+	SFP=\E&f%X%+#49%cE\21, SCS=\E*m%X%+#49%cA, SLS=,
+	FDH#8, FDW#8, FDR, FDF= %Y%3, FDS=\E&f1a%X%+#49%ck36L\E*m, FDE=D$<#90>,
+	IFP=\E&f1a1k36L\E*m 255 255 255 255 255 255 255 255D\E&f1a2k36L\E*m 254 130 186 170 162 190 128 255D\E&f1a3k30L\E*m 24 36 66 129 129 66 36 24D\E&f1a4k32L\E*m 60 66 129 129 129 129 66 60D\E&f1a5k32L\E*m 85 170 85 170 85 170 85 170D\E&f1a6k32L\E*m 204 204 51 51 204 204 51 51D\E&f1a7k24L\E*m 85 0 85 0 85 0 85 0D\E&f1a8k32L\E*m 240 240 240 240 15 15 15 15D,
+	POD, PDR=\E*s4\^\021, PDS=\E*dK, PRBON=\E*dM, PRBOFF=\E*dN,
+	PDF=\+%d\,%X\+%d\,%Y%3%Z%c, PDE=\021\E*dL, 
+#
+# HP2648 entry with 3-button mouse.
+# PDR must be defined as a NULL instead of the definition in h0
+#
+h1|H1|2648-M|HP2648|HP2648A|Hewlett-Packard 2648A with mouse,
+	PDF=\02%c%T\+%d\,%X\+%d%Y%c,
+	PDR=, PDB, NPB#3, BU1#65, BU2#66, BU3#67,
+	MCE=h0,
+#
+# hp 2648 with binary transfer
+#
+h2|H2|2648-BIN|HP2648-BIN|HP2648A-BIN|Hewlett-Packard 2648A /w binary encoding,
+	MPS=\E*pia%X%>>#5%&#31%|#32%c%X%&#31%|#32%c%Y%>>#5%&#31%|#32%c%Y%&#31%|#32%cZ,
+	DLT=\E*m2B\E*pi%X%>>#5%&#31%|#32%c%X%&#31%|#32%c%Y%>>#5%&#31%|#32%c%Y%&#31%|#32%cZ,
+	DSLT=\E*m1B\E*pi%X%>>#5%&#31%|#32%c%X%&#31%|#32%c%Y%>>#5%&#31%|#32%c%Y%&#31%|#32%cZ,
+	DSL=\E*m1B\E*pia%X%>>#5%&#31%|#32%c%X%&#31%|#32%c%Y%>>#5%&#31%|#32%c%Y%&#31%|#32%c%Z%>>#5%&#31%|#32%c%Z%&#31%|#32%c%T%>>#5%&#31%|#32%c%T%&#31%|#32%cZ,
+	DLS=\E*m2B\E*pia%X%>>#5%&#31%|#32%c%X%&#31%|#32%c%Y%>>#5%&#31%|#32%c%Y%&#31%|#32%c%Z%>>#5%&#31%|#32%c%Z%&#31%|#32%c%T%>>#5%&#31%|#32%c%T%&#31%|#32%cZ,
+	WPX=\E*pia%X%>>#5%&#31%|#32%c%X%&#31%|#32%c%Y%>>#5%&#31%|#32%c%Y%&#31%|#32%c%X%>>#5%&#31%|#32%c%X%&#31%|#32%c%Y%>>#5%&#31%|#32%c%Y%&#31%|#32%cZ,
+	GTS=\E*pia%X%>>#5%&#31%|#32%c%X%&#31%|#32%c%Y%>>#5%&#31%|#32%c%Y%&#31%|#32%cZ\E*dS,
+	GIS=\E*mR\E*dlafC\E*pI$<#2000>, MCE=h0,
+#
+# HP 9872 8-color plotter.
+# Max horizontal resolution is 40cm/.025mm=16000.
+# Max vertical resolution is 28cm/.025mm=11200.
+# Font height is .375cm and width is .285cm.
+# 28/.375=74.666667 and 40/.285=140.350877.
+#
+ha|HA|HP9872A|HP9872|Hewlett-Packard 9872A,
+	MCL#8, SCS=PU;SP%X%+#1%d;, GIS=IN;SP;IN;VS4;, MFP#7,
+	TTY, APT, GCH#74, GCW#140, GTH#0, GTW#0, GTS=PU;PA%X%d\,%Y%d;LB,
+	GTE=^C, GTO, MXC#11100, MYC#8600, MPS=PU;PA%X%d\,%Y%d;,
+	MLS#6, SLS=LT%X%+#1%d;, GFS=SP0;, SSLS=LT;,
+	DLT=PD;PA%X%d\,%Y%d;, DLS=PU;PA%X%d\,%Y%d;PD;PA%Z%d\,%T%d;,
+	DSL=PU;PA%X%d\,%Y%d;LT;PD;PA%Z%d\,%T%d;, DSLT=LT;PD;PA%X%d\,%Y%d;,
+#
+# HP 9872 8-color plotter.
+# For 8.5in by 11in paper, 
+# Horizontal resolution is 11in*25.4mm/in/.025mm=11176.
+# Vertical resolution is 8.5in*25.4mm/in/.025mm=8636.
+# Because of paper alignment problems, we have to run at 10.5in by 8in.
+# Font height is .375cm and width is .285cm.
+#
+hb|HB|HP9872B|Hewlett-Packard 9872A,
+	MCL#8, SCS=PU;SP%X%+#1%d;, GIS=IN;SP;IN;VS4;, MFP#7,
+	TTY, APT, GCH#74, GCW#140, GTH#0, GTW#0, GTS=PU;PA%X%d\,%Y%d;LB,
+	GTE=^C, GTO, MXC#8600, MYC#11100, MPS=PU;PA%X%d\,%Y%d;,
+	MLS#6, SLS=LT%X%+#1%d;, CFS=SP0;, SSLS=LT;,
+	DLT=PD;PA%X%d\,%Y%d;, DLS=PU;PA%X%d\,%Y%d;PD;PA%Z%d\,%T%d;,
+	DSL=PU;PA%X%d\,%Y%d;LT;PD;PA%Z%d\,%T%d;, DSLT=LT;PD;PA%X%d\,%Y%d;,
+###############################################################################
+#
+#
+#
+# DEC TERMINALS
+#
+# DEC VT125 with no pointing device 
+# NEVER BEEN TESTED!
+#
+d0|D0|vt125|VT125|DEC VT125|vt240|vt200|VT240|VT200,
+	TTY, MCL#4, MXC#767, MYC#479, MLS#4, APT, MFP#1, KYBRD,
+	GIS=\E[2J\EPps(a[0\,479][767\,0])w(p1)w(v),
+	GFS=s(t0)s(e)\E\\^@,
+	GCS=s(e), GCW#8, GTW#12, GCH#12, GTH#3,
+	SLS=w(p%X%+#1%d), SCS=w(c)w(i%X%d),
+	MPS=p[%X%d\,%Y%d], WPX=p[%X%d\,%Y%d]v[],
+	DBS=p[%X%d\,%Y%d]v(b)[\,%T%d][%Z%d][\,%Y%d](e),
+	DLS=p[%X%d\,%Y%d]v[][%Z%d\,%T%d], DLT=v[][%X%d\,%Y%d],
+	DCS=p[%X%d\,%Y%d]c[%X%+%Z%d\,%Y%d],
+	PLS=p[%X%d\,%Y%d], PLV=v[%X%d\,%Y%d], PLE=v[%X%d\,%Y%d],
+	GTS=p[%X%d\,%Y%+#20%d]t', GTE=', ROT, RTS=t(d%X%ds1),
+###############################################################################
+#
+# NULL TERMINAL
+#	FOR TESTING PURPOSES ONLY
+#
+n0|N0|NULL|Null terminal for performance testing
+	MCL#2, MXC#500, MYC#500, TTY, APT, DFP, DLP, BLD,
+	ROT, VLT, VTI#100, FDH#8, FDW#8, GCH#8, GCW#6, LDL#1,
+	MFP#1, MLS#1, NBL#200,
+###############################################################################
+#
+#
+#
+#       H    H   A   RRRRR  DDDDD        CCCC   OOOO  PPPPP  Y     Y
+#       H    H  A A  R    R D    D      C    C O    O P    P  Y   Y
+#       H    H A   A R    R D    D      C      O    O P    P   Y Y
+#       HHHHHH AAAAA RRRRR  D    D      C      O    O PPPPP     Y
+#       H    H A   A R  R   D    D      C      O    O P         Y
+#       H    H A   A R   R  D    D      C    C O    O P         Y
+#       H    H A   A R    R DDDDD        CCCC   OOOO  P         Y
+#
+#
+# The following entries are for hard copy, raster devices.
+#
+###############################################################################
+#
+# TRILOG
+#
+tp|TP|trilog|TRILOG|Trilog Color Plotter,
+	HCOPY, CACHE#36300, BPIX#3, PPHI#50, PPVI#50, MXC#660, MYC#550,
+	MCL#8, HCL1#0, HCL2#7, HCL3#1, HCL4#2, HCL5#3, HCL6#4, HCL7#5, HCL8#6,
+	APT, GTH#0, GTW#0, GCW#0, GCH#0, GTO,
+	OFFMX#0, OFFMY#0, OFFDX#0, OFFDY#0,
+	MLS#16, DLP,
+	DFP, MFP#16, FDH#8, FDW#8, FDR,
+	FPOLY,
+#
+# VARIAN
+#
+vp|VP|varian|VARIAN|Varian electrostatic plotter,
+	HCOPY, CACHE#112200, BPIX#1, PPHI#200, PPVI#200, MXC#2112, MYC#1700,
+	MCL#2, HCL1#0, HCL2#1,
+	APT, GTH#0, GTW#0, GCW#0, GCH#0, GTO,
+	OFFMX#0, OFFMY#0, OFFDX#0, OFFDY#0,
+	MLS#16, DLP,
+	DFP, MFP#16, FDH#8, FDW#8, FDR,
+	FPOLY,
+#
+# UNIX plot filter instructions
+#
+pf|h7mfb|plot|UNIX plot filter,
+	TTY,APT,MXC#4096,MYC#4096,MCL#2,MFP#0,MLS#5,
+	SLS=f%X%d\012\012,
+	SSLS=fsolid\012\012,
+	GIS=s 0 0 4096 4096\012e\012,
+	DLT=n %X%d %Y%d\012,
+	DLS=l %X%d %Y%d %Z%d %T%d\012,
+	GCS=e\012,
+	GTS=m %X%d %Y%d\012t, GTE=\012\012,
+	MPS=m %X%d %Y%d\012,
+#
+###############################################################################
+#
+#
+#
+#
+#  OOOO  L     DDDDD       EEEEEE N     N TTTTTTT RRRRR  III EEEEEE  SSSS
+# O    O L     D    D      E      NN    N    T    R    R  I  E      S    S
+# O    O L     D    D      E      N N   N    T    R    R  I  E      S
+# O    O L     D    D      EEE    N  N  N    T    RRRRR   I  EEE     SSSS
+# O    O L     D    D      E      N   N N    T    R  R    I  E           S
+# O    O L     D    D      E      N    NN    T    R   R   I  E      S    S
+#  OOOO  LLLLL DDDDD       EEEEEE N     N    T    R    R III EEEEEE  SSSS
+#
+#
+# The following entries are valid, but very unlikely to be used.
+# Since MFB performs a sequential search, they have therefore been
+# placed at the end of this file.
+#
+###############################################################################
+#
+# AED TERMINALS
+#
+#
+# AED with hexadecimal coordinate encoding, no pointing device, using
+# old Berkeley EECS Rom set (no longer used).
+#
+ax|AX|BRKBAEDH|BRKAED512H|basic Advanced Electronics Design 512 with hex mode,
+	TTY, APT, GTH#2, GTW#2, GTO, MXC#511, MYC#482,
+	GCH#8, GCW#5, MFP#256, MLS#1, MCL#256,
+	VLT, VTI#255, VTL#8, VTE=K%X%h201%Y%h2%Z%h2%T%h2,
+	SCS=C%X%h2[%X%h2, VWM=L%X%h2, GCS=`\120^L\E`\160$<#400>,
+	GTS=Q%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2^A, GTE=\E,
+	GIS=\E\E\E\E\E\E\E\E\E0$<#2000>\E`\160\E\^15\06\011L\EG1HHH.$<#2000>,
+	GFS=\E\E\E\E\E\E\E\E\E0$<#2000>\E`\100^L^A,
+	BLD, NBL#8, BLS=\E4%X%h2%Y%h2%Z%h2%T%h2300B,
+	BLE=\E4%X%h2%Y%h2%Z%h2%T%h23000, BELL=^A^G\E$<#100>,
+	MPS=Q%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2,
+	WPX=Q%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2T%C%h2,
+	DLT=A%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2,
+	DFP, FDH#8, FDW#8, FDR, FDE=, FDF=%Y%h2, FDS=\,%X%h2,
+	DCS=Q%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2O%Z%c,
+	DSL=1FFFFQ%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2A%Z%>>#6%&#12%R%T%>>#8%|%R%h1%Z%h2%T%h2,
+	DLS=Q%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2A%Z%>>#6%&#12%R%T%>>#8%|%R%h1%Z%h2%T%h2,
+	DBS=Q%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2o%Z%>>#6%&#12%R%T%>>#8%|%R%h1%Z%h2%T%h2,
+	IFP=\,00FFFFFFFFFFFFFFFF\,01FE82BAAAA2BE80FF\,021824428181422418\,032C4281818181422C\,0455AA55AA55AA55AA\,05CCCC3333CCCC3333\,065500550055005500\,07F0F0F0F00F0F0F0F,
+	PLS=!%Z%h4%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2,
+	FPOLY, PLV=%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2,
+	SFP="%X%h2, DLP, LDF=1%Y%h2FF, LDL#1,
+	KYS=Q%X%>>#6%&#12%R%Y%>>#8%|%R%h1%X%h2%Y%h2\E^A, KYE=\E,
+	KYBRD, KYB=\EC00[00^A^H\EC%C%h2[%C%h2^A, KYX#3, KYY#1, 
+#
+# AED with joystick and hexadecimal coordinate encoding (old Berk. ROM set)
+#
+ay|AY|BRKAEDHJ|Advanced Electronics Design 512 with joystick and hex,
+	POD, PDF=%h1%<<#8%R%>>#2%&#768%X%h2%|%X%X%h2%|%R%&#1023%Y,
+	PDS=c%X%h2%Y%h202U, PDE=d, PDR=j, PRI, MCE=BRKBAEDH,
+#
+# AED with four button mouse and hexadecimal coordinate encoding
+#
+az|AZ|BRKAEDHT|Advanced Electronics Design 512 with tablet and hex,
+	POD, PDB, NPB#4, PDS=c%X%h2%Y%h2022019001F42828, PDE=3%@, PDR=3\002,
+	BU1#1, BU2#2, BU3#4, BU4#8, PDF=\002%h2%&#15%T%h4%X%h4%Y,
+	MCE=BRKBAEDH,
+#
+# AED 512 with eight bit binary coordinate encoding, no pointing device,
+# using old Berkeley EECS Rom set.
+#
+aa|AA|BRKBAED8|Basic Advanced Electronics Design 512 with 8 bit mode,
+	8BB, TTY, APT, GTH#2, GTW#2, GTO, MXC#511, MYC#482, GCH#8,
+	GCW#5, GTS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c^A,
+	GTE=\E, MFP#256, MLS#2, MCL#256, BELL=^A^G\E$<#100>,
+	GIS=\E\E\E\E\E\E\E\E\E\E0$<#2000>\E`\160\^15\06\011LG1888N,
+	GFS=\E\E\E\E\E\E\E\E\E\E0$<#2000>\E`\100^L^A,
+	VLT, VTI#255, VTL#8, VTE=K%X%c^A%Y%c%Z%c%T%c,
+	SCS=C%X%c[%X%c, VWM=L%X%c, GCS=`\120^L\E`\160$<#400>,
+	BLD, NBL#8, BLS=\E4%X%c%Y%c%Z%c%T%c\060\013,
+	BLE=\E4%X%c%Y%c%Z%c%T%c\060%@, SFP="%X%c,
+	FPOLY, DFP, FDH#8, FDW#8, FDR, FDE=, FDF=%Y%c, FDS=\,%X%c,
+	MPS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	WPX=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cT%C%c,
+	DLT=A%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	DCS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cO%Z%c,
+	DLS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%cA%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	DBS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%co%T%>>#8%&#15%R%Z%>>#4%&#240%|%R%c%Z%c%T%c,
+	IFP=\EG1HHHN\,00FFFFFFFFFFFFFFFF\,01FE82BAAAA2BE80FF\,021824428181422418\,032C4281818181422C\,0455AA55AA55AA55AA\,05CCCC3333CCCC3333\,065500550055005500\,07F0F0F0F00F0F0F0F\EG1888N,
+	PLS=!%Z%>>#8%&#255%c%Z%c%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	PLV=%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c,
+	PLE=\E, DLP, LDL#1, LDF=1%Y%c%=#255%c, SFP="%X%c, SSLS=1%=#255%c%c,
+	KYBRD, KYB=\EC%@[%@^A^H\EC%C%c[%C%c^A, KYX#3, KYY#1, 
+	KYS=Q%Y%>>#8%&#15%R%X%>>#4%&#240%|%R%c%X%c%Y%c\E^A, KYE=\E,
+#
+# AED 512 with joystick and 8 bit binary coordinate encoding
+#
+ab|AB|BRKAEDJ8|Advanced Electronics Design 512 with joystick & 8 bit mode,
+	POD, PDF=%h1%<<#8%R%>>#2%&#768%X%h2%|%X%X%h2%|%R%&#1023%Y,
+	PDS=\EG1HHHNc%X%h2%Y%h2\002U, PDE=dG1888N\E\E, PDR=j, PRI,
+	MCE=BRKBAED8,
+#
+# AED 512 with tablet and 8 bit binary coordinate encoding
+#
+ac|AC|BRKAEDT8|Advanced Electronics Design 512 with tablet and 8 bit mode,
+	PDB, NPB#4, PDS=\EG1HHHNc%X%h2%Y%h2022019001F42828, PDE=3%@G1888N\E,
+	POD, BU1#1, BU2#2, BU3#4, BU4#8, PDR=3\002,
+	PDF=\002%h2%T%h4%X%h4%Y, MCE=BRKBAED8,
+#
+# North American Presentation Level Protocal for the PLP
+#
+# Test entry -- feel free to delete this entry any time...
+#
+na|NAPLPS|naplps|PLP100|PLP200|plp100|plp200|plp|PLP,
+	DBS=2%X%>>#4%&#56%R%Y%>>#7%&#7%+%R%|#64%c%X%>>#1%&#56%R%Y%>>#4%&#7%+%R%|#64%c%X%<<#2%&#56%R%Y%>>#1%&#7%+%R%|#64%c%X%<<#5%&#56%R%Y%<<#2%&#7%+%R%|#64%c%Z%>>#4%&#56%R%T%>>#7%&#7%+%R%|#64%c%Z%>>#1%&#56%R%T%>>#4%&#7%+%R%|#64%c%Z%<<#2%&#56%R%T%>>#1%&#7%+%R%|#64%c%Z%<<#5%&#56%R%T%<<#2%&#7%+%R%|#64%c,
+	DCS=.%X%-%Z%>>#4%&#56%R%Y%>>#7%&#7%+%R%|#64%c%X%-%Z%>>#1%&#56%R%Y%>>#4%&#7%+%R%|#64%c%X%-%Z%<<#2%&#56%R%Y%>>#1%&#7%+%R%|#64%c%X%-%Z%<<#5%&#56%R%Y%<<#2%&#7%+%R%|#64%c%X%>>#4%&#56%R%Y%+%Z%>>#7%&#7%+%R%|#64%c%X%>>#1%&#56%R%Y%+%Z%>>#4%&#7%+%R%|#64%c%X%<<#2%&#56%R%Y%+%Z%>>#1%&#7%+%R%|#64%c%X%<<#5%&#56%R%Y%+%Z%<<#2%&#7%+%R%|#64%c%X%+%Z%>>#4%&#56%R%Y%>>#7%&#7%+%R%|#64%c%X%+%Z%>>#1%&#56%R%Y%>>#4%&#7%+%R%|#64%c%X%+%Z%<<#2%&#56%R%Y%>>#1%&#7%+%R%|#64%c%X%+%Z%<<#5%&#56%R%Y%<<#2%&#7%+%R%|#64%c\,%X%>>#4%&#56%R%Y%-%Z%>>#7%&#7%+%R%|#64%c%X%>>#1%&#56%R%Y%-%Z%>>#4%&#7%+%R%|#64%c%X%<<#2%&#56%R%Y%-%Z%>>#1%&#7%+%R%|#64%c%X%<<#5%&#56%R%Y%-%Z%<<#2%&#7%+%R%|#64%c%X%-%Z%>>#4%&#56%R%Y%>>#7%&#7%+%R%|#64%c%X%-%Z%>>#1%&#56%R%Y%>>#4%&#7%+%R%|#64%c%X%-%Z%<<#2%&#56%R%Y%>>#1%&#7%+%R%|#64%c%X%-%Z%<<#5%&#56%R%Y%<<#2%&#7%+%R%|#64%c,
+	DLS=*%X%>>#4%&#56%R%Y%>>#7%&#7%+%R%|#64%c%X%>>#1%&#56%R%Y%>>#4%&#7%+%R%|#64%c%X%<<#2%&#56%R%Y%>>#1%&#7%+%R%|#64%c%X%<<#5%&#56%R%Y%<<#2%&#7%+%R%|#64%c%Z%>>#4%&#56%R%T%>>#7%&#7%+%R%|#64%c%Z%>>#1%&#56%R%T%>>#4%&#7%+%R%|#64%c%Z%<<#2%&#56%R%T%>>#1%&#7%+%R%|#64%c%Z%<<#5%&#56%R%T%<<#2%&#7%+%R%|#64%c,
+	DSB=3%X%>>#4%&#56%R%Y%>>#7%&#7%+%R%|#64%c%X%>>#1%&#56%R%Y%>>#4%&#7%+%R%|#64%c%X%<<#2%&#56%R%Y%>>#1%&#7%+%R%|#64%c%X%<<#5%&#56%R%Y%<<#2%&#7%+%R%|#64%c%Z%>>#4%&#56%R%T%>>#7%&#7%+%R%|#64%c%Z%>>#1%&#56%R%T%>>#4%&#7%+%R%|#64%c%Z%<<#2%&#56%R%T%>>#1%&#7%+%R%|#64%c%Z%<<#5%&#56%R%T%<<#2%&#7%+%R%|#64%c,
+	GCH#50,
+	GCW#15,
+	GFS=\017\033%%!3,
+	GIS=\033%%!4\016!N@@@L"@\140\016,
+	GTC#25,
+	GTW#25,
+	GTE=\016,
+	GTS=$%X%>>#4%&#56%R%Y%>>#7%&#7%+%R%|#64%c%X%>>#1%&#56%R%Y%>>#4%&#7%+%R%|#64%c%X%<<#2%&#56%R%Y%>>#1%&#7%+%R%|#64%c%X%<<#5%&#56%R%Y%<<#2%&#7%+%R%|#64%c\EJ\017,
+	MCL#8,
+	MFP#4,
+	MLS#1,
+	MPS=$%X%>>#4%&#56%R%Y%>>#7%&#7%+%R%|#64%c%X%>>#1%&#56%R%Y%>>#4%&#7%+%R%|#64%c%X%<<#2%&#56%R%Y%>>#1%&#7%+%R%|#64%c%X%<<#5%&#56%R%Y%<<#2%&#7%+%R%|#64%c,
+	MXC#511,
+	MXY#435,
+	PDE=\017,
+	PDF=\016%c%c%c%c%Z%T%c%R%&#56%<<#6%X%R%&#7%<<#9%Y%c%R%&#56%<<#3%+%X%X%R%&#7%<<#6%+%Y%Y%c%R%&#56%+%X%X%R%&#7%<<#3%+%Y%Y%c%R%&#56%>>#3%+%X%X%R%&#7%+%Y%Y%c,
+	PDR=\E%%!>,
+	PDS=\E\114,
+	RAW,
+	SCS=<%X%&#7%+#8%|#64%c,
+	TTY,
+	WPX='@@@@,
+#
+#
+l0|L0|laser|LASER|Apple Laserwriter,
+	TTY, APT, GTO, ROT, MXC#3300, MYC#2250, GCH#44,
+	GCW#30, GTW#5, GTH#10, GTS=%X%d %Y%d m^J(,
+	GTE=)s^J, MLS#4, MCL#2,
+	GIS=erasepage^Jinitgraphics^Jinitclip^Jclear^J
+	/s {gsave currentpoint translate theta rotate show grestore } def^J
+	/l {lineto currentpoint stroke moveto } def^J
+	/m {moveto } def^J
+	/ft {findfont dup /currentfont exch def currentsize scalefont setfont }def^J
+	/sz {dup /currentsize exch def currentfont exch scalefont setfont } def^J
+	/currentfont /Helvetica findfont def^J/currentsize 10 def^J
+	/ls {dup /style exch def 0 eq style 2 eq or {[] 0 setdash}^J
+		{[style 100 mul style 20 mul] 0 setdash} ifelse} def^J
+	72 300 div dup scale^J90 rotate^Jclippath pathbbox pop pop^J
+	20 add translate^J
+	newpath 0 0 moveto^J/Helvetica ft^J43.41 sz^J/theta 0 def^J,
+	GFS=copypage^J, SCS=%#1%-X setgray^J, GCS=erasepage^J, SLS=%X%d ls^J,
+	MPS=%X%d %Y%d m^J,
+	DBS=%X%d %Y%d m %X%d %Y%d l %X%d %T%d l %Z%d %T%d l %Z%d %Y%d l closepath fill^J,
+	DLT=%X%d %Y%d l^J,
+	DCS=newpath %X%d %Y%d %Z%d 0 360 arc stroke^J,
+	DLS=%X%d %Y%d m %Z%d %T%d l^J, RTS=/theta %X%d def^J,
+
+
+
+###############################################################################
+#
+# WYSE 99GT TERMINALS
+#
+#	Wyse 4014 Personality
+#
+#	GIS
+#		\E[?38h (CSI?38h)		page A-51
+#		\E^L	alpha mode		table C-1
+#		\E^]	graph mode		table C-1
+#		\E;	133 char per line	table C-1
+#
+#	GFS
+#		\E[?38l	vt200 7-bit mode	table C-1
+#		$<#100>	delay
+#		\E[!p	soft terminal reset	page A-60
+#
+w0|W0|wyse|WYSE|wyse99gt|WYSE99GT| Wyse 99 GT Graphics Terminal,
+	APT, TTY, MLS#5, MXC#4095, MYC#3071, MFP#8,
+	GIS=\E[?38h\E^L\E^]\E;,
+	GFS=\E[?38l$<#100>\E[!p,
+	DLS=\E^]\E`%t1%t2, MPS=\E^]\E`%t1, DLT=%t1,
+	ILS=\E`,
+	SLS=\E%L,
+	DSB=\E^]\E`%t1%Z%R%t4%t2%T%R%t3%t1,
+	WPX=\E^]\E`%t1%t1, PLS=\E^]\E`%t1, PLV=%t1, PLE=%t1\E,
+	GTS=\E^]%t1\E^_\E8, GTE=\E^], GCW#60, GCH#100, GTO, GTH#20,
+	KYBRD, KYS=\E^]%t1\E^_\E8, KYE=\E^], BELL=\E^_^G\E^],
+	POD, PDS=\E\E\E\E^], PDR=\E^Z, PDE=\E\E\E\E^],
+	PDF=%c%Z%c%&#31%<<#5%R%c%&#31%|%R%*#4%X%c%&#31%<<#5%R%c%&#31%|%R%*#4%Y,
+	GCS=\E^L$<#1000>\E\E\E\E\E^],
+###############################################################################
+#
+# Tektronix 4107 command set with with paddle & keyboard
+#
+#
+#
+#
+tc|Tc|4107|T4107|TEK4107|Tektronix 4107,
+	TTY, APT, GCS=\E^L$<#1000>\E\E\E\E\E^],
+	MCL#8, MFP#15, MLS#8, MXC#4096, MYC#3100,
+	GIS=\E\E\E\E%%!0\EKA0\ELV0\E\014,
+	GFS=\037\033%%!0\EKA1\ELV1\E%%!1,
+	VLT, VTL#3, VTI#100, VTE=\ETG14%X%ti%Y%ti%Z%ti%T%ti, HLS,
+	DCS=%X%-%Z%R\ELF%t4%Y%-%Z%R\EUC14%t3%X%+%Z%R%t4%Y%+%Z%R%t3%X%-%Z%R%t4,
+	MPS=\ELF%t1, DLS=\ELF%t1\ELG%t2, BELL=\E^_^G\E^],
+	DLT=\ELG%t1, DBS=\ELP%t10\ELG%Z%R%t4\ELG%t2\ELG%T%R%t3\ELE,
+	DSB=\EMP%=#0%-%C%ti\ELP%t10\ELG%Z%R%t4\ELG%t2\ELG%T%R%t3\ELE,
+	WPX=\ELF%t1\ELG%ti, SSFP=\EMP%=#0%-%X%ti,
+	SLS=\EMV%X%ti, SFP=\EMP%X%ti, SCS=\EML%X%ti\EMT%X%ti,
+	FPOLY, PLS=\ELP%t10, PLV=\ELG%t1, PLE=\ELE,
+	PLSOL=\EMP%=#0%-%C%ti\ELP%t10,
+	GTH#2, GTO, GTR, GTW#1, GCH#70, GCW#60,
+	ROT, RTS=\EMR%X%tr0, GTS=\ELF%t1\ELT%Z%ti,
+	KYBRD, POD, PDS=\E\E\E\E^], PDR=\E^Z, PDE=\E\E\E\E^], MCE=BAS4100,
+	PDF=%c%Z%c%&#31%<<#5%R%c%&#31%|%R%*#4%X%c%&#31%<<#5%R%c%&#31%|%R%*#4%Y%c,
+#

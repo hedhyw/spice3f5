@@ -1,0 +1,14 @@
++vsrc.obj&
++vsrcacct.obj&
++vsrcacld.obj&
++vsrcask.obj&
++vsrcdel.obj&
++vsrcdest.obj&
++vsrcfbr.obj&
++vsrcload.obj&
++vsrcmdel.obj&
++vsrcpar.obj&
++vsrcpzld.obj&
++vsrcpzs.obj&
++vsrcset.obj&
++vsrctemp.obj;

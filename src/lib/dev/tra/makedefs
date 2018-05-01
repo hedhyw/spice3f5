@@ -1,0 +1,30 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= tra.c traacct.c traacld.c traask.c tradel.c tradest.c \
+		  traload.c tramdel.c traparam.c trasetup.c tratemp.c \
+		  tratrunc.c 
+
+COBJS		= tra.o traacct.o traacld.o traask.o tradel.o tradest.o \
+		  traload.o tramdel.o traparam.o trasetup.o tratemp.o \
+		  tratrunc.o 
+
+MODULE		= tra
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3
+
+tra.o: tra.c
+traacct.o: traacct.c
+traacld.o: traacld.c
+traask.o: traask.c
+tradel.o: tradel.c
+tradest.o: tradest.c
+traload.o: traload.c
+tramdel.o: tramdel.c
+traparam.o: traparam.c
+trasetup.o: trasetup.c
+tratemp.o: tratemp.c
+tratrunc.o: tratrunc.c

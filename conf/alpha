@@ -1,0 +1,9 @@
+# DEC ALPHA running OSF/1
+#
+RANLIB		= ar ts$(ARLOCAL)
+CC_OPT		= -g
+SYS_CFLAGS	= -Dalpha_osf
+LDFLAGS		= -lm -ltermlib -lbsd -G 0 -non_shared -ldnet_stub
+ARLOCAL		= l
+
+X_DIR		= /usr/

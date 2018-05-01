@@ -1,0 +1,46 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= bjt.c bjtacld.c bjtask.c bjtconv.c bjtdel.c bjtdest.c \
+		  bjtdisto.c bjtdset.c bjtgetic.c bjtload.c bjtmask.c \
+		  bjtmdel.c bjtmpar.c bjtnoise.c bjtparam.c bjtpzld.c \
+		  bjtsacl.c bjtsetup.c bjtsload.c bjtsprt.c bjtsset.c \
+		  bjtsupd.c bjttemp.c bjttrunc.c 
+
+COBJS		= bjt.o bjtacld.o bjtask.o bjtconv.o bjtdel.o bjtdest.o \
+		  bjtdisto.o bjtdset.o bjtgetic.o bjtload.o bjtmask.o \
+		  bjtmdel.o bjtmpar.o bjtnoise.o bjtparam.o bjtpzld.o \
+		  bjtsacl.o bjtsetup.o bjtsload.o bjtsprt.o bjtsset.o \
+		  bjtsupd.o bjttemp.o bjttrunc.o 
+
+MODULE		= bjt
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 2
+
+bjt.o: bjt.c
+bjtacld.o: bjtacld.c
+bjtask.o: bjtask.c
+bjtconv.o: bjtconv.c
+bjtdel.o: bjtdel.c
+bjtdest.o: bjtdest.c
+bjtdisto.o: bjtdisto.c
+bjtdset.o: bjtdset.c
+bjtgetic.o: bjtgetic.c
+bjtload.o: bjtload.c
+bjtmask.o: bjtmask.c
+bjtmdel.o: bjtmdel.c
+bjtmpar.o: bjtmpar.c
+bjtnoise.o: bjtnoise.c
+bjtparam.o: bjtparam.c
+bjtpzld.o: bjtpzld.c
+bjtsacl.o: bjtsacl.c
+bjtsetup.o: bjtsetup.c
+bjtsload.o: bjtsload.c
+bjtsprt.o: bjtsprt.c
+bjtsset.o: bjtsset.c
+bjtsupd.o: bjtsupd.c
+bjttemp.o: bjttemp.c
+bjttrunc.o: bjttrunc.c

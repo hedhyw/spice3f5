@@ -1,0 +1,10 @@
+# UCB local definitions (for Prof. Lewis's lab)
+OBJECTIVE	= lewisspice
+
+SPICE_DIR	= /tmp/lewisspice
+SPICE_LIB_DIR	= $(SPICE_DIR)/lib/spice3
+SPICE_EXEC_DIR	= $(SPICE_DIR)/bin
+
+S_SPICE_DIR	= /usr/local
+S_SPICE_LIB_DIR	= $(S_SPICE_DIR)/lib/spice3f
+S_SPICE_EXEC_DIR= $(S_SPICE_DIR)/bin

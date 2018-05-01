@@ -1,0 +1,14 @@
++vcvs.obj&
++vcvsask.obj&
++vcvsdel.obj&
++vcvsdest.obj&
++vcvsfbr.obj&
++vcvsload.obj&
++vcvsmdel.obj&
++vcvspar.obj&
++vcvspzld.obj&
++vcvssacl.obj&
++vcvsset.obj&
++vcvssld.obj&
++vcvssprt.obj&
++vcvssset.obj;

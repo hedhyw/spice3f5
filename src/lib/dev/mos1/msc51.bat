@@ -1,0 +1,25 @@
+cl /I..\..\..\include /c mos1.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1acld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1ask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1conv.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1del.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1dest.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1dist.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1dset.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1ic.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1load.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1mask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1mdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1mpar.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1noi.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1par.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1pzld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1sacl.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1set.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1sld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1sprt.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1sset.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1supd.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1temp.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c mos1trun.c >> ..\..\..\msc.out
+lib ..\..\dev2.lib @response.lib >> ..\..\..\msc.out

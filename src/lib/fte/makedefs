@@ -1,0 +1,94 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= agraf.c arg.c aspice.c breakp.c circuits.c clip.c cmath1.c \
+		  cmath2.c cmath3.c cmath4.c compose.c cpitf.c debugcom.c \
+		  define.c device.c diff.c display.c doplot.c dotcards.c \
+		  error.c evaluate.c fourier.c graf.c graphdb.c grid.c inp.c \
+		  inpcom.c interp.c linear.c mfb.c misccoms.c miscvars.c \
+		  nutctab.c nutinp.c nutmegif.c options.c outitf.c \
+		  parse.c plot5.c plotcurv.c points.c postcoms.c postsc.c \
+		  rawfile.c resource.c runcoms.c shyu.c signal.c spcmdtab.c \
+		  spiceif.c subckt.c types.c vectors.c where.c x10.c x11.c \
+		  gens.c newcoms.c dimens.c xgraph.c runcoms2.c breakp2.c
+
+COBJS		= agraf.o arg.o aspice.o breakp.o circuits.o clip.o cmath1.o \
+		  cmath2.o cmath3.o cmath4.o compose.o cpitf.o debugcom.o \
+		  define.o device.o diff.o display.o doplot.o dotcards.o \
+		  error.o evaluate.o fourier.o graf.o graphdb.o grid.o inp.o \
+		  inpcom.o interp.o linear.o mfb.o misccoms.o miscvars.o \
+		  nutctab.o nutinp.o nutmegif.o options.o outitf.o \
+		  parse.o plot5.o plotcurv.o points.o postcoms.o postsc.o \
+		  rawfile.o resource.o runcoms.o shyu.o signal.o spcmdtab.o \
+		  spiceif.o subckt.o types.o vectors.o where.o x10.o x11.o \
+		  gens.o newcoms.o dimens.o xgraph.o runcoms2.o breakp2.o
+
+LIBRARY		= fte
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+
+INCLUDE		= -I$(INCLUDE_DIR) $(INCX)
+CFLAGS		= $(CC_OPT) $(SYS_CFLAGS) $(INTERFACE_OPTS)
+CONF_DEP_EXTRA	= $(CONF_XCC)
+agraf.o: agraf.c
+arg.o: arg.c
+aspice.o: aspice.c
+breakp.o: breakp.c
+circuits.o: circuits.c
+clip.o: clip.c
+cmath1.o: cmath1.c
+cmath2.o: cmath2.c
+cmath3.o: cmath3.c
+cmath4.o: cmath4.c
+compose.o: compose.c
+cpitf.o: cpitf.c
+debugcom.o: debugcom.c
+define.o: define.c
+device.o: device.c
+diff.o: diff.c
+display.o: display.c
+doplot.o: doplot.c
+dotcards.o: dotcards.c
+error.o: error.c
+evaluate.o: evaluate.c
+fourier.o: fourier.c
+graf.o: graf.c
+graphdb.o: graphdb.c
+grid.o: grid.c
+inp.o: inp.c
+inpcom.o: inpcom.c
+interp.o: interp.c
+linear.o: linear.c
+mfb.o: mfb.c
+misccoms.o: misccoms.c
+miscvars.o: miscvars.c
+nutctab.o: nutctab.c
+nutinp.o: nutinp.c
+nutmegif.o: nutmegif.c
+options.o: options.c
+outitf.o: outitf.c
+parse.o: parse.c
+plot5.o: plot5.c
+plotcurv.o: plotcurv.c
+points.o: points.c
+postcoms.o: postcoms.c
+postsc.o: postsc.c
+rawfile.o: rawfile.c
+resource.o: resource.c
+runcoms.o: runcoms.c
+shyu.o: shyu.c
+signal.o: signal.c
+spcmdtab.o: spcmdtab.c
+spiceif.o: spiceif.c
+subckt.o: subckt.c
+types.o: types.c
+vectors.o: vectors.c
+where.o: where.c
+x10.o: x10.c
+x11.o: x11.c
+gens.o: gens.c
+newcoms.o: newcoms.c
+dimens.o: dimens.c
+xgraph.o: xgraph.c
+runcoms2.o: runcoms2.c
+breakp2.o: breakp2.c

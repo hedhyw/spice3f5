@@ -1,0 +1,2994 @@
+.\	/*
+.\	/*	mfb.man: manual for mfb package
+.\	/*	Copyright -c- 1982 Giles C. Billingsley
+.\	/*
+.\	/*	sccsid "%W%  %G%"
+.\	/*
+.tr ||
+.TH MFB 3 6/21/83
+.UC 4
+.SH NAME
+mfb \- model frame buffer interface
+.SH SYNOPSIS
+.B "#include <~cad/include/mfb.h>"
+in the program source.
+.br
+.B "cc "
+[ flags ] files 
+.B " ~cad/lib/mfb.a -lm  "
+[ libraries ]
+.sp
+.SH DESCRIPTION
+.PP
+These routines provide the user with a virtual graphics interface.
+They perform the terminal dependent task of encoding\/decoding graphics
+code, thereby allowing the user to write graphics programs to run on
+almost any graphics device.
+.PP
+The user opens and initializes a graphics device by calling the
+.I MFBOpen
+routine that returns a pointer to that device's
+.I MFB
+data structure defined at the end of this manual.  By maintaining several
+.I MFB
+data structures, an application program can drive several graphics
+devices simultaneously.  Once opened, 
+.I MFB
+graphics routines can be called to draw geometries, draw graphics text, 
+set device parameters, or receive keyboard input.
+An application program can also use any of the several utility routines that
+perform line clipping, polygon clipping, or window\/viewport transformations.
+Control of the graphics device is released by calling the
+.I MFBClose
+routine.
+.PP
+All programs that use
+.I MFB
+routines must include the file
+.I mfb.h
+that defines the
+.I MFB
+data structure to contain the information provided by
+.I MFBCAP(5).
+.sp
+.ne 8
+.SH INITIALIZATION ROUTINES
+.nf
+.PP
+.B "MFB *MFBOpen(TerminalName, DeviceName, errorcode)"
+.B "char *TerminalName, *DeviceName;"
+.B "int *errorcode;"
+.fi
+.DT
+.RS
+.I MFBOpen
+initializes the graphics device and fills the
+.I MFB
+data structure with information found in
+.I MFBCAP(5).
+.I TerminalName
+is a pointer to a null terminated string containing the name of
+the graphics device as defined in the
+.I mfbcap
+database file.  This argument has no default and can never be null.
+.I DeviceName
+is a pointer to a null terminated string containing the full path name
+to the respective graphics device.  
+If null,
+.I stdin
+and
+.I stdout
+are used by default.
+.I errorcode
+is a diagnostic integer returned by
+.I MFBOpen.
+The possible returned values for
+.I errorcode
+are defined in the
+.I mfb.h
+file as follows:
+.PP
+.ne 5
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXXXXXXXXX'u +\w'XXXXXX'u
+#define	MFBOK	 1	/* successful return */
+#define	MFBBADENT	-10	/* Unknown terminal type */
+#define	MFBBADMCF 	-20	/* Can't open MFBCAP file */
+#define	MFBMCELNG 	-30	/* MFBCAP entry too long */
+#define	MFBBADMCE 	-40	/* Bad MFBCAP entry */
+#define	MFBINFMCE 	-50	/* infinite loop in MFBCAP entry */
+#define	MFBBADTTY 	-60	/* stdout not in /dev */
+#define	MFBBADDEV	-180	/* Can't open or close device */
+#define	MFBBADOPT	-190	/* Can't access or set device stat */
+#define	MFBBADWRT 	-220	/* Error during write */
+.fi
+.DT
+.PP
+Only MFBOK is not a fatal error.
+.RE
+.sp
+.ne 8
+.nf
+.PP
+.B "void SetCurrentMFB(mfb)"
+.B "MFB *mfb;"
+.fi
+.DT
+.RS
+.I SetCurrentMFB
+allows the application program to define the current graphics device.
+All subsequent calls to
+.I MFB
+routines will affect the specified device.  Because each
+.I MFB
+data structure contains a separate output buffer, it is not necessary
+to flush the output before resetting the current output device.
+.I MFBOpen
+returns with the opened graphics device defined as the current output device.
+.RE
+.sp
+.ne 8
+.nf
+.PP
+.B "int MFBInitialize()"
+.fi
+.DT
+.RS
+.I MFBInitialize
+will flush the output buffer and (re)initialize the device for graphics input.
+The graphics device or standard input will 
+be placed in CBREAK mode.  See the manual
+.I tty(4).
+MFBOK is returned if the device was successfully initialized;
+MFBBADOPT is returned if an error was encountered while attempting
+to access or set the device status, and
+MFBBADTTY is returned if standard output can bot be found or accessed.
+.RE
+.sp
+.ne 8
+.nf
+.PP
+.B "int MFBClose()"
+.fi
+.DT
+.RS
+.I MFBClose
+will flush the output buffer and release control of the graphics device
+driver.  If the graphics device is a
+.I tty,
+it is returned to the state that existed prior to the respective
+.I MFBOpen
+call.
+MFBOK is returned if the device was successfully closed;
+MFBBADOPT is returned if an error was encountered while attempting
+to access or set the device status, and
+MFBBADDEV is returned if the output device could not be closed.
+.RE
+.sp
+.ne 12
+.nf
+.PP
+.B "int MFBHalt()"
+.fi
+.DT
+.RS
+.I MFBHalt
+will flush the output buffer and release control of the graphics device
+driver.  If the graphics device is a
+.I tty,
+it is returned to the state that existed prior to the respective
+.I MFBOpen
+call.
+.I MFBHalt
+differs from
+.I MFBClose
+in that the memory occupied by the respective, current
+.I MFB
+data structure is not freed.  By calling
+.I MFBInitialize,
+the graphics device will be reinitialized.  This routine is typically
+used by an application program for handling the SIGTSTP signal (the keyboard
+stop signal, usually control-Z ).
+MFBOK is returned if the device was successfully returned to its initial state;
+MFBBADOPT is returned if an error was encountered while attempting
+to access or set the device status.
+.RE
+.sp
+.ne 10
+.SH SETTING DEVICE PARAMETERS
+.PP
+Each of the following routines for setting device parameters returns a
+diagnostice integer that is defined in the
+.I mfb.h
+file as follows:
+.PP
+.ne 10
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXXXXXXXXX'u +\w'XXXXXX'u
+#define	MFBOK	 1	/* successful return */
+#define	MFBBADLST 	-70	/* Illegal line style */
+#define	MFBBADFST 	-80	/* Illegal fill style */
+#define	MFBBADCST	-90	/* Illegal color style */
+#define	MFBBADTM1	-100	/* No destructive text mode */
+#define	MFBBADTM2	-110	/* No overstriking text mode */
+#define	MFBNOBLNK 	-150	/* No definable blinkers */
+#define	MFBTMBLNK 	-160	/* Too many blinkers */
+#define	MFBNOMASK	-170	/* No definable read or write mask */
+#define	MFBBADALU	-250	/* Cannot set ALU mode */
+.fi
+.DT
+.sp
+.ne 11
+.nf
+.PP
+.B "int MFBSetLineStyle(styleId)"
+.B "int styleId;"
+.fi
+.DT
+.RS
+.I MFBSetLineStyle
+sets the current line style to that identified by the integer
+.I styleId 
+that is greater than or equal to zero and less than the value of
+.I maxLineStyles
+in the 
+.I MFB
+data structure.  The value of
+.I maxLineStyles
+can be obtained from the
+.I MFBInfo
+routine defined below.  Zero is always the 
+.I styleId
+for solid lines.  Except for the solid line style,
+.I MFB
+assumes no default set of lines styles.
+MFBOK is returned if the line style was successfully set to that specified by
+.I styleId
+or if
+.I styleId
+was already the current line style;
+MFBBADLST is returned if
+.I styleId
+has an illegal value.
+.RE
+.sp
+.ne 11
+.nf
+.PP
+.B "int MFBSetFillPattern(styleId)"
+.B "int styleId;"
+.fi
+.DT
+.RS
+.I MFBSetFillPattern
+sets the current fill pattern to that identified by the integer
+.I styleId 
+that is greater than or equal to zero and less than the value of
+.I maxFillPatterns
+in the
+.I MFB
+data structure.  The value of
+.I maxFillPatterns
+can be obtained from the
+.I MFBInfo
+routine defined below.  Solid fill is always defined by
+.I styleId
+equal to zero.  Other than solid fill,
+.I MFB
+assumes no default set of fill patterns.
+MFBOK is returned if the fill style was successfully set to that specified by
+.I styleId
+or if
+.I styleId
+was already the current fill style;
+MFBBADFST is returned if
+.I styleId
+has an illegal value.
+.RE
+.sp
+.ne 11
+.nf
+.PP
+.B "int MFBSetChannelMask(channelMask)"
+.B "int channelMask;"
+.fi
+.DT
+.RS
+.I MFBSetChannelMask
+defines the current write mask to be the value of
+.I channelMask.
+The channel mask allows specific memory planes to be written and erased
+without disturbing other memory planes.  The least significant bit of
+.I channelMask
+corresponds to the masked value of the first memory plane, etc.
+If the corresponding bit is zero, the memory plane is write-protected.
+The number of memory planes can be obtained from the
+.I MFBInfo
+routine defined below.
+MFBOK is returned if the write mask was successfully set to
+.I channelMask
+or if
+.I channelMask
+was already the current write mask;  MFBNOMASK
+is returned if the graphics device does not have a definable write mask.
+.RE
+.sp
+.ne 8
+.nf
+.PP
+.B "int MFBSetReadMask(readmask)"
+.B "int readmask;"
+.fi
+.DT
+.RS
+.I MFBSetReadMask
+defines the current read mask to be the value of
+.I readmask.
+The read mask allows only specific memory planes to be read.
+MFBOK is returned if the read mask was successfully set to
+.I readMask
+or if
+.I readMask
+was already the current read mask;  MFBNOMASK
+is returned if the graphics device does not have a definable read mask.
+.RE
+.sp
+.ne 10
+.nf
+.PP
+.B "int MFBSetColor(colorId)"
+.B "int colorId;"
+.fi
+.DT
+.RS
+.I MFBSetColor
+sets the current foreground color to that identified by the integer
+.I colorId
+that is greater than or equal to zero and less than the value of
+.I maxColors
+in the
+.I MFB
+data structure.  The value of
+.I maxColors
+can be obtained from the
+.I MFBInfo
+routine defined below.  There is no default color map in
+.I MFB.
+MFBOK is returned if the foreground color
+was successfully set to that specified by
+.I colorId
+or if
+.I colorId
+was already the current foreground color;
+MFBBADCST is returned if
+.I colorId
+has an illegal value.
+.RE
+.sp
+.ne 14
+.nf
+.PP
+.B "int MFBSetTextMode(destructiveBool)"
+.B "Bool destructiveBool;"
+.fi
+.DT
+.RS
+.I MFBSetTextMode
+defines whether subsequent graphics text will overstrike or replace previous
+text.  If
+.I destructiveBool
+is true, the text mode is set to destructive which means that graphic text
+will set the background color of the font grid to the color that is
+specified by color style zero depending on the currently defined ALU
+operation.  Overstriking mode will only set the pixels of the character
+font to the current foreground color.
+MFBOK is returned if the graphic text writing mode was successfully
+set to that specified by
+.I destructiveBool
+or if
+.I destructiveBool
+was already the current graphic text writing mode;  MFBBADTM1
+is returned if the graphics device does not have a destructive graphic text
+mode, and MFBBADTM2
+is returned if the graphics device does not have an overstriking graphic text
+mode.
+.RE
+.sp
+.ne 9
+.nf
+.PP
+.B "int MFBSetALUMode(alumode)"
+.B "int alumode;"
+.fi
+.DT
+.RS
+.I MFBSetALUMode
+changes the mode by which the graphics display is changed when an area
+of the display is over-written.  The four possible modes
+are JAM (replace mode), OR, EOR (exclusive OR), and NOR.
+The four valid arguments to
+.I MFBSetALUMode
+are defined in
+.I mfb.h
+as follows:
+.PP
+.ne 9
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXXXXXXXXX'u +\w'XXXXXX'u
+#define	MFBALUJAM 	0	/* set ALU mode to JAM */
+#define	MFBALUOR	1	/* set ALU mode to OR */
+#define	MFBALUNOR	2	/* set ALU mode to NOR */
+#define	MFBALUEOR	3	/* set ALU mode to EOR */
+.fi
+.DT
+.PP
+MFBOK is returned if the ALU mode was successfully set to that specified by
+.I alumode
+or if
+.I alumode
+was already the current ALU operation;  MFBBADALU
+is returned if the graphics device does not have the ALU mode specified by
+.I alumode
+or if
+.I alumode
+is an invalid or illegal argument.
+.RE
+.sp
+.ne 8
+.nf
+.PP
+.B "int MFBSetCursorColor(colorId1, colorId2)"
+.B "int colorId1, colorId2;"
+.fi
+.DT
+.RS
+.I MFBSetCursorColor
+sets the graphics cursor to blink between the two colors identified by
+.I colorId1
+and
+.I colorId2.
+The constraints on the values for
+.I colorId1
+and
+.I colorId2
+are the same as for
+.I MFBSetColor
+defined above.  The frequency of the blinking cursor is fixed
+and can be changed only by modifying the
+.I mfbcap
+database file.  MFBOK
+is returned if the blinking cursor colors were successfully
+set to the specified colors.
+.RE
+.sp
+.ne 10
+.nf
+.PP
+.B "int MFBSetRubberBanding(onFlag, X, Y)"
+.B "int X, Y;"
+.B "Bool onFlag;"
+.fi
+.DT
+.RS
+.I MFBSetRubberBanding
+enables/disables rubber banding of the pointing device.
+If
+.I onFlag
+is false, then rubber banding is disabled.
+When enabled, the center of rubber banding is at
+.I X, Y.
+Rubber banding is always disabled immediately
+after the pointing device has been used.  MFBOK
+is returned if the rubberbanding mode was successfully set to that specified by
+.I onFlag;
+MFBNORBND is returned if the graphics device does not have
+rubberbanding in the pointing device.
+.RE
+.sp
+.ne 13
+.nf
+.PP
+.B "int MFBSetBlinker(colorId, red, green, blue, onFlag)"
+.B "int colorId;"
+.B "int red, green, blue;"
+.B "int onFlag;"
+.fi
+.DT
+.RS
+.I MFBSetBlinker
+enables the color identified by 
+.I colorId
+to blink between its currently defined color and the color defined by the
+.I red, green, blue
+combination.  The values of
+.I red, green, 
+and
+.I blue
+are normalized to 1000.  If
+.I onFlag
+is zero, the blinking is disabled.
+The number of colors that may be defined as blinkers at any given time
+must be less than the value of
+.I maxBlinkers
+in the
+.I MFB
+data structure.  The frequency of the blinking colors is fixed
+and can be changed only by modifying the
+.I mfbcap
+database file.
+MFBOK is returned if the color specified by
+.I colorId
+was successfully set to the desired blinking mode;
+MFBNOBLNK is returned if the graphics device does not
+have blinking VLT layers, and MFBTMBLNK
+is returned if there are already too many active blinking layers.
+.RE
+.sp
+.ne 6
+.SH DEFINING DEVICE PARAMETERS
+.PP
+Each of the following routines for defining device parameters returns a
+negative value if any difficulty is encountered.  The possible
+returned integers are defined in 
+.I mfb.h
+as follows:
+.PP
+.ne 6
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXXXXXXXXX'u +\w'XXXXXX'u
+#define	MFBOK	 1	/* successful return */
+#define	MFBNODFLP 	-120	/* No definable line patterns */
+#define	MFBNODFFP 	-130	/* No definable fill patterns */
+#define	MFBNODFCO 	-140	/* No definable colors */
+.fi
+.sp 1
+.DT
+.ne 10
+.nf
+.PP
+.B "int MFBDefineColor(colorId, red, green, blue)"
+.B "int colorId;
+.B "int red, green, blue;"
+.fi
+.DT
+.RS
+.I MFBDefineColor
+redefines the VLT entry for the color identified by
+.I colorId
+to be the color represented by the
+.I red, green, blue
+combination where
+.I red, green,
+and
+.I blue
+are normalized to 1000.
+Once the color corresponding to
+.I colorId
+is redefined, all geometries that were written onto the
+display of a frame buffer with
+.I colorId
+as the current color will become the new color.
+MFBOK is returned if the VLT entry for
+.I colorId
+was successfully defined;
+MFBNODFCO is returned if the graphics device does not have a VLT.
+.RE
+.sp
+.ne 10
+.nf
+.PP
+.B "int MFBDefineFillPattern(styleId, BitArray)"
+.B "int styleId;"
+.B "int *BitArray;"
+.fi
+.DT
+.RS
+.I MFBDefineFillPattern
+redefines the fill pattern identified by
+.I styleId
+and returns with
+.I styleId
+as the current fill style.
+.I BitArray
+is a pointer to an array of eight integers whose least significant eight
+bits represent individual rows in an eight by eight intensity array.
+For example, a fill pattern with an ascending diagonal line may be defined
+by the following eight (decimal) integers:
+.IP
+.ne 6
+.nf
+.ce
+1 2 4 8 16 32 64 128 256
+
+.fi
+.DT
+.PP
+A diagonal-grid fill pattern can be defined with the following integer array:
+.IP
+.nf
+.ce
+257 130 68 40 40 68 130 257
+
+.fi
+.ne 5
+.PP
+MFBOK is returned if the new fill style for
+.I styleId
+was successfully defined;  MFBNODFFP
+is returned if the graphics device does not have definable fill patterns.
+.DT
+.RE
+.sp
+.ne 9
+.nf
+.PP
+.B "int MFBDefineLineStyle(styleId, Mask)"
+.B "int styleId;"
+.B "int Mask;"
+.fi
+.DT
+.RS
+.I MFBDefineLineStyle
+defines the line style identified by
+.I styleId
+to be the pattern contained in the eight least significant bits of
+.I Mask
+and returns with
+.I styleId
+as the current line style.
+MFBOK is returned if the line style for
+.I styleId
+was successfully defined;  MFBNODFFP
+is returned if the graphics device does not have definable line patterns.
+.RE
+.sp
+.ne 7
+.SH INPUT\/OUTPUT ROUTINES
+.nf
+.PP
+.B "int MFBUpdate()"
+.fi
+.DT
+.RS
+.I MFBUpdate
+flushes the internal output buffer to the currently defined output device
+and will ignore any write error that may occur.  A call to this routine
+is ABSOLUTELY necessary to complete any graphics display sequence.
+.I MFBUpdate
+returns the number of characters sent to the output graphics device or -1 if
+a write error occured.
+.RE
+.sp
+.ne 8
+.nf
+.PP
+.B "int MFBPoint(X, Y, key, button)"
+.B "int *X, *Y, *button;"
+.B "char *key;"
+.fi
+.DT
+.RS
+.I MFBPoint
+enables the graphics pointing device and then waits for user input.
+If a keyboard key is pressed,
+.I MFBPoint
+returns with
+.I key
+containing the character that was pressed.
+If the pointing device is pressed,
+.I MFBPoint
+returns with the identified viewport coordinate
+.I X, Y,
+the contents of 
+.I key
+equal to zero, and the button mask of the button that was pushed.
+The integer array
+.I buttonMask
+in the 
+.I MFB
+data structure contains all possible button mask values that can be
+returned. 
+.I MFBPoint
+returns one of the following values defined in the
+.I mfb.h
+file:
+.PP
+.ne 6
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXXXXXXXXX'u +\w'XXXXXX'u
+#define	MFBOK	 1	/* successful return */
+#define	MFBPNTERR 	-230	/* Error in pointing device */
+#define	MFBNOPTFT 	-240	/* No pointing format */
+#define	MFBNOPNT	-260	/* No pointing device */
+.fi
+.DT
+.RE
+.sp
+.ne 8
+.nf
+.PP
+.B "char *MFBKeyboard(X, Y, background, foreground)"
+.B "int background;"
+.B "int foreground;"
+.B "int X, Y;"
+.fi
+.DT
+.RS
+.I MFBKeyboard
+enables the graphics keyboard and waits for user input.  A pointer
+to a character buffer containing the keyboard input is returned by
+.I MFBKeyboard
+when the user presses the return or linefeed key.
+Backspace is control-H or the delete character, and control-X or control-U
+will kill the line.  Pressing the ESCAPE key will cause
+.I MFBKeyboard
+to return with a null string in the input character buffer.
+.PP
+All keyboard input is displayed in the viewport with the lower
+left corner at the viewport coordinate
+.I X, Y
+and is constrained to fit on one line.
+.I Background
+and
+.I foreground
+are the background and foreground color styles respectively in which the
+keyboard input will be displayed.
+.RE
+.nf
+.sp
+.ne 5
+.PP
+.B "void MFBAudio()"
+.fi
+.DT
+.RS
+.I MFBAudio
+will ring the bell or alarm on the graphics device.  If the graphics device
+does not have a bell, then a control-G will be sent to standard output.
+.RE
+.sp
+.ne 12
+.nf
+.PP
+.B "int MFBPutchar(c)"
+.B "char c;"
+.PP
+.B "int MFBPutstr(cp,nchars)"
+.B "int nchars;"
+.B "char *cp;"
+.PP
+.B "int MFBGetchar()"
+.fi
+.RS
+These three routines are used internally by
+.I MFB
+and typically are not used within an application program.
+They are comparable to the
+.I stdio
+routines having similar names.
+.I MFBPutchar
+places a character
+.I c
+in the output buffer.
+.I MFBPutstr
+inserts a string pointed to by
+.I cp
+containing
+.I nchars
+characters into the output buffer.  The
+.I nchars
+argument is necessary to permit embedded null characters in the output
+stream.  The characters remain in the output buffer until the next call to
+.I MFBUpdate
+or until the contents of the output buffer exceed 4096 characters.
+.PP
+.I MFBGetchar
+returns a single character from the graphics input device.  If the graphics
+device does not have a keyboard, input is obtained from
+the terminal from which the application program was invoked.
+If the graphics device is a 
+.I tty,
+it should be remembered that it is in CBREAK mode.
+.RE
+.sp 1
+.ne 6
+.SH TWO DIMENSIONAL GEOMETRY ROUTINES
+.PP
+All coordinates that are passed to the following geometry routines
+are with respect to the display resolution of the graphics device.
+.I MFB
+assumes that the lower, left corner of the display is the origin with
+an absolute coordinate (0, 0).  All coordinate values are positive integers.
+.ne 4
+.nf
+.PP
+.B "void MFBMoveTo(X1, Y1)"
+.B "int X1, Y1;"
+.fi
+.DT
+.RS
+.I MFBMoveTo
+sets the current graphics position to
+.I X1, Y1.
+No line will be drawn from the old graphics position.
+.RE
+.sp
+.ne 5
+.nf
+.PP
+.B "void MFBDrawLineTo(X1, Y1)"
+.B "int X1, Y1;"
+.fi
+.DT
+.RS
+.I MFBDrawLineTo
+draws a line from the current graphics position to
+.I X1, Y1
+in the current line style and color.
+The current graphics position then becomes
+.I X1, Y1.
+.RE
+.sp
+.ne 4
+.nf
+.PP
+.B "void MFBLine(X1, Y1, X2, Y2)"
+.B "int X1, Y1, X2, Y2;"
+.fi
+.DT
+.RS
+.I MFBLine
+draws a line in the current line style and color from
+.I X1, Y1
+to
+.I X2, Y2.
+.RE
+.sp
+.ne 4
+.nf
+.PP
+.B "void MFBBox(left, bottom, right, top)"
+.B "int left, bottom, right, top;"
+.fi
+.DT
+.RS
+.I MFBBox
+displays a rectangle in the current fill pattern and color
+with diagonal coordinates at
+.I left, bottom
+and
+.I right, top.
+.RE
+.sp
+.ne 12
+.nf
+.PP
+.B "void MFBDrawPath(path)"
+.B "MFBPATH *path;"
+.fi
+.DT
+.RS
+.I MFBDrawPath
+draws a path of vectors in the current line style and color.
+.I Path
+is a pointer to a data structure defined in the
+.I mfb.h
+file as follows:
+.PP
+.nf
+.ta \w'XXXXX 'u +\w'XXXXXXXXXXXXXX 'u
+struct mfbpath {
+	int nvertices;	/* number of (x,y) coordinate pairs */
+	int *xy;	/* pointer to array of (x,y) coordinates */
+	};
+
+typedef struct mfbpath MFBPATH;
+.fi
+.DT
+.PP
+The contents of the coordinate array are organized such that xy[0]
+is the x coordinate of the first vertex, xy[1] is the y coordinate of
+the first vertex, xy[2] is the x coordinate of the second vertex, etc.
+.RE
+.sp
+.ne 4
+.nf
+.PP
+.B "void MFBFlood()"
+.fi
+.DT
+.RS
+.I MFBFlood
+erases a frame buffer display to the current color as previously defined by
+.I MFBSetColor.
+The result would be the same as drawing a solid box over the entire display.
+.RE
+.sp
+.ne 4
+.nf
+.PP
+.B "void MFBPixel(X, Y)"
+.B "int X, Y;"
+.fi
+.DT
+.RS
+.I MFBPixel
+sets the pixel at location
+.I X, Y
+on the display to the current color as previously defined by
+.I MFBSetColor.
+.RE
+.sp
+.ne 7
+.nf
+.PP
+.B "void MFBCircle(X, Y, rad, nsides)"
+.B "int X, Y, rad, nsides;"
+.fi
+.DT
+.RS
+.I MFBCircle
+draws the perimeter of a circle in the current line style and color
+with center at
+.I X, Y
+and with radius
+.I rad.
+The argument
+.I nsides
+is the number of line segments with which the circle will be drawn if the
+frame buffer does not have a circle primitive.  The default value for
+.I nsides
+is twenty.
+.RE
+.sp
+.ne 6
+.nf
+.PP
+.B "void MFBFlash(X, Y, rad, nsides)"
+.B "int X, Y, rad, nsides;"
+.fi
+.DT
+.RS
+.I MFBFlash
+draws a round flash with the current fill pattern and color with center at
+.I X, Y
+and radius
+.I rad.
+The argument
+.I nsides
+is the number of line segments with which the flash will be drawn.
+The default value for
+.I nsides
+is twenty.
+.RE
+.sp
+.ne 5
+.nf
+.PP
+.B "void MFBArc(X, Y, rad, angle1, angle2, nsides)"
+.B "int X, Y, rad;"
+.B "int angle1, angle2, nsides;"
+.fi
+.DT
+.RS
+.I MFBArc
+draws an arc in the current line style and color with center at
+.I X, Y
+and with radius
+.I rad
+beginning at
+.I angle1
+with respect to the positive y\-axis and ending at
+.I angle2
+in a counter-clockwise direction.
+Both angles are in degrees and are greater than or equal to
+zero and less than or equal to 360.  The argument
+.I nsides
+is the number of line segments with which a 360 degree arc will be drawn.
+The default value for
+.I nsides
+is twenty.
+.RE
+.sp
+.ne 12
+.nf
+.PP
+.B "void MFBPolygon(poly)"
+.B "MFBPOLYGON *poly;"
+.fi
+.DT
+.RS
+.I MFBPolygon
+draws a polygon with the current fill pattern and color.
+.I Poly
+is a pointer to a data structure defined in the
+.I mfb.h
+file as follows:
+.PP
+.nf
+.ta \w'XXXXX 'u +\w'XXXXXXXXXXXXXX 'u
+struct mfbpolygon {
+	int nvertices;	/* number of (x,y) coordinate pairs */
+	int *xy;	/* pointer to array of (x,y) coordinates */
+	};
+
+typedef struct mfbpolygon MFBPOLYGON;
+.fi
+.DT
+.PP
+The contents of the coordinate array are organized such that xy[0]
+is the x coordinate of the first vertex, xy[1] is the y coordinate of
+the first vertex, xy[2] is the x coordinate of the second vertex, etc.
+The difference between the
+.I MFBPOLYGON
+typedef and the
+.I MFBPATH
+typedef defined above is that the
+.I MFBPOLYGON
+struct is assumed to define a closed path of coordinates.
+.RE
+.sp
+.ne 5
+.nf
+.PP
+.B "MFBPATH *MFBArcPath(X, Y, rad, angle1, angle2, nsides)"
+.B "int X, Y, rad;"
+.B "int angle1, angle2, nsides;"
+.fi
+.DT
+.RS
+.I MFBArcPath
+returns a pointer to a
+.I MFBPATH
+struct that contains an arc with center at
+.I X, Y
+and with radius
+.I rad
+beginning at
+.I angle1
+with respect to the positive y\-axis and
+ending at
+.I angle2
+in a counter-clockwise direction.
+Both angles are in degrees and are greater than or equal to
+zero and less than or equal to 360.  The argument
+.I nsides
+is the number of line segments with which the arc will be drawn.
+The default value for
+.I nsides
+is twenty.
+.RE
+.sp
+.ne 5
+.nf
+.PP
+.B "MFBPOLYGON *MFBEllipse(X, Y, radx, rady, nsides)"
+.B "int X, Y, rad, nsides;"
+.fi
+.DT
+.RS
+.I MFBEllipsePath
+returns a pointer to a
+.I MFBPOLYGON
+struct that contains an elliptical polygon with center at
+.I X, Y
+and with distance
+.I radx
+from the center to an edge along the x\-axis and distance
+.I rady
+from the center to an edge along the y\-axis.  The argument
+.I nsides
+is the number of line segments with which the arc will be drawn.
+The default value for
+.I nsides
+is twenty.
+.RE
+.sp
+.ne 6
+.nf
+.PP
+.B "void MFBText(text, X, Y, phi)"
+.B "char *text;"
+.B "int X, Y, phi;"
+.fi
+.DT
+.RS
+.I MFBText
+displays a null terminated string pointed to by
+.I text
+with the lower left corner at
+.I X, Y
+in the display viewport with the current color and rotated at the angle
+.I phi
+in degrees.  The default value for 
+.I phi
+is zero.
+.RE
+.sp
+.ne 5
+.nf
+.PP
+.B "void MFBNaiveBoxFill(left, bottom, right, top)"
+.B "int top, bottom, left, right;"
+.fi
+.DT
+.RS
+.I MFBNaiveBoxFill
+can be used to draw a filled rectangle on a graphics device that does
+not support fill patterns.  The
+.I MFBLine
+routine is used to draw rectangles with eight different fixed fill styles.
+If the graphics device does not have a command primitive for drawing a
+box, then the
+.I MFBBox
+routine defined above defaults to
+.I MFBNaiveBoxFill.
+.RE
+.sp
+.ne 9
+.SH RASTER ROUTINES
+.sp 1
+.nf
+.PP
+.B "void MFBRasterCopy(X,Y,DX,DY,DestX,DestY);"
+.B "int X,Y,DX,DY,DestX,DestY;"
+.fi
+.DT
+.RS
+.I MFBRasterCopy
+copies a rectangular area with the bottom, left corner at 
+.I X,Y
+and with length 
+.I DX
+in the X direcion and width 
+.I DY
+in the Y direction to an area with the bottom, left corner at 
+.I DestX,DestY.
+The mode of the copy operation was specified by the last call to
+.I MFBSetALUMode.
+.RE
+.sp
+.ne 9
+.SH INFORMATION ACQUISITION
+.sp 1
+.nf
+.PP
+.B "int MFBInfo(info);"
+.B "int info;"
+.fi
+.DT
+.RS
+.I MFBInfo
+is a routine for obtaining device specific information.  The possible
+values for
+.I info
+are defined in
+.I mfb.h
+as follows:
+.PP
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXX'u +\w'XXXXXX'u
+#define	MAXX	1	/* max x coordinate */
+#define	MAXY	2	/* max y coordinate */
+#define	MAXCOLORS	3	/* max number of colors */
+#define	MAXINTENSITY	4	/* max color intensity */
+#define	MAXFILLPATTERNS	5	/* max number of fill patterns */
+#define	MAXLINESTYLES	6	/* max number of line styles */
+#define	MAXBLINKERS	7	/* max number of blinkers */
+#define	POINTINGDEVICE	8	/* terminal has pointing device */
+#define	POINTINGBUTTONS	9	/* pointing device has buttons */
+#define	NUMBUTTONS	10	/* num. of pointing dev. buttons */
+#define	BUTTON1	11	/* value returned by button 1 */
+#define	BUTTON2	12	/* value returned by button 2 */
+#define	BUTTON3	13	/* value returned by button 3 */
+#define	BUTTON4	14	/* value returned by button 4 */
+#define	BUTTON5	15	/* value returned by button 5 */
+#define	BUTTON6	16	/* value returned by button 6 */
+#define	BUTTON7	17	/* value returned by button 7 */
+#define	BUTTON8	18	/* value returned by button 8 */
+#define	BUTTON9	19	/* value returned by button 9 */
+#define	BUTTON10	20	/* value returned by button 10 */
+#define	BUTTON11	21	/* value returned by button 11 */
+#define	BUTTON12	22	/* value returned by button 12 */
+#define	TEXTPOSITIONALBE	30	/* Bool: positionable text */
+#define	TEXTROTATABLE	31	/* Bool: rotatable text */
+#define	FONTHEIGHT	32	/* font height in pixels */
+#define	FONTWIDTH	33	/* font width in pixels */
+#define	FONTXOFFSET	34 	/* font x offset in pixels */
+#define	FONTYOFFSET	35	/* font y offset in pixels */
+#define	DESTRUCTIVETEXT	36	/* Bool: text can be destructive */
+#define	OVERSTRIKETEXT	37	/* Bool: text can be overstrike */
+#define	VLT	38	/* Bool: terminal has VLT */
+#define	BLINKERS	39	/* Bool: terminal has blinkers */
+#define	FILLEDPOLYGONS	40	/* Bool: terminal can fill polygons */
+#define	DEFFILLPATTERNS	41	/* Bool: definable fill patterns */
+#define	DEFCHANNELMASK	42	/* Bool: definable write mask */
+#define	DEFLINEPATTERN	43	/* Bool: definable line styles */
+#define	CURFGCOLOR	44	/* current foreground color */
+#define	CURFILLPATTERN	45	/* current fill pattern */
+#define	CURLINESTYLE	46	/* current line style */
+#define	CURCHANNELMASK	47	/* current channel mask */
+#define	CURREADMASK	48	/* current read mask */
+#define	NUMBITPLANES	49	/* number of bit planes */
+#define	DEFREADMASK	50	/* Bool: definable read mask */
+#define	RASTERCOPY	51	/* Bool: term has raster copy */
+#define	OFFSCREENX	52	/* left of off screen memory */
+#define	OFFSCREENY	53	/* bottom of off screen memory */
+#define	OFFSCREENDX	54	/* length of off screen memory */
+#define	OFFSCREENDY	55	/* width of off screen memory */
+.fi
+.DT
+.PP
+If an invalid argument is used,
+.I MFBInfo
+will return -1.
+.RE
+.sp
+.ne 6
+.SH WINDOW\/VIEWPORT TRANSFORMATIONS
+.PP
+.I MFB
+provides a set of procedures for converting from window coordinates
+to viewport coordinates and vice versa.  These transformation routines are
+NOT used by the 
+.I MFB
+display routines and must be invoked separately by an application program.
+.ne 4
+.nf
+.PP
+.B "void MFBSetViewport(left, bottom, right, top)"
+.B "int left, bottom, right, top;"
+.ne 2
+.PP
+.B "void MFBSetWindow(left, bottom, right, top)"
+.B "int left, bottom, right, top;"
+.ne 2
+.PP
+.B "int MFBScaleX(X)"
+.B "int X;"
+.ne 2
+.PP
+.B "int MFBScaleY(Y)"
+.B "int Y;"
+.ne 8
+.PP
+.B "int MFBDescaleX(X)"
+.B "int X;"
+.PP
+.B "int MFBDescaleY(Y)"
+.B "int Y;"
+.fi
+.DT
+.RS
+To use these routines, it
+is necessary to define both the viewport of the graphics display and the
+window in the working area by using
+.I MFBSetViewport
+and
+.I MFBSetWindow.
+The viewport must always be defined by non-negative integers that are
+within the resolution of the graphics display.  Once defined,
+.I MFBScaleX
+and
+.I MFBScaleY
+will convert from window coordinate values to viewport coordinates.
+.I MFBDescaleX
+and 
+.I MFBDescaleY
+will perform the inverse transformation.  The transform routines return
+the scaled values.
+.RE
+.sp
+.ne 7
+.SH GEOMETRY CLIPPING ROUTINES
+.PP
+.I MFB
+provides a set of routines for clipping lines and polygons to a given window.
+.ne 7
+.nf
+.PP
+.B "void MFB_Y_Intercept(X1, Y1, X2, Y2, value, Yvalue)"
+.B "int X1, Y1, X2, Y2;"
+.B "int value;"
+.B "int *Yvalue;"
+.fi
+.DT
+.RS
+.I MFB_Y_Intercept
+calculates the value
+.I Yvalue
+of the y coordinate at the point of intersection of a
+line defined by the two coordinates
+.I X1, Y1
+and
+.I X2, Y2,
+and a vertical line with all x coordinates equal to 
+.I value.
+.RE
+.sp
+.ne 7
+.nf
+.PP
+.B "void MFB_X_Intercept(X1, Y1, X2, Y2, value, Xvalue)"
+.B "int X1, Y1, X2, Y2;"
+.B "int value;"
+.B "int *Xvalue;"
+.fi
+.DT
+.RS
+.I MFB_X_Intercept
+calculates the value
+.I Xvalue
+of the x coordinate at the point of intersection of a line defined by
+.I X1, Y1
+and 
+.I X2, Y2,
+and a horizontal line with all y coordinates equal to
+.I value.
+.RE
+.sp
+.ne 6
+.nf
+.PP
+.B "void MFBLineClip(X1, Y1, X2, Y2, left, bottom, right, top);"
+.B "int *X1, *Y1, *X2, *Y2;"
+.B "int left, bottom, right, top;"
+.fi
+.DT
+.RS
+The above clipping routines are used by
+.I MFBLineClip
+to clip the line segment defined by
+.I X1, Y1
+and
+.I X2, Y2
+to the window defined by
+.I left, bottom, right,
+and
+.I top.
+.RE
+.sp
+.ne 6
+.nf
+.PP
+.B "void MFBPolygonClip(poly, top, bottom, left, right)"
+.B "MFBPOLYGON *poly;"
+.B "int top, bottom, left, right;"
+.fi
+.DT
+.RS
+.I MFBPolygonClip
+clips a polygon with less than 200 vertices defined by
+.I poly
+to the window defined by
+.I left, bottom, right,
+and
+.I top.
+.I poly
+is replaced by the clipped polygon.
+.RE
+.sp
+.ne 7
+.nf
+.PP
+.B "MFBPATH *MFBArcClip(path, left, bottom, right, top)"
+.B "MFBPATH *path;"
+.B "int left, bottom, right, top;"
+.fi
+.DT
+.RS
+.I MFBArcClip
+clips an arc with less than 200 vertices defined by
+.I path
+to the window defined by
+.I left, bottom, right,
+and
+.I top.
+.I MFBClipArc
+returns a pointer to an array of five
+.I MFBPATH
+structs that define the clipped arc.  The contents of several of these
+returned structs may define a null path.
+.RE
+.sp
+.ne 7
+.SH SPECIAL VIEWPORT ROUTINES
+.sp 1
+.nf
+.PP
+.B "void MFBMore(left, bottom, right, top, Textfile)"
+.B "int left, bottom, right, top;"
+.B "FILE *Textfile;"
+.fi
+.DT
+.RS
+.I MFBMore
+will display the contents of a file
+.I Textfile
+in a viewport defined by
+.I left, bottom, right,
+and
+.I top
+in a manner similar to the UCB program
+.I MORE(1).
+.RE
+.sp
+.ne 7
+.nf
+.PP
+.B "void MFBScroll(left, bottom, right, top, Textfile)"
+.B "int left, bottom, right, top;"
+.B "FILE *Textfile;"
+.fi
+.DT
+.RS
+.I MFBScroll
+is an enhanced version of
+.I MFBMore
+defined above that allows you to scroll up or down through the contents of
+.I Textfile.
+The contents of
+.I Textfile
+are displayed in a viewport defined by
+.I left, bottom, right,
+and
+.I top.
+.RE
+.sp
+.ne 6
+.SH DIAGNOSTICS
+.sp 1
+.nf
+.PP
+.B "char *MFBError(errnum)"
+.B "int errnum;"
+.fi
+.DT
+.RS
+.I MFBError
+can be used to obtain a null terminated string that describes the error
+associated with any of the above mentioned error codes.
+.I errnum
+is the error code returned by a
+.I MFB
+routine.
+.I MFBError
+returns a pointer to the error information string.
+The possible values for
+.I errnum
+are defined in
+.I mfb.h
+as follows:
+.sp
+.ne 4
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXXXXXXXXX'u +\w'XXXXXX'u
+#define	MFBBADENT	-10	/* Unknown terminal type */
+#define	MFBBADMCF	-20	/* Can't open mfbcap file */
+#define	MFBMCELNG	-30	/* MFBCAP entry too long */
+#define	MFBBADMCE	-40	/* Bad mfbcap entry */
+#define	MFBINFMCE	-50	/* Infinite mfbcap entry */
+#define	MFBBADTTY	-60	/* stdout not in /dev */
+#define	MFBBADLST	-70	/* Illegal line style */
+#define	MFBBADFST	-80	/* Illegal fill style */
+#define	MFBBADCST	-90	/* Illegal color style */
+#define	MFBBADTM1	-100	/* No destructive text */
+#define	MFBBADTM2	-110	/* No overstriking text */
+#define	MFBNODFLP	-120	/* No definable line styles */
+#define	MFBNODFFP	-130	/* No definable fill styles */
+#define	MFBNODFCO	-140	/* No definable colors */
+#define	MFBNOBLNK	-150	/* No blinkers */
+#define	MFBTMBLNK	-160	/* Too many blinkers */
+#define	MFBBADDEV	-180	/* Can't open or close device */
+#define	MFBBADOPT	-190	/* Can't access or set device stat */
+#define	MFBNOMASK	-170	/* No definable read or write mask */
+#define	MFBBADWRT	-200	/* Error in write */
+#define	MFBPNTERR	-210	/* Error in pointing device */
+#define	MFBNOPTFT	-220	/* No format for pointing device */
+#define	MFBNOPNT	-230	/* No pointing device */
+#define	MFBNORBND	-240	/* No Rubberbanding */
+#define	MFBBADALU	-250	/* Cannot set ALU mode */
+.fi
+.DT
+.RE
+.sp
+.ne 4
+.nf
+.PP
+.B "void MFBZeroCounters()"
+.ne 2
+.PP
+.B "void MFBCounters(nCh,nBx,BxArea,nLn,LnLngth,nPxl)"
+.B "int *nCh,*nBx,*BxArea,*nLn,*LnLngth,*nPxl;"
+.fi
+.DT
+.RS
+.I MFBCounters
+provides the ability to measure the communications bandwidth between the
+host and the graphics device.  To use these routines, MFB must
+be compiled with the
+.B DEBUG
+flag defined in the
+.I "mfb.h"
+file.
+.PP
+The procedure is initialized by invoking
+.I MFBZeroCounters
+after which the geometry display routines such as
+.I MFBBox
+or
+.I MFBLine
+may be called in any order.  When
+.I MFBCounters
+is invoked, it will return the number of graphic text characters
+.I nCh
+that where displayed, the number of boxes
+.I nBx
+displayed, the number of lines
+.I nLn
+displayed, the average pixel area of a box
+.I BxArea,
+the average line length
+.I LnLngth
+in pixels, and the total number of pixels
+.I nPxl
+that where affected.  Invocation of
+.I MFBCounters
+does not clear the the counters.
+.RE
+.sp
+.ne 15
+.SH THE MFB DATA STRUCTURE
+.RE
+.PD
+.sp 1
+.PP
+The
+.I MFB
+data structure is listed below.
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXX'u +\w'XXXXXXXX'u +\w'XXXXXXXX'u
+
+#define	TTY	't'
+#define	HCOPY	'r'
+
+typedef enum {false, true} Bool;
+
+.ta \w'XXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+.ne 8
+struct mfb_window {
+	int left;
+	int right;
+	int top;
+	int bottom;
+	double length,width;
+	};
+
+.ne 8
+typedef struct mfb_window WINDOW;
+typedef struct mfb_window VIEWPORT;
+
+struct mfbpath {
+	int nvertices;
+	int *xy;
+	};
+
+typedef struct mfbpath MFBPOLYGON;
+typedef struct mfbpath MFBPATH;
+
+.ne 8
+#ifndef vms
+struct mfbremttyb {
+	struct sgttyb oldttyb;
+	struct sgttyb newttyb;
+	};
+
+.ne 9
+.ta \w'XXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+struct mfbremstat {
+	int graphttyw;	/* old mode bits of graphics device */
+	int kybrdttyw;	/* old mode bits of standard I/O */
+	struct stat graphstat;	/* old fstats of graphics device */
+	struct stat kybrdstat;	/* old fstats of standard I/O */
+	};
+.ta \w'XXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+
+typedef struct mfbremttyb MFBSAVETTYB;
+typedef struct mfbremstat MFBSAVESTAT;
+#endif
+
+struct mfbformatstrs {
+.ne 5
+	char *startSequence;	/* first transmitted sequence */
+	char *endSequence;	/* last transmitted sequence */
+	char *initLineStyles;	/* initialize line styles */
+	char *initFillPatterns;	/* initialize fill styles */
+	char *initColorStyles;	/* initialize color styles */
+
+.ne 3
+	char *vltEntry;	/* define color in VLT */
+	char *setForegroundColor;	/* set current foreground color */
+	char *screenFlood;	/* flood screen to current color */
+
+.ne 2
+	char *channelMaskSet;	/* set write mask */
+	char *readMaskSet;	/* set read mask */
+
+.ne 6
+	char *enablePointingDevice;	/* initialize pointing device */
+	char *enableRubberBanding;	/* turn on rubber banding */
+	char *disablePointingDevice;	/* disable pointing device and cursor */
+	char *disableRubberBanding;	/* turn off rubber banding */
+	char *readPointingDevice;	/* wait and read pointing device */
+	char *formatPointingDevice;	/* decode format for pointing device */
+
+.ne 4
+	char *keyboardStart;	/* initailize keyboard */
+	char *keyboardEnd;	/* terminate keyboard input */
+	char *keyboardBackspace;	/* keyboard backspace sequence */
+	char *audio;	/* ring the terminals bell */
+
+.ne 10
+	char *lineDefineStart;	/* begin defining a line pattern */
+	char *lineDefineFormat;	/* define bit array of line pattern */
+	char *lineDefineEnd;	/* terminate line pattern definition */
+	char *setLineStyle;	/* set current line style */
+	char *setSolidLineStyle;	/* set current line style to solid */
+	char *movePenSequence;	/* move current graphics position */
+	char *drawLineSequence;	/* draw a line in current style */
+	char *drawSolidLineSequence;	/* draw a solid line */
+	char *drawLineToSequence;	/* move and draw current position */
+	char *drawSolidLineToSequence;	/* move and draw solid line */
+
+.ne 2
+	char *drawBoxSequence;	/* draw box in current style */
+	char *drawSolidBoxSequence;	/* draw a solid box */
+
+.ne 4
+	char *beginPlygnSequence;	/* begin polygon in cur. fill style */
+	char *beginSolidPlygnSequence;	/* begin solid polygon */
+	char *sendPlygnVertex;	/* define one point in polygon */
+	char *endPlygnSequence;	/* terminate polygon sequence */
+
+	char *drawCircleSequence;	/* draw a circle in solid line style */
+
+.ne 6
+	char *rotateTextSequence;	/* rotate graphic text */
+	char *graphicsTextStart;	/* begin graphic text */
+	char *graphicsTextEnd;	/* terminate graphic text */
+	char *replaceON;	/* turn on destructive text mode */
+	char *overstrikeON;	/* turn on overstriking text mode */
+	char *writePixel;	/* write one pixel in current color */
+
+.ne 4
+	char *setALUEOR;	/* set ALU mode to EOR */
+	char *setALUNOR;	/* set ALU mode to NOR */
+	char *setALUOR;	/* set ALU mode to OR */
+	char *setALUJAM;	/* set ALU mode to JAM or REPLACE */
+
+.ne 2
+	char *blinkerON;	/* make a color blink */
+	char *blinkerOFF;	/* turn off a blinking layer */
+
+.ne 4
+	char *rastCopyStart;	/* begin raster copy sequence */
+	char *rastCopyEnd;	/* terminate raster copy sequence */
+	char *rastCopyDest;	/* define raster copy destionation */
+	char *rastCopySource;	/* define raster copy source area */
+
+.ne 5
+	char *fillDefineStart;	/* begin defining a fill style */
+	char *fillDefineFormat;	/* define bit array of row/column */
+	char *fillDefineEnd;	/* terminate fill style definition */
+	char *setFillPattern;	/* set current fill pattern */
+	char *setSolidFillPattern;	/* set current fill pattern to solid */
+	};
+
+
+.ta \w'XXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+struct mfb {	/* MFB DATA STRUCT */
+
+.ne 5
+	/*
+.ta \w'XXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXX'u
+	* INTEGERS FIELDS
+	*/
+.ta \w'XXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+/* used for decode */	int lastX,lastY;	/* for Tektronix encoding */
+	int X,Y,Z,T;	/* parameter list */
+
+.ne 7
+/* Resolution */	int maxX;	/* horizontal resolution */
+	int maxY;	/* vertical resolution */
+	int maxColors;	/* maximum number of colors */
+	int minOffScreenX;	/* left of off screen memory */
+	int minOffScreenY;	/* bottom of off screen mem. */
+	int offScreenDX;	/* length of off screen mem. */
+	int offScreenDY;	/* width of off screen mem. */
+
+.ne 2
+/* Video Layer Table */	int maxIntensity;	/* max RGB or LS intensity */
+	int lengthOfVLT;	/* number of bit planes */
+
+.ne 2
+/* Pointing Device */	int buttonMask[12];	/* returned button masks */
+	int numberOfButtons;	/* 12 maximum */
+
+.ne 2
+/* Keyboard Control */	int keyboardYOffset;
+	int keyboardXOffset;
+
+.ne 2
+/* Line Drawing */	int lineDefineLength;	/* number of bytes in array */
+	int maxLineStyles;	/* number of line styles */
+
+.ne 4
+/* Text font */	int fontHeight;	/* font height in pixels */
+	int fontWidth;	/* font width in pixels */
+	int fontXOffset;
+	int fontYOffset;
+
+/* Blinkers */	int maxBlinkers;	/* number of blinkers */
+
+.ne 3
+/* Fill Patterns */	int fillDefineHeight;	/* number of byte rows */
+	int fillDefineWidth;	/* number of byte columns */
+	int maxFillPatterns;	/* number of fill patterns */
+
+.ne 9
+/* Current variables */	int cursorColor1Id;	/* blinked cursor color ID */
+	int cursorColor2Id;	/* unblinked cursor color ID */
+	int fgColorId;	/* cur. foreground color ID */
+	int fillPattern;	/* cur. fill pattern ID */
+	int lineStyle;	/* cur. line style ID */
+	int channelMask;	/* cur. write mask */
+	int readMask;	/* cur. read mask */
+	int numBlinkers;	/* cur. number of blinkers */
+	int textMode;	/* text mode (1=dest, 0=rep) */
+	int stipplePattern[8];	/* cur. stipple pattern */
+
+.ne 2
+	int fileDesc;	/* desc. for graphics device */
+	int numTtyBuffer;	/* cur. chars in output queue */
+
+
+.ne 5
+	/*
+.ta \w'XXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXX'u
+	* POINTERS
+	*/
+.ta \w'XXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+/* for tty's only */	char *name;	/* device name */
+	char *terminalName;	/* name of MFBCAP entry */
+
+.ne 6
+/* I/O routines */	int (*dsply_getchar)();
+	int (*kybrd_getchar)();
+	int (*dsply_ungetchar)();
+	int (*kybrd_ungetchar)();
+	int (*outchar)();
+	int (*outstr)();
+
+
+.ne 4
+	/*
+.ta \w'XXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXX'u
+	* BOOLEANS
+	*/
+.ta \w'XXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+	Bool initializedBool;
+
+.ne 2
+/* Video Layer Table */	Bool vltBool;
+	Bool vltUseHLSBool;
+
+.ne 2
+/* Channel Mask */	Bool channelMaskBool;
+	Bool readMaskBool;
+
+.ne 3
+/* Pointing Device */	Bool PointingDeviceBool;
+	Bool buttonsBool;
+	Bool readImmediateBool;
+
+/* Keyboard Control */	Bool keyboardBool;
+
+.ne 2
+/* Line Drawing */	Bool linePatternDefineBool;
+	Bool reissueLineStyleBool;
+
+/* Polygon Drawing */	Bool filledPlygnBool;
+
+.ne 4
+/* Text font */	Bool textPositionableBool;
+	Bool textRotateBool;
+	Bool replaceTextBool;
+	Bool overstrikeTextBool; 
+
+/* Blinkers */	Bool blinkersBool;
+
+.ne 2
+/* Raster Copy */	Bool rastCopyBool;
+	Bool rastRSCSFBool;
+
+.ne 2
+/* Fill Patterns */	Bool fillPtrnDefineBool;
+	Bool fillDefineRowMajorBool;
+
+.ne 3
+/* for tty's only */	Bool litout;
+	Bool raw;
+	Bool ttyIsSet;
+
+
+.ne 
+.ta \w'XXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+	/*
+.ta \w'XXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+	* STRUCTURES
+	*/
+.ta \w'XXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+	struct mfbformatstrs strings;	/* format strings */
+
+	WINDOW currentWindow;	/* current window */
+	VIEWPORT currentViewport;	/* current viewport */
+
+.ne 11
+#ifndef vms
+	/* graphics device ttyb struct */
+	MFBSAVETTYB graphTtyb;
+
+	/* keyboard ttyb struct if graphics device does not have a kybrd */
+	MFBSAVETTYB kybrdTtyb;
+
+	/* tty status ints */
+	MFBSAVESTAT oldstat;
+#endif
+
+
+.ne 11
+	/*
+.ta \w'XXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+	* CHARACTERS
+	*/
+.ta \w'XXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'u +\w'XXXXXXXX'u
+	char deviceType;	/* TTY=tty, HCOPY=hard copy */
+	char strBuf[BUFSIZE];	/* storage for format strings */
+	char ttyBuffer[TTYBUFSIZE];	/* tty output buffer */
+	};
+
+typedef struct mfb MFB;
+
+.fi
+.DT
+.sp
+.ne 10
+.SH EXAMPLE
+.PP
+The following C program is a simple example that uses several
+.I MFB
+routines.  The terminal type is assumed to be the first command line argument.
+This program will display several triangles in different line styles, display
+at four angles of rotation the text that is returned from
+.I MFBKeyboard,
+draw a solid line between two points, and draw an arc clipped to a rectangle.
+.IP
+.nf
+.ta \w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u
+
+
+#include <cad/mfb.h>
+
+main(argc, argv)
+	int argc;
+	char *argv[];
+	{
+	int i, j, k, m;
+	int X1, X2, Y1, Y2;
+	int numcolors;
+	int numlinestyles;
+	int button;
+	int error;
+	MFB *mfb, *MFBOpen();
+	MFBPATH *pp;
+	char key;
+	char *TypeIn;
+
+.ne 2
+	/* open graphics device */
+	mfb = MFBOpen(argv[1], NULL, &error);
+
+.ne 5
+	/* exit on any error */
+	if(error < 0) {
+		fprintf(stderr, "error:  %s\\n", MFBError(error));
+		exit(0);
+		}
+
+.ne 6
+	/* get device information */
+	X1 = MFBInfo(MAXX)/2;
+	X2 = X1/2;
+	Y1 = MFBInfo(MAXY)/30;
+	numcolors = MFBInfo(MAXCOLORS);
+	numlinestyles = MFBInfo(MAXLINESTYLES);
+.ne 4
+	if(numcolors > 7)
+		numcolors = 7;
+	if(numlinestyles > 7)
+		numlinestyles = 7;
+
+.ne 5
+	/* draw pyramid of lines in different line styles */
+	for(j=0; j<28; ++j) {
+		/* set color (increment by one to prevent 'invisible' lines) */
+		k = j % (numcolors - 1);
+		MFBSetColor(k + 1);
+
+.ne 4
+		/* define and set line style */
+		m = j % numlinestyles;
+		MFBDefineLineStyle(m, j * 6);
+		MFBSetLineStyle(m);
+
+.ne 4
+		/* draw pyramid */
+		MFBLine(0, 0, X2, Y1*j + 2*j);
+		MFBLine(X1, 0, X2, Y1*j + 2*j);
+		}
+
+.ne 2
+	/* flush output */
+	MFBUpdate();
+
+.ne 9
+	/* test of MFBKeyboard */
+	MFBText("Test of MFBKeyboard.", X2, Y1*28, 0);
+	TypeIn = MFBKeyboard(X1, 5, 0, 1);
+	MFBText(TypeIn, X1, 70, 0);
+	MFBText(TypeIn, X1, 70, 90);
+	MFBText(TypeIn, X1, 70, 180);
+	MFBText(TypeIn, X1, 70, 270);
+	MFBUpdate();
+	sleep(3);
+
+.ne 9
+	/* test of MFBPoint */
+	MFBSetColor(1);
+	MFBFlood();
+	MFBSetColor(0);
+	MFBText("Test of MFBPoint.", X2, Y1*28, 0);
+	MFBPoint(&X1, &Y1, &key, &button);
+	MFBPoint(&X2, &Y2, &key, &button);
+	MFBSetLineStyle(0);
+	MFBLine(X1, Y1, X2, Y2);
+
+.ne 5
+	/* draw outline of box to contain arc */
+	MFBLine(100, 100, 100, 350);
+	MFBLine(100, 100, 370, 100);
+	MFBLine(370, 100, 370, 350);
+	MFBLine(100, 350, 370, 350);
+
+.ne 7
+	/* test of MFBArcPath and MFBClipArc */
+	i = 0;
+	pp = MFBClipArc(MFBArcPath(70, 70, 200, 0, 0, 30), 100, 100, 370, 350);
+	while(pp[i].nvertices != 0 && i < 4) {
+		MFBDrawPath(&pp[i]);
+		i++;
+		}
+
+.ne 6
+	/* flush output and wait */
+	MFBUpdate();
+	sleep(6);
+
+	MFBClose();
+	}
+
+
+.fi
+.DT
+.sp
+.ne 10
+.SH DEBOUNCING THE POINTING DEVICE
+.PP
+The following C program is another example of using
+.I MFB
+routines that demonstrates several methods of debouncing the pointing
+device.  Several graphics terminals can return bogus pointing reports
+that can be serious and annoying in some applications.  Identifying these
+bogus reports is very terminal dependent (e.g. the AED 512 returns
+bad button masks, the Metheus 400 returns negative coordinates, etc.),
+and it is therefore necessary to use all possible tests.
+.IP
+.nf
+.ta \w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u
+
+.ne 16
+#include <cad/mfb.h>
+#ifdef vms
+#include <timeb.h>
+#else
+#include <sys/timeb.h>
+#endif
+
+.ne 6
+/*
+.ta \w'X'u
+	* This is the minimum time in milliseconds
+	* between accepted pointing events.
+	*/
+.ta \w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u
+#define DEBOUNCETIME 100
+
+.ne 6
+/*
+.ta \w'X'u
+	* we keep track of the time between pointing
+	* events to debounce the cursor
+	*/
+.ta \w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u
+static long LastPointTime = 0;
+
+.ne 10
+/*
+.ta \w'X'u
+	* routine to read and debounce pointing device.
+	*/
+.ta \w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u
+point(pointX,pointY,Key,Mask)
+	int *pointX,*pointY,*Mask;
+	char *Key;
+	{
+	struct timeb now;
+	long newtime;
+	int X,Y,Buttons;
+	char KeyTyped;
+
+.ne 4
+	SetDebounceTime();
+	/* Loop until DEBOUNCETIME has passed */
+	while(True) {
+
+.ne 5
+		/* Loop until valid report is received */
+		while(True) {
+
+.ne 3
+			/* Get pointing event */
+			MFBPoint(&X,&Y,&KeyTyped,&Buttons);
+
+.ne 3
+			/* Was a character typed? */
+			if(Key != 0)
+				break;
+
+.ne 6
+			/* Does the pointing device have buttons? */
+			if(MFBInfo(POINTINGBUTTONS)){
+				/*
+.ta \w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXXX'u
+				* Test button masks and vicinity of coordinate.
+				* Assume a four button mouse.
+				*/
+.ne 10
+.ta \w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u +\w'XXXX'u
+				if((Buttons == MFBInfo(BUTTON1) ||
+					Buttons == MFBInfo(BUTTON2) ||
+					Buttons == MFBInfo(BUTTON3) ||
+					Buttons == MFBInfo(BUTTON4)) &&
+					(X < MFBInfo(MAXX) && X > 0 &&
+					Y < MFBInfo(MAXY) && Y > 0))
+					break;
+				}
+			}
+.ne 5
+		ftime(&now);
+		newtime = 1000 * now.time + now.millitm;
+		if((newtime - LastPointTime) < DEBOUNCETIME) continue;
+		SetDebounceTime();
+		}
+.ne 5
+	*pointX = X;
+	*pointY = Y;
+	*Key = KeyTyped;
+	*Mask = Buttons;
+	}
+
+
+.ne 6
+SetDebounceTime(){
+	struct timeb now;
+	ftime(&now);
+	LastPointTime = 1000 * now.time + now.millitm;
+	}
+
+
+.fi
+.DT
+.sp
+.ne 8
+.SH NOTES
+.PP
+On some systems, 
+.I MFB
+is contained in \/usr rather than ~cad.
+.PP
+.I MFB
+will also compile to run under
+.I "VMS"
+(a trademark of Digital Equipment Corp.)
+or any other operating system.  However, special I/O routines
+such as those in ~cad\/src\/mfb\/vmsio.c must be provided for
+.I MFB
+to function properly.
+.PP
+.I MFB
+was written to be utmost UNIX compatible and consistent with the style
+of the C programming language.  For example, a control sequence always
+begins with a call to an
+.I "(MFB)Open"
+routine and is terminated by a call to a
+.I "(MFB)Close"
+routine.  Another example is the provision of the
+.I "MFBHalt"
+routine that is intended primarily for the handling of the SIGTSTP
+signal.  One possible exception to the style of C is the
+use of a global output descriptor that is set by a call to the
+.I "SetCurrentMFB"
+routine, as opposed to passing the output descriptor as an argument
+to ever active function call.
+.PP
+.I MFB
+was initially aimed toward the modeling of lower performance
+graphics terminals (e.g., there is currently no support of segments
+or definable windows and viewports at the device level).
+As a result, programs that use
+.I MFB
+are likely to work on the low performance (least expensive)
+graphics terminals as well as on the more expensive devices.
+.sp
+.ne 2
+.SH BUGS
+.PP
+Raster (hard copy) output is not yet implemented.
+.sp
+.ne 10
+.SH FUTURE ENHANCEMENTS
+.PP
+Future modifications to
+.I MFB
+may include the following:
+.IP
+Extension to hard copy graphics devices.
+.IP
+Definable vector and raster character fonts.
+.IP
+Improved cursor support including a definable cursor font,
+cursor tracking by the host, cursor-on/cursor-off capability,
+and cursor report without event.
+.IP
+Window/viewport geometry clipping by the terminal if the
+device possesses that capability.
+.IP
+Bit block transfer (BitBlt).
+.sp
+.ne 4
+.SH FILES
+.nf
+~cad/lib/mfbcap
+~cad/include/mfb.h
+~cad/lib/mfb.a
+~cad/src/mfb
+.fi
+.DT
+.sp
+.ne 2
+.SH SEE ALSO
+.nf
+mfbcap(5), termcap(5), curses(3), more(1), kic(CAD1)
+.fi
+.DT
+.sp
+.ne 3
+.SH AUTHOR
+.nf
+Giles Billingsley
+Ken Keller
+.fi
+.bp
+.SH STATUS
+.PP
+The following is a list of the terminals that will currently work with
+.I MFB:
+.PP
+.nf
+.ta \w'XXXXXXXX'u +\w'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'u
+4014	Tektronix 4014 with thumbwheels
+4113	Tektronix 4112/4113 with thumbwheels or tablet
+AED5	AED 512 with joystick or tablet
+AED7	AED 767 with joystick or tablet
+2648	HP 2648 black and white grahpics terminal with tablet
+9872	HP 9872 color pen plotter
+D125	DEC VT125 black and white graphics terminal
+.fi
+.PP
+The following table lists routines that depend on device capabilities
+and may not work on all graphics devices.  Other
+.I MFB
+routines that are not listed below will work for all devices.
+.sp 1
+.TS
+.if \n+(b.=1 .nr d. \n(.c-\n(c.-1
+.de 35
+.ps \n(.s
+.vs \n(.vu
+.in \n(.iu
+.if \n(.u .fi
+.if \n(.j .ad
+.if \n(.j=0 .na
+..
+.nf
+.nr #~ 0
+.if n .nr #~ 0.6n
+.ds #d .d
+.if \(ts\n(.z\(ts\(ts .ds #d nl
+.fc
+.nr 33 \n(.s
+.rm 80 81 82 83 84 85 86 87
+.nr 80 0
+.nr 38 \w    Routine
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetLineStyle
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetFillPattern
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetChannelMask
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetReadMask
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetColor
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetTextMode
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetALUMode
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetCursorColor
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetRubberBanding
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBSetBlinker
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBDefineColor
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBDefineFillPattern
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBDefineLineStyle
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBMoveTo
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBDrawLineTo
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBLine
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBDrawPath
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBBox
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBPolygon
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBFlood
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBPixel
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBCircle
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBFlash
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBArc
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBText
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBPoint
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBKeyboard
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBMore
+.if \n(80<\n(38 .nr 80 \n(38
+.nr 38 \wMFBScroll
+.if \n(80<\n(38 .nr 80 \n(38
+.80
+.rm 80
+.nr 81 0
+.nr 38 \w4
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w0
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w1
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w4
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \wX
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.nr 38 \w 
+.if \n(81<\n(38 .nr 81 \n(38
+.81
+.rm 81
+.nr 82 0
+.nr 38 \w4
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \w1
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \w1
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \w3
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \w 
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \w 
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \w 
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \w 
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \w 
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.nr 38 \wX
+.if \n(82<\n(38 .nr 82 \n(38
+.82
+.rm 82
+.nr 83 0
+.nr 38 \wA
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wE
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wD
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \w5
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \w 
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \w 
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \w 
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.nr 38 \wX
+.if \n(83<\n(38 .nr 83 \n(38
+.83
+.rm 83
+.nr 84 0
+.nr 38 \wA
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wE
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wD
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \w7
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \w 
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \w 
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \w 
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.nr 38 \wX
+.if \n(84<\n(38 .nr 84 \n(38
+.84
+.rm 84
+.nr 85 0
+.nr 38 \w2
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w6
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w4
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w8
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w 
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w 
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w 
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w 
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w 
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \w 
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.nr 38 \wX
+.if \n(85<\n(38 .nr 85 \n(38
+.85
+.rm 85
+.nr 86 0
+.nr 38 \w9
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w8
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w7
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w2
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \wX
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.nr 38 \w 
+.if \n(86<\n(38 .nr 86 \n(38
+.86
+.rm 86
+.nr 87 0
+.nr 38 \wD
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w1
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w2
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w5
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \w 
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.nr 38 \wX
+.if \n(87<\n(38 .nr 87 \n(38
+.87
+.rm 87
+.nr 38 1n
+.nr 79 0
+.nr 40 \n(79+(1*\n(38)
+.nr 80 +\n(40
+.nr 41 \n(80+(3*\n(38)
+.nr 81 +\n(41
+.nr 42 \n(81+(3*\n(38)
+.nr 82 +\n(42
+.nr 43 \n(82+(3*\n(38)
+.nr 83 +\n(43
+.nr 44 \n(83+(3*\n(38)
+.nr 84 +\n(44
+.nr 45 \n(84+(3*\n(38)
+.nr 85 +\n(45
+.nr 46 \n(85+(3*\n(38)
+.nr 86 +\n(46
+.nr 47 \n(86+(3*\n(38)
+.nr 87 +\n(47
+.nr TW \n(87
+.nr TW +1*\n(38
+.if t .if (\n(TW+\n(.o)>7.65i .tm Table at line 42 file Input is too wide - \n(TW units
+.ne 33v+8p
+.nr #I \n(.i
+.in +(\n(.lu-\n(TWu-\n(.iu)/2u
+.fc  
+.nr #T 0-1
+.nr #a 0-1
+.nr #a 0-1
+.eo
+.de T#
+.ds #d .d
+.if \(ts\n(.z\(ts\(ts .ds #d nl
+.mk ##
+.nr ## -1v
+.ls 1
+.if \n(#T>=0 .nr #a \n(#T
+.if \n(T. .vs \n(.vu-\n(.sp
+.if \n(T. \v'-1p'\h'|0'\h'1p'\s\n(33\l'|\n(TWu-1p\(ul'\s0\v'2p'\h'|0'\h'-1p'\s\n(33\l'|\n(TWu+1p\(ul'\s0\v'-1p'
+.if \n(T. .vs
+.if \n(#a>=0 .sp -1
+.if \n(#a>=0 \h'|0'\h'-1p'\v'1p'\s\n(33\h'-\n(#~u'\L'|\n(#au-1v-2p'\s0\v'\n(\*(#du-\n(#au+1v+1p'\h'2p'\v'-1p'\s\n(33\h'-\n(#~u'\L'|\n(#au-1v+2p'\s0\v'\n(\*(#du-\n(#au+1v-1p'\h'|\n(TWu'
+.if \n(#a>=0 .sp -1
+.if \n(#a>=0 \h'|\n(TWu'\h'-1p'\v'-1p'\s\n(33\h'-\n(#~u'\L'|\n(#au-1v+2p'\s0\v'\n(\*(#du-\n(#au+1v-1p'\h'2p'\v'1p'\s\n(33\h'-\n(#~u'\L'|\n(#au-1v-2p'\s0\v'\n(\*(#du-\n(#au+1v+1p'
+.ls
+..
+.ec
+.nr 36 \n(.v
+.vs \n(.vu-\n(.sp
+\v'-1p'\h'|0'\h'-1p'\s\n(33\l'|\n(TWu+1p\(ul'\s0\v'2p'\h'|0'\h'1p'\s\n(33\l'|\n(TWu-1p\(ul'\s0\v'-1p'
+.vs \n(36u
+.mk #a
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'\h'|\n(41u'4\h'|\n(42u'4\h'|\n(43u'A\h'|\n(44u'A\h'|\n(45u'2\h'|\n(46u'9\h'|\n(47u'D
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'\h'|\n(41u'0\h'|\n(42u'1\h'|\n(43u'E\h'|\n(44u'E\h'|\n(45u'6\h'|\n(46u'8\h'|\n(47u'1
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'    Routine\h'|\n(41u'1\h'|\n(42u'1\h'|\n(43u'D\h'|\n(44u'D\h'|\n(45u'4\h'|\n(46u'7\h'|\n(47u'2
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'\h'|\n(41u'4\h'|\n(42u'3\h'|\n(43u'5\h'|\n(44u'7\h'|\n(45u'8\h'|\n(46u'2\h'|\n(47u'5
+.nr 36 \n(.v
+.vs \n(.vu-\n(.sp
+\v'-1p'\h'|0'\h'1p'\s\n(33\l'|\n(TWu-1p\(ul'\s0\v'2p'\h'|0'\h'1p'\s\n(33\l'|\n(TWu-1p\(ul'\s0\v'-1p'
+.vs \n(36u
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetLineStyle\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetFillPattern\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetChannelMask\h'|\n(41u' \h'|\n(42u' \h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u' \h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetReadMask\h'|\n(41u' \h'|\n(42u' \h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u' \h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetColor\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetTextMode\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u' \h'|\n(44u' \h'|\n(45u' \h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetALUMode\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u' \h'|\n(44u' \h'|\n(45u'X\h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetCursorColor\h'|\n(41u' \h'|\n(42u' \h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u' \h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetRubberBanding\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u' \h'|\n(44u' \h'|\n(45u'X\h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBSetBlinker\h'|\n(41u' \h'|\n(42u' \h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u' \h'|\n(46u' \h'|\n(47u' 
+.nr 36 \n(.v
+.vs \n(.vu-\n(.sp
+\h'|0'\h'1p'\s\n(33\l'|\n(TWu-1p\(ul'\s0
+.vs \n(36u
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBDefineColor\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u' \h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBDefineFillPattern\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBDefineLineStyle\h'|\n(41u' \h'|\n(42u' \h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u' \h'|\n(47u' 
+.nr 36 \n(.v
+.vs \n(.vu-\n(.sp
+\h'|0'\h'1p'\s\n(33\l'|\n(TWu-1p\(ul'\s0
+.vs \n(36u
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBMoveTo\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBDrawLineTo\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBLine\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBDrawPath\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBBox\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBPolygon\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBFlood\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u' \h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBPixel\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBCircle\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBFlash\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBArc\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBText\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u'X\h'|\n(47u'X
+.nr 36 \n(.v
+.vs \n(.vu-\n(.sp
+\h'|0'\h'1p'\s\n(33\l'|\n(TWu-1p\(ul'\s0
+.vs \n(36u
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBPoint\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u' \h'|\n(47u' 
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBKeyboard\h'|\n(41u'X\h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u' \h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBMore\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u' \h'|\n(47u'X
+.ta \n(80u \n(81u \n(82u \n(83u \n(84u \n(85u \n(86u \n(87u 
+.nr 31 \n(.f
+.nr 35 1m
+\&\h'|\n(40u'MFBScroll\h'|\n(41u' \h'|\n(42u'X\h'|\n(43u'X\h'|\n(44u'X\h'|\n(45u'X\h'|\n(46u' \h'|\n(47u'X
+.fc
+.nr T. 1
+.T# 1
+.in \n(#Iu
+.35
+.nr #a 0
+.TE
+.if \n-(b.=0 .nr c. \n(.c-\n(d.-41
+.DT

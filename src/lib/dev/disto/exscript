@@ -1,0 +1,58 @@
+1 copy 1
+1 copy 2
+2 s/_p/_q/g
+3 s/_p/_r/g
+4 copy 4
+4 s/_pq/_p2/g
+4 s/_q/_p/g
+4 copy 4
+5 s/_p/_q/g
+5 copy 5
+6 s/_q/_r/g
+7 copy 7
+8 s/_pq/_pr/g
+8 s/_q/_r/g
+8 copy 7
+8 s/_p/_q/g
+10,12 copy 12
+10,12 s/_pqr/_p3/g
+10,12 s/_pr/_p2/g
+10,12 s/_qr/_p2/g
+10,12 s/_pq/_p2/g
+10,12 s/_q/_p/g
+10,12 s/_r/_p/g
+10,12 copy 12
+13,15 s/_p/_q/g
+13,15 copy 15
+16,18 s/_q/_r/g
+19,21 copy 21
+19,21 s/_pqr/_p2q/g
+19,21 s/_pr/_p2/g
+19,21 s/_qr/_pq/g
+19,21 s/_r/_p/g
+22,24 copy 21
+22,24 s/_pqr/_p2r/g
+22,24 s/_pq/_pr/g
+22,24 s/_qr/_r2/g
+22,24 s/_q/_r/g
+25,27 copy 24
+25,27 s/_pqr/_q2r/g
+25,27 s/_pr/_qr/g
+25,27 s/_pq/_q2/g
+25,27 s/_p/_q/g
+28,30 copy 27
+28,30 s/_pqr/_pq2/g
+28,30 s/_pr/_pq/g
+28,30 s/_qr/_q2/g
+28,30 s/_r/_q/g
+31,33 copy 30
+31,33 s/_pqr/_qr2/g
+31,33 s/_pr/_r2/g
+31,33 s/_pq/_qr/g
+31,33 s/_p/_r/g
+34,36 copy 33
+34,36 s/_pqr/_pr2/g
+34,36 s/_qr/_r2/g
+34,36 s/_pq/_pr/g
+34,36 s/_q/_r/g
+w! temp

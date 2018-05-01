@@ -1,0 +1,25 @@
+cl /I..\..\..\include /c bjt.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtacld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtconv.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtdest.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtdisto.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtdset.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtgetic.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtload.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtmask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtmdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtmpar.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtnoise.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtparam.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtpzld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtsacl.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtsetup.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtsload.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtsprt.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtsset.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjtsupd.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjttemp.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c bjttrunc.c >> ..\..\..\msc.out
+lib ..\..\dev2.lib @response.lib >> ..\..\..\msc.out

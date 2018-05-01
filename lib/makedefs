@@ -1,0 +1,12 @@
+
+INSTALL_TARGETS	= $(SPICE_LIB_DIR)/mfbcap $(SPICE_LIB_DIR)/news		      \
+		  $(SPICE_LIB_DIR)/scripts/setplot			      \
+		  $(SPICE_LIB_DIR)/scripts/spinit			      \
+		  $(SPICE_LIB_DIR)/helpdir/spice.txt			      \
+		  $(SPICE_LIB_DIR)/helpdir/spice.idx
+
+ALL_INSTALL_DIRS = $(SPICE_LIB_DIR) $(SPICE_LIB_DIR)/helpdir \
+		$(SPICE_LIB_DIR)/scripts
+
+INSTALL_SPECIAL = directories
+

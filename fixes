@@ -1,0 +1,116 @@
+
+Here are some more patches for your web page. They mostly fix problems with
+memory allocations which showed up as crashes when I tried to use the
+"alter" statement, and when I used the "@" thingie or something like that.
+Please put them on your page and save people from duplicating my grief and
+efforts.
+
+Tom.
+
+diff -ur /tmp/spice3f4/src/lib/fte/dimens.c ./src/lib/fte/dimens.c ---
+/tmp/spice3f4/src/lib/fte/dimens.c Thu Jun 17 14:33:00 1993 +++
+./src/lib/fte/dimens.c   Fri Feb 24 10:51:29 1995
+@@ -20,7 +20,7 @@
+int length;
+{
+int i;
+- char buf[BSIZE_SP];
++ static char buf[BSIZE_SP];
+
+if (!data || length < 1)
+return NULL;
+@@ -43,7 +43,7 @@
+int length;
+{
+int i;
+- char buf[BSIZE_SP];
++ static char buf[BSIZE_SP];
+
+if (!data || length < 1)
+return NULL;
+diff -ur /tmp/spice3f4/src/lib/fte/vectors.c ./src/lib/fte/vectors.c ---
+/tmp/spice3f4/src/lib/fte/vectors.c Wed Nov 30 12:48:16 1994 +++
+./src/lib/fte/vectors.c       Sat Mar 18 19:43:32 1995
+@@ -269,6 +269,9 @@
+for (s = param; *s && *s != ']'; s++)
+;
+*s = '\0';
++#if 0
++       param = copy(param);
++#endif
+} else
+param = NULL;
+
+@@ -282,7 +285,13 @@
+return (NULL);
+}
+
++#if 0
++       /* Don't free wd; (*if_getparam) may already have done it.
++       Yes, this is a memory leak. */
++       /*tfree(wd);*/
++#else
+tfree(wd);
++#endif
+d = alloc(struct dvec);
+ZERO(d, struct dvec);
+d->v_name = copy(word);
+diff -ur /tmp/spice3f4/src/lib/inp/inpsymt.c ./src/lib/inp/inpsymt.c ---
+/tmp/spice3f4/src/lib/inp/inpsymt.c Thu Jun 17 14:32:48 1993 +++
+./src/lib/inp/inpsymt.c       Sat Mar 18 19:48:17 1995
+@@ -62,7 +62,7 @@
+key = hash(*token, tab->INPtermsize);
+for (t = tab->INPtermsymtab[key]; t; t = t->t_next) {
+if (!strcmp(*token, t->t_ent)) {
+-       FREE(*token);
++       /*FREE(*token);*/
+*token = t->t_ent;
+if(node) *node = t->t_node;
+return(E_EXISTS);
+@@ -98,7 +98,7 @@
+key = hash(*token, tab->INPtermsize);
+for (t = tab->INPtermsymtab[key]; t; t = t->t_next) {
+if (!strcmp(*token, t->t_ent)) {
+-       FREE(*token);
++       /*FREE(*token);*/
+*token = t->t_ent;
+if(node) *node = t->t_node;
+return(E_EXISTS);
+@@ -130,7 +130,7 @@
+key = hash(*token, tab->INPtermsize);
+for (t = tab->INPtermsymtab[key]; t; t = t->t_next) {
+if (!strcmp(*token, t->t_ent)) {
+-       FREE(*token);
++       /*FREE(*token);*/
+*token = t->t_ent;
+if(node) *node = t->t_node;
+return(E_EXISTS);
+@@ -162,7 +162,7 @@
+key = hash(*token, tab->INPsize);
+for (t = tab->INPsymtab[key]; t; t = t->t_next)
+if (!strcmp(*token, t->t_ent)) {
+-       FREE(*token);
++       /*FREE(*token);*/
+*token = t->t_ent;
+return(E_EXISTS);
+}
+--- ./src/lib/fte/device.c.0 Wed Nov 30 12:48:12 1994 +++
+./src/lib/fte/device.c        Thu Oct 12 12:28:04 1995
+@@ -619,7 +619,7 @@
+n2 = names;
+}
+
+- if (!n2 || !eq(n2->pn_op->op_name, "=")) { + if (!n2 || !n2->pn_op ||
+!eq(n2->pn_op->op_name, "=")) {
+fprintf(cp_err, "alter: don't understand \"%s\"\n", names->pn_name);
+fprintf(cp_err, "usage: alter dev param = expression\n"); fprintf(cp_err, "
+or alter @dev[param] = expression\n"); @@ -671,7 +671,7 @@
+
+if_setparam(ft_curckt->ci_ckt, &dev, param, dv, do_model);
+
+- free_pnode(names);
++ /*free_pnode(names); -- already done */
+
+/* Vector data (dv) should get garbage-collected. */
+
+

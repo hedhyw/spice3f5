@@ -1,0 +1,22 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= mfb3d.c mfbbasic.c mfbcaps.c mfbclip.c mfbdec.c mfbgnc.c \
+		  mfbio.c mfbtext.c paths.c vmsio.c 
+
+COBJS		= mfb3d.o mfbbasic.o mfbcaps.o mfbclip.o mfbdec.o mfbgnc.o \
+		  mfbio.o mfbtext.o paths.o vmsio.o 
+
+LIBRARY		= mfb
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+mfb3d.o: mfb3d.c
+mfbbasic.o: mfbbasic.c
+mfbcaps.o: mfbcaps.c
+mfbclip.o: mfbclip.c
+mfbdec.o: mfbdec.c
+mfbgnc.o: mfbgnc.c
+mfbio.o: mfbio.c
+mfbtext.o: mfbtext.c
+paths.o: paths.c
+vmsio.o: vmsio.c

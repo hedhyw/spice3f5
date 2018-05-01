@@ -1,0 +1,6 @@
+# Util target for making a distribution
+
+PURPOSE		= distrib
+BLOCK_UPDATE	= true
+SCRAP_DIR	= /tmp/spice_$(PID)
+OBJ_TOP		= $(SRC_TOP)

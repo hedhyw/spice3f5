@@ -1,0 +1,46 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= dio.c dioacld.c dioask.c dioconv.c diodel.c diodest.c \
+		  diodisto.c diodset.c diogetic.c dioload.c diomask.c \
+		  diomdel.c diompar.c dionoise.c dioparam.c diopzld.c \
+		  diosacl.c diosetup.c diosload.c diosprt.c diosset.c \
+		  diosupd.c diotemp.c diotrunc.c 
+
+COBJS		= dio.o dioacld.o dioask.o dioconv.o diodel.o diodest.o \
+		  diodisto.o diodset.o diogetic.o dioload.o diomask.o \
+		  diomdel.o diompar.o dionoise.o dioparam.o diopzld.o \
+		  diosacl.o diosetup.o diosload.o diosprt.o diosset.o \
+		  diosupd.o diotemp.o diotrunc.o 
+
+MODULE		= dio
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 2
+
+dio.o: dio.c
+dioacld.o: dioacld.c
+dioask.o: dioask.c
+dioconv.o: dioconv.c
+diodel.o: diodel.c
+diodest.o: diodest.c
+diodisto.o: diodisto.c
+diodset.o: diodset.c
+diogetic.o: diogetic.c
+dioload.o: dioload.c
+diomask.o: diomask.c
+diomdel.o: diomdel.c
+diompar.o: diompar.c
+dionoise.o: dionoise.c
+dioparam.o: dioparam.c
+diopzld.o: diopzld.c
+diosacl.o: diosacl.c
+diosetup.o: diosetup.c
+diosload.o: diosload.c
+diosprt.o: diosprt.c
+diosset.o: diosset.c
+diosupd.o: diosupd.c
+diotemp.o: diotemp.c
+diotrunc.o: diotrunc.c

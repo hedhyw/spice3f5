@@ -1,0 +1,44 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= proc2mod.c bspice.c help.c makeidx.c nutmeg.c sconvert.c \
+	spice.c bdevs.c cdevs.c
+
+COBJS		=
+
+NUTMEG_TARGET	= nutmeg
+
+BIN_TARGETS      = $(UNIX_TARGETS) $(ALL_TARGETS)
+
+ALL_TARGETS	= $(NUTMEG_TARGET) $(MISC_TARGETS)
+
+MISC_TARGETS	= sconvert proc2mod help makeidx multidec
+
+UNIX_TARGETS	= $(SPICE_TARGET)
+
+MSC_TARGETS	= $(BSPICE_TARGET) $(CSPICE_TARGET)
+MSC_SYNTH	= bconf.c cconf.c nnconf.c $(TUNEFILE).c
+
+INSTALL_TARGETS	= $(SPICE_EXEC_DIR)/spice3 $(SPICE_EXEC_DIR)/nutmeg	      \
+		  $(SPICE_EXEC_DIR)/sconvert $(SPICE_EXEC_DIR)/help	      \
+		  $(SPICE_EXEC_DIR)/proc2mod \
+		  $(SPICE_EXEC_DIR)/multidec
+
+SPECIAL_CLEAN	= bconf.c cconf.c nconf.c tune*.c conf.c
+
+INCLUDE		= -I$(INCLUDE_DIR) -I$(DEV_TOP)
+
+proc2mod.o: proc2mod.c
+help.o: help.c
+makeidx.o: makeidx.c
+nutmeg.o: main.c
+sconvert.o: sconvert.c
+spice.o: main.c
+bdevs.o: bdevs.c
+cdevs.o: cdevs.c
+bconf.o: bconf.c
+cconf.o: cconf.c
+nconf.o: nconf.c
+conf.o: conf.c
+$(TUNEFILE).o: $(TUNEFILE).c

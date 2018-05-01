@@ -1,0 +1,21 @@
+cl /I..\..\..\include /c b1.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1acld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1ask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1cvtest.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1del.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1dest.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1disto.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1dset.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1eval.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1getic.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1ld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1mask.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1mdel.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1moscap.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1mpar.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1par.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1pzld.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1set.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1temp.c >> ..\..\..\msc.out
+cl /I..\..\..\include /c b1trunc.c >> ..\..\..\msc.out
+lib ..\..\dev3.lib @response.lib >> ..\..\..\msc.out

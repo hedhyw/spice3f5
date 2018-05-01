@@ -1,0 +1,31 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= sw.c swacload.c swask.c swdelete.c swdest.c swload.c \
+		  swmask.c swmdel.c swmparam.c swnoise.c swparam.c swpzload.c \
+		  swsetup.c 
+
+COBJS		= sw.o swacload.o swask.o swdelete.o swdest.o swload.o \
+		  swmask.o swmdel.o swmparam.o swnoise.o swparam.o swpzload.o \
+		  swsetup.o 
+
+MODULE		= sw
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3
+
+sw.o: sw.c
+swacload.o: swacload.c
+swask.o: swask.c
+swdelete.o: swdelete.c
+swdest.o: swdest.c
+swload.o: swload.c
+swmask.o: swmask.c
+swmdel.o: swmdel.c
+swmparam.o: swmparam.c
+swnoise.o: swnoise.c
+swparam.o: swparam.c
+swpzload.o: swpzload.c
+swsetup.o: swsetup.c

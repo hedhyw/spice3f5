@@ -1,0 +1,27 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= niaciter.c nicomcof.c niconv.c nidest.c niditer.c niinit.c \
+		  niinteg.c niiter.c niniter.c nipred.c nipzmeth.c nireinit.c \
+		  nisenre.c 
+
+COBJS		= niaciter.o nicomcof.o niconv.o nidest.o niditer.o niinit.o \
+		  niinteg.o niiter.o niniter.o nipred.o nipzmeth.o nireinit.o \
+		  nisenre.o 
+
+LIBRARY		= ni
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+niaciter.o: niaciter.c
+nicomcof.o: nicomcof.c
+niconv.o: niconv.c
+nidest.o: nidest.c
+niditer.o: niditer.c
+niinit.o: niinit.c
+niinteg.o: niinteg.c
+niiter.o: niiter.c
+niniter.o: niniter.c
+nipred.o: nipred.c
+nipzmeth.o: nipzmeth.c
+nireinit.o: nireinit.c
+nisenre.o: nisenre.c

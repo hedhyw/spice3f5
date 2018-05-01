@@ -1,0 +1,345 @@
+###########
+# Copyright 1990 Regents of the University of California.  All rights reserved.
+###########
+
+BUILD_DIR =								      \
+		if test -r "$${NEW_DIR}/depend"; then			      \
+			DFILE="$${NEW_DIR}depend";			      \
+		else							      \
+			DFILE=;						      \
+		fi;							      \
+		if test -r "$${NEW_DIR}/makeops"; then			      \
+			OFILE="$${NEW_DIR}/makeops";			      \
+		else							      \
+			OFILE=;						      \
+		fi;							      \
+		echo Making \"$(PURPOSE)\" in "$${NEW_NAME}";		      \
+		cat $(FILES_L) $${NEW_DIR}/makedefs			      \
+			$(FILES_T) $${OFILE} $${DFILE}			      \
+		| ${MAKE} -f - -k recursive				      \
+			PARENT="$${NEW_PARENT}" NAME="$${NEW_NAME}"	      \
+			$${SET_COMP} $${COMP_TO_CWD} $${CWD_TO_COMP}	      \
+			VPATH="$${NEW_VPATH}" SUBDIR="$${SUBDIR}"	      \
+			DIR="$${DIR}"
+
+.c.o:
+	$(CC) $(CFLAGS) $(INCLUDE) -c $(SRC_DIR)/$*.c $(OUTPUT) $(ASM_HACK)
+
+bootstrap: always
+	-@if test "x$(DIR)" = "xsrc/"; then				      \
+		if test ! -d "$(OBJ_DIR)"; then				      \
+			$(MKDIR) -p "$(OBJ_DIR)";			      \
+		fi;							      \
+		cd $(OBJ_DIR);						      \
+		NEW_DIR="$(SRC_DIR)";					      \
+	else								      \
+		NEW_DIR=".";						      \
+	fi;								      \
+	NEW_NAME="`basename $(CWD)`";					      \
+	NEW_PARENT="";							      \
+	NEW_VPATH="$(VPATH)";						      \
+	$(BUILD_DIR);
+
+recurse: $(PRE_PURPOSE) $(UPDATE_TARGET)
+	-@SUBDIRS="$(MAKE_SUBDIRS)";					      \
+	for xx in $${SUBDIRS}; do					      \
+		if test -z "$(DIR)"; then				      \
+			DIR=$${xx}/;					      \
+			SUBDIR=;					      \
+			if test "x$${DIR}" = "xsrc/"; then		      \
+				if test ! -d "$(OBJ_TOP)"; then		      \
+					$(MKDIR) -p "$(OBJ_TOP)";	      \
+				fi;					      \
+				cd $(OBJ_TOP);				      \
+			else						      \
+				if test ! -d "$${xx}"; then		      \
+					$(MKDIR) -p "$${xx}";		      \
+				fi;					      \
+				cd $${xx};				      \
+			fi;						      \
+		else							      \
+			DIR=$(DIR);					      \
+			SUBDIR="$(SUBDIR)$${xx}/";			      \
+			if test ! -d "$${xx}"; then			      \
+				$(MKDIR) -p "$${xx}";			      \
+			fi;						      \
+			cd $${xx};					      \
+		fi;							      \
+		NEW_DIR="$(CURR_DIR)/$${xx}";				      \
+		NEW_VPATH="$(VPATH)/$${xx}";				      \
+		NEW_NAME="$${xx}";					      \
+		NEW_PARENT="$(PARENT)$(NAME)/";				      \
+		$(BUILD_DIR);						      \
+		cd ..;							      \
+	done
+
+recursive: $(PRE_PURPOSE) recurse $(PURPOSE)
+
+pre_$(PURPOSE):
+
+#
+# Generate VMS scripts
+#
+
+VMS: makedefs $(SKELETON_DIR)/make_std.bd
+	-@echo $(CFILES) | xfmt -1 | \
+		sed -e 's/^/$$ cc \/nowarn /' -e 's/\.c$$//' > MAKE.COM
+	-@echo "$$ library /create/object [-]$(NAME).olb -" >> MAKE.COM
+	-@echo $(CFILES) | xfmt -1 | sed -e 's/\.c$$/.obj, -/' \
+		-e '$$s/, -$$//' >> MAKE.COM
+
+#
+# Generate MicroSoft-C 5.1 scripts
+#
+
+MSC: $(MSC_EXEC_FILE) $(MSC_RESPONSE_FILE)
+
+$(MSC_EXEC_FILE): makedefs $(SKELETON_DIR)/make_std.bd
+	@echo "Creating $(MSC_EXEC_FILE)";				      \
+	rm -f $(MSC_EXEC_FILE);						      \
+	{								      \
+	if test -n "$(SPECIAL_MSC)"; then				      \
+		echo "$(SPECIAL_MSC)";					      \
+	fi;								      \
+	if test -n "$(LIB_TARGET)"; then				      \
+		echo "del ..\$(LIBRARY)$(LIBRARY_NRL)$(NUMBER).lib";	      \
+		if test ! -z "$(NUMBER)"; then				      \
+			echo "del ..\$(NAME)2.lib";			      \
+			echo "del ..\$(NAME)3.lib";			      \
+		fi;							      \
+		cfiles="$(CFILES)";					      \
+		for file in $${cfiles}; do				      \
+		    if test -n "$(INC_SPECIAL)"; then			      \
+			    echo "$(CC) /I..\..\include /I..\dev /c $${file}" \
+				    ">> ..\..\$(MSC_ERRS)";		      \
+		    else						      \
+			    echo "$(CC) /I..\..\include /c $${file}"	      \
+				    ">> ..\..\$(MSC_ERRS)";		      \
+		    fi;							      \
+		done;							      \
+		echo "lib ..\$(LIBRARY)$(LIBRARY_NRL)$(NUMBER).lib"	      \
+			"@$(MSC_RESPONSE_FILE)" ">> ..\..\$(MSC_ERRS)";	      \
+	fi;								      \
+	if test -n "$(MODULE_TARGET)"; then				      \
+		cfiles="$(CFILES)";					      \
+		for file in $${cfiles}; do				      \
+		    echo "$(CC) /I..\..\..\include /c" $${file}		      \
+			    ">> ..\..\..\$(MSC_ERRS)";			      \
+		done;							      \
+		echo "lib ..\..\$(LIBRARY)$(NUMBER).lib"		      \
+			"@$(MSC_RESPONSE_FILE)" ">> ..\..\..\$(MSC_ERRS)";    \
+	fi;								      \
+	subdirs="$(MAKE_SUBDIRS)";					      \
+	for xx in $${subdirs}; do					      \
+		echo cd "$${xx}";					      \
+		echo command /c msc51.bat;				      \
+		echo cd ..;						      \
+	done;								      \
+	bin="$(MSC_SYNTH)";						      \
+	for xx in $${bin}; do						      \
+		echo "cl /I..\include\ /I..\lib\dev /c $${xx}"		      \
+			    ">> ..\$(MSC_ERRS)";			      \
+	done;								      \
+	if test -n "$(MSC_TARGETS)"; then				      \
+		echo "del cspice.obj";					      \
+		echo "cl /I..\include\ /c /DSIMULATOR /DSPICE2 /DBATCH main.c" \
+			">> ..\$(MSC_ERRS)";				      \
+		echo "rename main.obj cspice.obj";			      \
+		echo "link @cspice.lnk" ">> ..\$(MSC_ERRS)";		      \
+		echo "del bspice.obj";					      \
+		echo "cl /I..\include\ /c /DSIMULATOR /DBATCH main.c"	      \
+			">> ..\$(MSC_ERRS)";				      \
+		echo "rename main.obj bspice.obj";			      \
+		echo "link @bspice.lnk" ">> ..\$(MSC_ERRS)";		      \
+		echo "del nutmeg.obj";					      \
+		echo "cl /I..\include\ /c main.c >> ..\$(MSC_ERRS)";	      \
+		echo "rename main.obj nutmeg.obj";			      \
+		echo "link @nutmeg.lnk" ">> ..\$(MSC_ERRS)";		      \
+	fi;								      \
+	bin="$(MISC_TARGETS)";						      \
+	for xx in $${bin}; do						      \
+		echo "cl /I..\include\ /c $${xx}.c >> ..\$(MSC_ERRS)";	      \
+		echo "link @$${xx}.lnk" ">> ..\$(MSC_ERRS)";		      \
+	done;								      \
+	} > "$(MSC_EXEC_FILE)";						      \
+	chmod -w "$(MSC_EXEC_FILE)";					      \
+	exit 0
+
+
+$(MSC_RESPONSE_FILE): makedefs $(SKELETON_DIR)/make_std.bd
+	@rm -f "$(MSC_RESPONSE_FILE)";					      \
+	if test -n "$(LIB_TARGET)$(MODULE_TARGET)"; then		      \
+		echo "Creating $(MSC_RESPONSE_FILE)";			      \
+		echo "$(CFILES)" | xfmt -1 |				      \
+			sed	-e 's/\.c$$//'				      \
+				-e 's/\(........\).*/\1/'		      \
+				-e 's/^/+/' -e 's/$$/.obj\&/'		      \
+				-e '$$s/&$$/;/'				      \
+		> $(MSC_RESPONSE_FILE);					      \
+		chmod -w "$(MSC_RESPONSE_FILE)";			      \
+	fi;								      \
+	exit 0
+
+$(OBJLIB_DIR)/${LIBRARY}.a: $(PARALLEL) ${COBJS}
+	@if test -r "$@"; then						      \
+		echo $(AR) cr$(ARLOCAL) $(LIB_TARGET) $?;		      \
+		$(AR) cr$(ARLOCAL) $(LIB_TARGET) $? > /dev/null;	      \
+	else								      \
+		echo $(AR) c$(ARQ)$(ARLOCAL) $(LIB_TARGET) $(COBJS);	      \
+		$(AR) c$(ARQ)$(ARLOCAL) $(LIB_TARGET) $(COBJS) > /dev/null;   \
+	fi;								      \
+	exit 0
+	$(RANLIB) $(LIB_TARGET) > /dev/null
+	@if test "$(CLEANASYOUGO)" = "true"; then			      \
+		echo rm -f $(COBJS);					      \
+		rm -f $(COBJS);						      \
+	fi;								      \
+	exit 0
+
+$(OBJLIB_DIR)/${LIBRARY_NRL}.a:  $(SCRAP_DIR)/.synth_$(MODULE)
+
+$(OBJLIB_DIR)/$(MODULE):  $(SCRAP_DIR)/.synth_$(MODULE)
+
+$(SCRAP_DIR)/.synth_ranlib: $(OBJLIB_DIR)/$(LIBRARY_NRL).a
+$(SCRAP_DIR)/.synth_ranlib: $(SCRAP_DIR)/.synth_$(MODULE)
+	$(RANLIB) $(LIB_TARGET) > /dev/null
+	@touch $(SCRAP_DIR)/.synth_ranlib
+
+$(SCRAP_DIR)/.synth_$(MODULE): $(PARALLEL) $(COBJS)
+	@if test -r $(SCRAP_DIR)/.synth_$(MODULE); then			      \
+		echo $(AR) cr$(ARLOCAL) $(LIBRARY_HACK) $?;		      \
+			$(AR) cr$(ARLOCAL) $(LIBRARY_HACK) $?; > /dev/null;   \
+	else								      \
+		echo $(AR) c$(ARQ)$(ARLOCAL) $(LIBRARY_HACK) $?;	      \
+		$(AR) c$(ARQ)$(ARLOCAL) $(LIBRARY_HACK) $?; > /dev/null;      \
+	fi;
+	@if test "$(CLEANASYOUGO)" = "true"; then			      \
+		rm -f $(COBJS);						      \
+	fi;								      \
+	touch $(SCRAP_DIR)/.synth_$(MODULE);				      \
+	exit 0
+
+clean:
+	-rm -f *.o *.a .synth_* make.out* *.out *.raw *.sum tags TAGS .??*    \
+	 depend $(BIN_TARGETS) $(LIB_TARGET)
+	@if test ! -z "$(UPDATE_TARGET)"; then				      \
+		echo rm -rf $(SCRAP_DIR);				      \
+		rm -rf $(SCRAP_DIR);					      \
+	fi;								      \
+	exit 0
+
+really_clean: clean
+	-rm -f *.BAT *.bat *.LIB *.lib *.COM *.com $(SPECIAL_CLEAN)
+
+echo:
+	@echo Nothing to echo
+
+testing:
+	@echo Testing in `pwd`
+
+pre_all:
+
+all: $(PRE_PURPOSE) $(ALL_PURPOSE)
+	@echo '	' Done with "$(PARENT)$(NAME)";
+
+default_all: ${PARALLEL} $(UPDATE_TARGET) $(LIB_TARGET) $(BIN_TARGETS)
+default_all: ${PARALLEL} $(MODULE_TARGET) $(RANLIB_TARGET)
+
+$(SCRAP_DIR):
+	-$(MKDIR) -p $(SCRAP_DIR)
+
+check_synth:
+	@if test ! -r $(OBJLIB_DIR)/$(LIBRARY_NRL).a; then		      \
+		rm -f $(SCRAP_DIR)/.synth*;				      \
+	fi;								      \
+	exit 0
+
+depend:
+	$(UTIL_DIR)/dependit.sh "${DEPEND_PROG}" "${INCLUDE}" ${CFILES}	> depend
+
+xdepend:
+	-@rm -rf depend
+
+pre_install: $(INSTALL_SPECIAL)
+
+directories:
+	-@for dir in $(ALL_INSTALL_DIRS); do				      \
+		if test ! -d "$${dir}"; then				      \
+			echo "Creating \"$${dir}\"";			      \
+			$(MKDIR) -p $${dir};				      \
+		fi;							      \
+	done;								      \
+	exit 0
+
+install: $(INSTALL_TARGETS) all
+
+uninstall:
+	rm $(INSTALL_TARGETS)
+
+tags:
+	-ln -s $(CTAGS_FILE) tags;\
+	ctags -a -t $(TOP)/$(TOP_TO_CWD)/*.[ch]
+
+TAGS:
+	-ln -s $(ETAGS_FILE) TAGS;\
+	etags -a -t $(TOP)/$(TOP_TO_CWD)/*.[ch]
+
+update: $(SCRAP_DIR)
+	@if test -z "$(BLOCK_UPDATE)"; then				      \
+		echo CC_OPT $(CC_OPT)			 > $(CONF_CC).tmp;    \
+		echo INCX $(INCX)			 > $(CONF_XCC).tmp;   \
+		echo LDFLAGS $(LDFLAGS)			 > $(CONF_LD).tmp;    \
+		echo LIBX $(LIBX)			>> $(CONF_LD).tmp;    \
+		echo SPICE_HOST $(SPICE_HOST)		 > $(CONF_SPICE).tmp; \
+		echo SPICED_LOG $(SPICED_LOG)		>> $(CONF_SPICE).tmp; \
+		echo DEFAULT_EDITOR $(DEFAULT_EDITOR)	>> $(CONF_SPICE).tmp; \
+		echo ASCII_RAWFILE $(ASCII_RAWFILE)	>> $(CONF_SPICE).tmp; \
+		echo VERSION_REVISION $(VERSION_REVISION)>> $(CONF_SPICE).tmp; \
+		echo NOTICE $(NOTICE)			>> $(CONF_SPICE).tmp; \
+		echo DEVICES $(DEVICES)			>> $(CONF_SPICE).tmp; \
+		echo ANALYSES $(ANALYSES)		>> $(CONF_SPICE).tmp; \
+		echo S_SPICE_EXEC_DIR $(SPICE_EXEC_DIR)	>> $(CONF_SPICE).tmp; \
+		echo S_SPICE_LIB_DIR $(SPICE_LIB_DIR)	>> $(CONF_SPICE).tmp; \
+		echo BUG_ADDR $(BUG_ADDR)		>> $(CONF_SPICE).tmp; \
+		echo OPT_CHAR $(OPT_CHAR)		>> $(CONF_SPICE).tmp; \
+		for file in "$(CONF_SPICE)" "$(CONF_CC)"		      \
+				"$(CONF_XCC)" "$(CONF_LD)"; do		      \
+			if cmp -s $${file}.tmp $${file}; then		      \
+				rm $${file}.tmp;			      \
+			else						      \
+				echo "UPDATING $${file}";		      \
+				mv -f $${file}.tmp $${file};		      \
+			fi						      \
+		done							      \
+	fi;								      \
+	exit 0
+
+versionfile:
+	{ echo '#define DEVICES_USED "$(VDEVS)"';			      \
+	echo '#define ANALYSES_USED "$(VANS)"';				      \
+	devices="$(VDEVS)";						      \
+	for xx in $${devices}; do					      \
+		echo "#define DEV_$${xx}";				      \
+	done;								      \
+	ans="$(VANS)";							      \
+	for xx in $${ans}; do						      \
+		echo "#define AN_$${xx}";				      \
+	done;								      \
+	cat config.c; } > "$(VERSIONFILE)"
+
+util/delall.bat: really_clean
+	util/mkdelall.sh $(VERSION)
+
+distrib: really_clean $(MANIFEST) $(SCRIPTS)
+
+MSC_SCRIPTS: really_clean
+	$(UTIL_DIR)/build msdos SCRAP_DIR=$(SCRAP_DIR)
+
+manifest: really_clean $(SCRIPTS)
+	rm -rf $(SCRAP_DIR)
+	touch manifest
+	find * -print | sort > manifest
+	chmod -w manifest
+
+always:
+	@true

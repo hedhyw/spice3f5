@@ -1,0 +1,13 @@
+# For bspice (batch spice) and cspice (ascii-plot only)
+
+B_DEVICES	= asrc bjt cap cccs ccvs csw dio ind isrc		      \
+		  mos1 mos2 mos6 res sw tra vccs vcvs vsrc
+
+C_DEVICES	= asrc bjt cap cccs ccvs dio ind isrc	      		      \
+		  mos1 mos2 mos6 res tra vccs vcvs vsrc
+
+B_ANALYSES	= op dc tf ac tran pz
+C_ANALYSES	= op dc tf ac tran pz
+
+BSPICE_EXEC	= bspice
+CSPICE_EXEC	= cspice

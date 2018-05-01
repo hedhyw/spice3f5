@@ -1,0 +1,4 @@
+# Definitions for the UC Berkeley CAD group machines
+TOP2		= /projects/spice3
+X_DIR		= /projects/X11/X11/$(SYSTEM)
+BUG_ADDR 	= spice-bugs@Berkeley.EDU
