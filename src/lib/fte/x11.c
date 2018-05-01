@@ -22,19 +22,23 @@ Author: 1988 Jeffrey M. Hsu
 #  include "cpdefs.h"
 #  include "ftedefs.h"
 
-#  include <IntrinsicP.h>
-#  include <Xatom.h>
-#  include <StringDefs.h>
-#  include <Xutil.h>
-#  include <cursorfont.h>
-#  include <Box.h>
-#  include <Command.h>
-#  include <Form.h>
-#  include <Shell.h>
+#  include <X11/IntrinsicP.h>
+#  include <X11/Xatom.h>
+#  include <X11/StringDefs.h>
+#  include <X11/Xutil.h>
+#  include <X11/cursorfont.h>
+#  include <X11/Xaw/Box.h>
+#  include <X11/Xaw/Command.h>
+#  include <X11/Xaw/Form.h>
+#  include <X11/Shell.h>
 
 #  ifdef DEBUG
 extern int _Xdebug;
 #  endif
+
+static void X_ScreentoData();
+static void initcolors();
+static void initlinestyles();
 
 /* forward declarations */
 extern void handlebuttonev(), handlekeypressed(), killwin(), hardcopy(),
@@ -157,7 +161,7 @@ XErrorEvent *errorev;
 
 /* Recover from bad NewViewPort call. */
 #define RECOVERNEWVIEWPORT()    free((char *) graph);\
-	            graph = (GRAPH *) NULL; 
+	            graph = (GRAPH *) NULL;
 	    /* need to do this or else DestroyGraph will free it again */
 
 /* NewViewport is responsible for filling in graph->viewport */
@@ -302,7 +306,7 @@ GRAPH *graph;
 	return (0);
 }
 
-static
+static void
 initlinestyles()
 {
 
@@ -318,7 +322,7 @@ initlinestyles()
 	return;
 }
 
-static
+static void
 initcolors(graph)
     GRAPH *graph;
 {
@@ -995,7 +999,7 @@ out:
 
 }
 
-static X_ScreentoData(graph, x, y, fx, fy)
+static void X_ScreentoData(graph, x, y, fx, fy)
 GRAPH *graph;
 int x,y;
 double *fx, *fy;

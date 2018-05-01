@@ -1,0 +1,2 @@
+/usr/bin/ar qc liburc.a  CMakeFiles/urc.dir/urc.c.o CMakeFiles/urc.dir/urcask.c.o CMakeFiles/urc.dir/urcdel.c.o CMakeFiles/urc.dir/urcdest.c.o CMakeFiles/urc.dir/urcmask.c.o CMakeFiles/urc.dir/urcmdel.c.o CMakeFiles/urc.dir/urcmpar.c.o CMakeFiles/urc.dir/urcparam.c.o CMakeFiles/urc.dir/urcsetup.c.o
+/usr/bin/ranlib liburc.a

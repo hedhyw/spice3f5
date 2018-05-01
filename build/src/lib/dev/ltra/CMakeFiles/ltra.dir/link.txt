@@ -1,0 +1,2 @@
+/usr/bin/ar qc libltra.a  CMakeFiles/ltra.dir/ltra.c.o CMakeFiles/ltra.dir/ltraacct.c.o CMakeFiles/ltra.dir/ltraacld.c.o CMakeFiles/ltra.dir/ltraask.c.o CMakeFiles/ltra.dir/ltradel.c.o CMakeFiles/ltra.dir/ltradest.c.o CMakeFiles/ltra.dir/ltraload.c.o CMakeFiles/ltra.dir/ltramdel.c.o CMakeFiles/ltra.dir/ltramisc.c.o CMakeFiles/ltra.dir/ltrampar.c.o CMakeFiles/ltra.dir/ltrapar.c.o CMakeFiles/ltra.dir/ltraset.c.o CMakeFiles/ltra.dir/ltratemp.c.o CMakeFiles/ltra.dir/ltratrun.c.o CMakeFiles/ltra.dir/ltramask.c.o
+/usr/bin/ranlib libltra.a

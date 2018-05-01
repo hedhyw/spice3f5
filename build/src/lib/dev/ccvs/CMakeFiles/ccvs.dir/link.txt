@@ -1,0 +1,2 @@
+/usr/bin/ar qc libccvs.a  CMakeFiles/ccvs.dir/ccvs.c.o CMakeFiles/ccvs.dir/ccvsask.c.o CMakeFiles/ccvs.dir/ccvsdel.c.o CMakeFiles/ccvs.dir/ccvsdest.c.o CMakeFiles/ccvs.dir/ccvsfbr.c.o CMakeFiles/ccvs.dir/ccvsload.c.o CMakeFiles/ccvs.dir/ccvsmdel.c.o CMakeFiles/ccvs.dir/ccvspar.c.o CMakeFiles/ccvs.dir/ccvspzld.c.o CMakeFiles/ccvs.dir/ccvssacl.c.o CMakeFiles/ccvs.dir/ccvsset.c.o CMakeFiles/ccvs.dir/ccvssld.c.o CMakeFiles/ccvs.dir/ccvssprt.c.o CMakeFiles/ccvs.dir/ccvssset.c.o
+/usr/bin/ranlib libccvs.a

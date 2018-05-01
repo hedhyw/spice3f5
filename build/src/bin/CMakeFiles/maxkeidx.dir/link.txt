@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/maxkeidx.dir/makeidx.c.o  -o maxkeidx  -L/home/hedhyw/Development/Github/spice3f5/src/bin/../lib -Wl,-rpath,/home/hedhyw/Development/Github/spice3f5/src/bin/../lib ../lib/misc/libmisc.a ../lib/hlp/libhlp.a 

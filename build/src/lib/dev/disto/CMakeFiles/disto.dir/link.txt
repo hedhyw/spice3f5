@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdisto.a  CMakeFiles/disto.dir/atander.c.o CMakeFiles/disto.dir/cosderiv.c.o CMakeFiles/disto.dir/cubeder.c.o CMakeFiles/disto.dir/divderiv.c.o CMakeFiles/disto.dir/equalder.c.o CMakeFiles/disto.dir/expderiv.c.o CMakeFiles/disto.dir/invderiv.c.o CMakeFiles/disto.dir/multder.c.o CMakeFiles/disto.dir/plusder.c.o CMakeFiles/disto.dir/powderiv.c.o CMakeFiles/disto.dir/sqrtder.c.o CMakeFiles/disto.dir/tanderiv.c.o CMakeFiles/disto.dir/timesder.c.o
+/usr/bin/ranlib libdisto.a

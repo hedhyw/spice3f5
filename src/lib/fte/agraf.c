@@ -83,7 +83,7 @@ ft_agraf(xlims, ylims, xscale, plot, vecs, xdel, ydel, xlog, ylog, nointerp)
     yrange[1] = ylims[1];
 
     if (maxx < 2) {
-        fprintf(cp_err, 
+        fprintf(cp_err,
             "Error: asciiplot can't handle scale with length < 2\n");
         return;
     }
@@ -102,7 +102,7 @@ ft_agraf(xlims, ylims, xscale, plot, vecs, xdel, ydel, xlog, ylog, nointerp)
     line2 = tmalloc(maxy + margin + FUDGE + 1);
     if (!novalue)
         values = (double *) tmalloc(maxx * sizeof (double));
-    
+
     /* Clear the field, put the lines in the right places, and create
      * the headers.
      */
@@ -116,7 +116,7 @@ ft_agraf(xlims, ylims, xscale, plot, vecs, xdel, ydel, xlog, ylog, nointerp)
 
     /* The following is similar to the stuff in grid.c */
     if ((xrange[0] > xrange[1]) || (yrange[0] > yrange[1])) {
-        fprintf(cp_err, 
+        fprintf(cp_err,
     "ft_agraf: Internal Error: bad limits %lg, %lg, %lg, %lg\n",
                 xrange[0], xrange[1], yrange[0], yrange[1]);
         return;
@@ -126,7 +126,7 @@ ft_agraf(xlims, ylims, xscale, plot, vecs, xdel, ydel, xlog, ylog, nointerp)
     if (ylims[1] == 0.0) {
         mag = (int) floor(mylog10(- ylims[0]));
         tenpowmag = pow(10.0, (double) mag);
-    } else if (ylims[0] == 0.0) { 
+    } else if (ylims[0] == 0.0) {
         mag = (int) floor(mylog10(ylims[1]));
         tenpowmag = pow(10.0, (double) mag);
     } else {
@@ -244,7 +244,7 @@ ft_agraf(xlims, ylims, xscale, plot, vecs, xdel, ydel, xlog, ylog, nointerp)
                 field[omaxy * i + ypt] = MCHAR;
         }
     }
-    
+
     out_init();
     for (i = 0; i < omaxy + margin; i++)
         out_send("-");
@@ -320,7 +320,7 @@ ft_agraf(xlims, ylims, xscale, plot, vecs, xdel, ydel, xlog, ylog, nointerp)
         out_send(&field[i * omaxy]);
         field[(i + 1) * omaxy] = cb;
         out_send("\n");
-        if (((curline++ % height) == 0) && (i < maxx - 1) && 
+        if (((curline++ % height) == 0) && (i < maxx - 1) &&
                 !nobreakp) {
             out_printf("%s\n%s\n\014\n%s\n%s\n", line1, line2,
                 line2, line1);

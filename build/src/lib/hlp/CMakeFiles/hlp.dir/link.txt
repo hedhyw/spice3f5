@@ -1,0 +1,2 @@
+/usr/bin/ar qc libhlp.a  CMakeFiles/hlp.dir/help.c.o CMakeFiles/hlp.dir/provide.c.o CMakeFiles/hlp.dir/readhelp.c.o CMakeFiles/hlp.dir/textdisp.c.o CMakeFiles/hlp.dir/x11disp.c.o CMakeFiles/hlp.dir/xdisplay.c.o
+/usr/bin/ranlib libhlp.a

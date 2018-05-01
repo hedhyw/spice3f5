@@ -17,12 +17,13 @@ Sydney University mods Copyright(c) 1989 Anthony E. Parker, David J. Skellern
 #include "devdefs.h"
 #include "suffix.h"
 
+
 int
 JFETload(inModel,ckt)
     GENmodel *inModel;
     CKTcircuit *ckt;
-        /* actually load the current resistance value into the 
-         * sparse matrix previously provided 
+        /* actually load the current resistance value into the
+         * sparse matrix previously provided
          */
 {
     register JFETmodel *model = (JFETmodel*)inModel;
@@ -86,7 +87,7 @@ JFETload(inModel,ckt)
                 here=here->JFETnextInstance) {
 
             /*
-             *  dc model parameters 
+             *  dc model parameters
              */
             beta = model->JFETbeta * here->JFETarea;
             gdpr=model->JFETdrainConduct*here->JFETarea;
@@ -120,17 +121,17 @@ JFETload(inModel,ckt)
 #ifndef PREDICTOR
                 if(ckt->CKTmode & MODEINITPRED) {
                     xfact=ckt->CKTdelta/ckt->CKTdeltaOld[1];
-                    *(ckt->CKTstate0 + here->JFETvgs)= 
+                    *(ckt->CKTstate0 + here->JFETvgs)=
                             *(ckt->CKTstate1 + here->JFETvgs);
                     vgs=(1+xfact)* *(ckt->CKTstate1 + here->JFETvgs)-xfact*
                             *(ckt->CKTstate2 + here->JFETvgs);
-                    *(ckt->CKTstate0 + here->JFETvgd)= 
+                    *(ckt->CKTstate0 + here->JFETvgd)=
                             *(ckt->CKTstate1 + here->JFETvgd);
                     vgd=(1+xfact)* *(ckt->CKTstate1 + here->JFETvgd)-xfact*
                             *(ckt->CKTstate2 + here->JFETvgd);
-                    *(ckt->CKTstate0 + here->JFETcg)= 
+                    *(ckt->CKTstate0 + here->JFETcg)=
                             *(ckt->CKTstate1 + here->JFETcg);
-                    *(ckt->CKTstate0 + here->JFETcd)= 
+                    *(ckt->CKTstate0 + here->JFETcd)=
                             *(ckt->CKTstate1 + here->JFETcd);
                     *(ckt->CKTstate0 + here->JFETcgd)=
                             *(ckt->CKTstate1 + here->JFETcgd);
@@ -145,11 +146,11 @@ JFETload(inModel,ckt)
                 } else {
 #endif /*PREDICTOR*/
                     /*
-                     *  compute new nonlinear branch voltages 
+                     *  compute new nonlinear branch voltages
                      */
                     vgs=model->JFETtype*
                         (*(ckt->CKTrhsOld+ here->JFETgateNode)-
-                        *(ckt->CKTrhsOld+ 
+                        *(ckt->CKTrhsOld+
                         here->JFETsourcePrimeNode));
                     vgd=model->JFETtype*
                         (*(ckt->CKTrhsOld+here->JFETgateNode)-
@@ -161,7 +162,7 @@ JFETload(inModel,ckt)
                 delvgs=vgs- *(ckt->CKTstate0 + here->JFETvgs);
                 delvgd=vgd- *(ckt->CKTstate0 + here->JFETvgd);
                 delvds=delvgs-delvgd;
-                cghat= *(ckt->CKTstate0 + here->JFETcg)+ 
+                cghat= *(ckt->CKTstate0 + here->JFETcg)+
                         *(ckt->CKTstate0 + here->JFETggd)*delvgd+
                         *(ckt->CKTstate0 + here->JFETggs)*delvgs;
                 cdhat= *(ckt->CKTstate0 + here->JFETcd)+
@@ -169,7 +170,7 @@ JFETload(inModel,ckt)
                         *(ckt->CKTstate0 + here->JFETgds)*delvds-
                         *(ckt->CKTstate0 + here->JFETggd)*delvgd;
                 /*
-                 *   bypass if solution has not changed 
+                 *   bypass if solution has not changed
                  */
                 if((ckt->CKTbypass) &&
                     (!(ckt->CKTmode & MODEINITPRED)) &&
@@ -179,7 +180,7 @@ JFETload(inModel,ckt)
         if ( (FABS(delvgd) < ckt->CKTreltol*MAX(FABS(vgd),
                         FABS(*(ckt->CKTstate0 + here->JFETvgd)))+
                         ckt->CKTvoltTol))
-        if ( (FABS(cghat-*(ckt->CKTstate0 + here->JFETcg)) 
+        if ( (FABS(cghat-*(ckt->CKTstate0 + here->JFETcg))
                         < ckt->CKTreltol*MAX(FABS(cghat),
                         FABS(*(ckt->CKTstate0 + here->JFETcg)))+
                         ckt->CKTabstol) ) if ( /* hack - expression too big */
@@ -202,7 +203,7 @@ JFETload(inModel,ckt)
                     goto load;
                 }
                 /*
-                 *  limit nonlinear branch voltages 
+                 *  limit nonlinear branch voltages
                  */
                 ichk1=1;
                 vgs = DEVpnjlim(vgs,*(ckt->CKTstate0 + here->JFETvgs),
@@ -218,7 +219,7 @@ JFETload(inModel,ckt)
                         model->JFETthreshold);
             }
             /*
-             *   determine dc current and derivatives 
+             *   determine dc current and derivatives
              */
             vds=vgs-vgd;
             if (vgs <= -5*here->JFETtemp*CONSTKoverQ) {
@@ -318,12 +319,12 @@ JFETload(inModel,ckt)
 	    /* The original section is now commented out */
 	    /* end Sydney University mod */
             /*
-             *   compute drain current and derivitives for normal mode 
+             *   compute drain current and derivitives for normal mode
              */
             if (vds >= 0) {
                 vgst=vgs-model->JFETthreshold;
                 /*
-                 *   normal mode, cutoff region 
+                 *   normal mode, cutoff region
                  */
                 if (vgst <= 0) {
                     cdrain=0;
@@ -334,14 +335,14 @@ JFETload(inModel,ckt)
                     twob=betap+betap;
                     if (vgst <= vds) {
                         /*
-                         *   normal mode, saturation region 
+                         *   normal mode, saturation region
                          */
                         cdrain=betap*vgst*vgst;
                         gm=twob*vgst;
                         gds=model->JFETlModulation*beta*vgst*vgst;
                     } else {
                         /*
-                         *   normal mode, linear region 
+                         *   normal mode, linear region
                          */
                         cdrain=betap*vds*(vgst+vgst-vds);
                         gm=twob*vds;
@@ -351,19 +352,19 @@ JFETload(inModel,ckt)
                 }
             } else {
                 /*
-                 *   compute drain current and derivitives for inverse mode 
+                 *   compute drain current and derivitives for inverse mode
                  */
                 vgdt=vgd-model->JFETthreshold;
                 if (vgdt <= 0) {
                     /*
-                     *   inverse mode, cutoff region 
+                     *   inverse mode, cutoff region
                      */
                     cdrain=0;
                     gm=0;
                     gds=0;
                 } else {
                     /*
-                     *   inverse mode, saturation region 
+                     *   inverse mode, saturation region
                      */
                     betap=beta*(1-model->JFETlModulation*vds);
                     twob=betap+betap;
@@ -373,7 +374,7 @@ JFETload(inModel,ckt)
                         gds = model->JFETlModulation*beta*vgdt*vgdt-gm;
                     } else {
                         /*
-                         *  inverse mode, linear region 
+                         *  inverse mode, linear region
                          */
                         cdrain=betap*vds*(vgdt+vgdt+vds);
                         gm=twob*vds;
@@ -385,13 +386,13 @@ JFETload(inModel,ckt)
 	    /* end of original section, now deleted (replaced w/SU mod */
 #endif
             /*
-             *   compute equivalent drain current source 
+             *   compute equivalent drain current source
              */
             cd=cdrain-cgd;
             if ( (ckt->CKTmode & (MODETRAN | MODEAC | MODEINITSMSIG) ) ||
                     ((ckt->CKTmode & MODETRANOP) && (ckt->CKTmode & MODEUIC)) ){
-                /* 
-                 *    charge storage elements 
+                /*
+                 *    charge storage elements
                  */
                 czgs=here->JFETtCGS*here->JFETarea;
                 czgd=here->JFETtCGD*here->JFETarea;
@@ -422,9 +423,9 @@ JFETload(inModel,ckt)
                     capgd=czgdf2*(model->JFETf3+vgd/twop);
                 }
                 /*
-                 *   store small-signal parameters 
+                 *   store small-signal parameters
                  */
-                if( (!(ckt->CKTmode & MODETRANOP)) || 
+                if( (!(ckt->CKTmode & MODETRANOP)) ||
                         (!(ckt->CKTmode & MODEUIC)) ) {
                     if(ckt->CKTmode & MODEINITSMSIG) {
                         *(ckt->CKTstate0 + here->JFETqgs) = capgs;
@@ -432,7 +433,7 @@ JFETload(inModel,ckt)
                         continue; /*go to 1000*/
                     }
                     /*
-                     *   transient analysis 
+                     *   transient analysis
                      */
                     if(ckt->CKTmode & MODEINITTRAN) {
                         *(ckt->CKTstate1 + here->JFETqgs) =
@@ -459,7 +460,7 @@ JFETload(inModel,ckt)
                 }
             }
             /*
-             *  check convergence 
+             *  check convergence
              */
             if( (!(ckt->CKTmode & MODEINITFIX)) | (!(ckt->CKTmode & MODEUIC))) {
                 if( (icheck == 1)
@@ -469,7 +470,7 @@ JFETload(inModel,ckt)
                         || (FABS(cghat-cg) >= ckt->CKTreltol*
                             MAX(FABS(cghat),FABS(cg))+ckt->CKTabstol) ||
                         (FABS(cdhat-cd) > ckt->CKTreltol*
-                            MAX(FABS(cdhat),FABS(cd))+ckt->CKTabstol) 
+                            MAX(FABS(cdhat),FABS(cd))+ckt->CKTabstol)
                         ) {
                     ckt->CKTnoncon++;
 		    ckt->CKTtroubleElt = (GENinstance *) here;
@@ -497,7 +498,7 @@ load:
             *(ckt->CKTrhs + here->JFETsourcePrimeNode) +=
                     (cdreq+ceqgs);
             /*
-             *    load y matrix 
+             *    load y matrix
              */
             *(here->JFETdrainDrainPrimePtr) += (-gdpr);
             *(here->JFETgateDrainPrimePtr) += (-ggd);

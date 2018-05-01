@@ -25,7 +25,7 @@ typedef void GENERIC;
 typedef char GENERIC;
 
 #endif
-/* 
+/*
  * structure:   IFparm
  *
  *
@@ -69,7 +69,7 @@ typedef struct sIFparm {
 
 typedef GENERIC *IFuid;
 
-/* 
+/*
  *
  * types for IFnewUid
  *
@@ -83,12 +83,12 @@ typedef GENERIC *IFuid;
 #define UID_OTHER 0x20
 
 
-/* 
+/*
  * dataType values:
  *
  * Note:  These structures are put together by ORing together the
  *    appropriate bits from the fields below as is shown for the vector
- *    types.  
+ *    types.
  * IF_REQUIRED indicates that the parameter must be specified.
  *    The front end does not NEED to check for this, but can to save time,
  *    since failure to do so will cause the simulator to fail.
@@ -134,7 +134,7 @@ typedef GENERIC *IFuid;
 #define IF_ASK 0x1000
 
 /* If you AND with IF_UNIMP_MASK and get 0, it is recognized, but not
- * implemented 
+ * implemented
  */
 #define IF_UNIMP_MASK (~0xfff)
 
@@ -161,7 +161,7 @@ typedef GENERIC *IFuid;
  * It is expected that the front end will have a more extensive
  * structure which this structure will be a prefix of.
  *
- * Note that the function pointer is provided as a hook for 
+ * Note that the function pointer is provided as a hook for
  * versions which may want to compile code for the parse trees
  * if they are used heavily.
  *
@@ -191,8 +191,8 @@ typedef struct sIFparseTree {
  * should arrange to free it when appropriate.
  *
  * The responsibilities of the data supplier are:
- * Any vectors referenced by the structure are to be malloc()'d 
- * and are assumed to have been turned over to the recipient and 
+ * Any vectors referenced by the structure are to be malloc()'d
+ * and are assumed to have been turned over to the recipient and
  * thus should not be re-used or free()'d.
  *
  * The responsibilities of the data recipient are:
@@ -201,7 +201,7 @@ typedef struct sIFparseTree {
  * and must be free()'d when no longer needed.
  *
  * Character strings are a special case:  Since it is assumed
- * that all character strings are directly descended from input 
+ * that all character strings are directly descended from input
  * tokens, it is assumed that they are static, thus nobody
  * frees them until the circuit is deleted, when the front end
  * may do so.
@@ -216,7 +216,7 @@ typedef struct sIFparseTree {
 /*
  * Some preliminary definitions:
  *
- * IFnode's are returned by the simulator, thus we don't really 
+ * IFnode's are returned by the simulator, thus we don't really
  * know what they look like, just that we get to carry pointers
  * to them around all the time, and will need to save them occasionally
  *
@@ -226,7 +226,7 @@ typedef struct sIFparseTree {
 typedef void * IFnode;
 
 /*
- * and of course, the standard complex data type 
+ * and of course, the standard complex data type
  */
 typedef struct sIFcomplex {
     double real;
@@ -297,7 +297,7 @@ typedef struct sIFdevice {
  *
  * This structure contains all the information available to the
  * front end about a particular analysis type.  The simulator will
- * present the front end with an array of pointers to these structures 
+ * present the front end with an array of pointers to these structures
  * which it will use to determine legal analysis types and parameters.
  *
  * Note to simulators:  As for IFdevice above, you pass an array of pointers
@@ -333,66 +333,66 @@ typedef struct sIFsimulator {
     char *version;                  /* version or revision level of simulator*/
 
 #ifdef __STDC__
-    int ((*newCircuit)(GENERIC **));  
+    int ((*newCircuit)(GENERIC **));
                                     /* create new circuit */
     int ((*deleteCircuit)(GENERIC *));
                                     /* destroy old circuit's data structures*/
 
     int ((*newNode)(GENERIC *,GENERIC**,IFuid));
                                     /* create new node */
-    int ((*groundNode)(GENERIC*,GENERIC**,IFuid)); 
+    int ((*groundNode)(GENERIC*,GENERIC**,IFuid));
                                     /* create ground node */
     int ((*bindNode)(GENERIC *,GENERIC*,int,GENERIC*));
                                     /* bind a node to a terminal */
-    int ((*findNode)(GENERIC *,GENERIC**,IFuid));           
+    int ((*findNode)(GENERIC *,GENERIC**,IFuid));
                                     /* find a node by name */
-    int ((*instToNode)(GENERIC *,GENERIC *,int,GENERIC **,IFuid *));          
+    int ((*instToNode)(GENERIC *,GENERIC *,int,GENERIC **,IFuid *));
                                     /* find the node attached to a terminal */
-    int ((*setNodeParm)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));         
+    int ((*setNodeParm)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));
                                     /* set a parameter on a node */
-    int ((*askNodeQuest)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));        
+    int ((*askNodeQuest)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));
                                     /* ask a question about a node */
-    int ((*deleteNode)(GENERIC*,GENERIC*));          
+    int ((*deleteNode)(GENERIC*,GENERIC*));
                                     /* delete a node from the circuit */
 
-    int ((*newInstance)(GENERIC*,GENERIC*,GENERIC**,IFuid));         
+    int ((*newInstance)(GENERIC*,GENERIC*,GENERIC**,IFuid));
                                     /* create new instance */
-    int ((*setInstanceParm)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));     
+    int ((*setInstanceParm)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));
                                     /* set a parameter on an instance */
-    int ((*askInstanceQuest)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));    
+    int ((*askInstanceQuest)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));
                                     /* ask a question about an instance */
-    int ((*findInstance)(GENERIC*,int*,GENERIC**,IFuid,GENERIC*,IFuid));        
+    int ((*findInstance)(GENERIC*,int*,GENERIC**,IFuid,GENERIC*,IFuid));
                                     /* find a specific instance */
-    int ((*deleteInstance)(GENERIC*,GENERIC*));      
+    int ((*deleteInstance)(GENERIC*,GENERIC*));
                                     /* delete an instance from the circuit */
 
-    int ((*newModel)(GENERIC*,int,GENERIC**,IFuid));            
+    int ((*newModel)(GENERIC*,int,GENERIC**,IFuid));
                                     /* create new model */
-    int ((*setModelParm)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));        
+    int ((*setModelParm)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));
                                     /* set a parameter on a model */
-    int ((*askModelQuest)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));       
+    int ((*askModelQuest)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));
                                     /* ask a questions about a model */
-    int ((*findModel)(GENERIC*,int*,GENERIC**,IFuid));           
+    int ((*findModel)(GENERIC*,int*,GENERIC**,IFuid));
                                     /* find a specific model */
-    int ((*deleteModel)(GENERIC*,GENERIC*));         
+    int ((*deleteModel)(GENERIC*,GENERIC*));
                                     /* delete a model from the circuit*/
 
-    int ((*newTask)(GENERIC*,GENERIC**,IFuid));             
+    int ((*newTask)(GENERIC*,GENERIC**,IFuid));
                                     /* create a new task */
-    int ((*newAnalysis)(GENERIC*,int,IFuid,GENERIC**,GENERIC*));         
+    int ((*newAnalysis)(GENERIC*,int,IFuid,GENERIC**,GENERIC*));
                                     /* create new analysis within a task */
-    int ((*setAnalysisParm)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));     
+    int ((*setAnalysisParm)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));
                                     /* set a parameter on an analysis  */
-    int ((*askAnalysisQuest)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));    
+    int ((*askAnalysisQuest)(GENERIC*,GENERIC*,int,IFvalue*,IFvalue*));
                                     /* ask a question about an analysis */
-    int ((*findAnalysis)(GENERIC*,int*,GENERIC**,IFuid,GENERIC*,IFuid));        
+    int ((*findAnalysis)(GENERIC*,int*,GENERIC**,IFuid,GENERIC*,IFuid));
                                     /* find a specific analysis */
-    int ((*findTask)(GENERIC*,GENERIC**,IFuid));            
+    int ((*findTask)(GENERIC*,GENERIC**,IFuid));
                                     /* find a specific task */
-    int ((*deleteTask)(GENERIC*,GENERIC*));          
+    int ((*deleteTask)(GENERIC*,GENERIC*));
                                     /* delete a task */
 
-    int ((*doAnalyses)(GENERIC*,int,GENERIC*));          
+    int ((*doAnalyses)(GENERIC*,int,GENERIC*));
     char *((*nonconvErr)(GENERIC*,char *)); /* return nonconvergence error */
 #else
     int ((*newCircuit)());          /* create new circuit */
@@ -457,35 +457,35 @@ typedef struct sIFsimulator {
 
 typedef struct sIFfrontEnd {
 #ifdef __STDC__
-    int ((*IFnewUid)(GENERIC*,IFuid*,IFuid,char*,int,GENERIC**));    
+    int ((*IFnewUid)(GENERIC*,IFuid*,IFuid,char*,int,GENERIC**));
                             /* create a new UID in the circuit */
     int ((*IFdelUid)(GENERIC*,IFuid,int));
 			    /* create a new UID in the circuit */
-    int ((*IFpauseTest)(void)); 
+    int ((*IFpauseTest)(void));
                             /* should we stop now? */
-    double ((*IFseconds)(void));   
+    double ((*IFseconds)(void));
                             /* what time is it? */
-    int ((*IFerror)(int,char*,IFuid*));     
+    int ((*IFerror)(int,char*,IFuid*));
                             /* output an error or warning message */
     int ((*OUTpBeginPlot)(GENERIC*,GENERIC*,IFuid,IFuid,int,
-            int,IFuid*,int,GENERIC**));   
+            int,IFuid*,int,GENERIC**));
                             /* start pointwise output plot */
-    int ((*OUTpData)(GENERIC*,IFvalue*,IFvalue*));        
+    int ((*OUTpData)(GENERIC*,IFvalue*,IFvalue*));
                             /* data for pointwise plot */
     int ((*OUTwBeginPlot)(GENERIC*,GENERIC*,IFuid,IFuid,int,
-            int,IFuid*,int,GENERIC**));   
+            int,IFuid*,int,GENERIC**));
                             /* start windowed output plot */
-    int ((*OUTwReference)(GENERIC*,IFvalue*,GENERIC**));   
+    int ((*OUTwReference)(GENERIC*,IFvalue*,GENERIC**));
                             /* independent vector for windowed plot */
-    int ((*OUTwData)(GENERIC*,int,IFvalue*,GENERIC*));        
+    int ((*OUTwData)(GENERIC*,int,IFvalue*,GENERIC*));
                             /* data for windowed plot */
-    int ((*OUTwEnd)(GENERIC*)); 
+    int ((*OUTwEnd)(GENERIC*));
                             /* signal end of windows */
-    int ((*OUTendPlot)(GENERIC*));      
+    int ((*OUTendPlot)(GENERIC*));
                             /* end of plot */
-    int ((*OUTbeginDomain)(GENERIC*,IFuid,int,IFvalue*));  
+    int ((*OUTbeginDomain)(GENERIC*,IFuid,int,IFvalue*));
                             /* start nested domain */
-    int ((*OUTendDomain)(GENERIC*));    
+    int ((*OUTendDomain)(GENERIC*));
                             /* end nested domain */
     int ((*OUTattributes)(GENERIC *,IFuid*,int,IFvalue*));
                             /* specify output attributes of node */

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmfb.a  CMakeFiles/mfb.dir/mfb3d.c.o CMakeFiles/mfb.dir/mfbbasic.c.o CMakeFiles/mfb.dir/mfbcaps.c.o CMakeFiles/mfb.dir/mfbclip.c.o CMakeFiles/mfb.dir/mfbdec.c.o CMakeFiles/mfb.dir/mfbgnc.c.o CMakeFiles/mfb.dir/mfbio.c.o CMakeFiles/mfb.dir/mfbtext.c.o CMakeFiles/mfb.dir/paths.c.o CMakeFiles/mfb.dir/vmsio.c.o
+/usr/bin/ranlib libmfb.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdev.a  CMakeFiles/dev.dir/devsup.c.o
+/usr/bin/ranlib libdev.a

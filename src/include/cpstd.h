@@ -50,7 +50,7 @@ extern char *tildexpand();
 extern char *printnum();
 extern int cp_numdgt;
 extern void fatal();
-extern void setenv();
+//extern void setenv();
 extern void cp_printword();
 
 /* Externs from wlist.c */

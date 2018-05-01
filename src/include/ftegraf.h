@@ -13,4 +13,3 @@ Author: 1986 Wayne A. Christopher, U. C. Berkeley CAD Group
 #define G_TERM 2
 #define G_MFB   3
 #define G_X 4
-
