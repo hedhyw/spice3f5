@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcccs.a  CMakeFiles/cccs.dir/cccs.c.o CMakeFiles/cccs.dir/cccsask.c.o CMakeFiles/cccs.dir/cccsdel.c.o CMakeFiles/cccs.dir/cccsdest.c.o CMakeFiles/cccs.dir/cccsload.c.o CMakeFiles/cccs.dir/cccsmdel.c.o CMakeFiles/cccs.dir/cccspar.c.o CMakeFiles/cccs.dir/cccspzld.c.o CMakeFiles/cccs.dir/cccssacl.c.o CMakeFiles/cccs.dir/cccsset.c.o CMakeFiles/cccs.dir/cccssld.c.o CMakeFiles/cccs.dir/cccssprt.c.o CMakeFiles/cccs.dir/cccssset.c.o
-/usr/bin/ranlib libcccs.a
